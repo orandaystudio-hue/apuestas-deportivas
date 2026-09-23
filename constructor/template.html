@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NFL Semana 3 · 2026</title>
+<meta name="description" content="Análisis de los 16 juegos de la semana 3 de la NFL 2026: probabilidades, lesiones, clima, estadísticas y 5 apuestas por juego.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0f1c;--surface:#111a2e;--surface-2:#172340;--surface-3:#1e2d52;
+  --tx:#e6ecf8;--tx-2:#a7b4cf;--tx-3:#8593b3;--line:#24345c;
+  --primary:#2563eb;--primary-2:#60a5fa;--on-primary:#fff;
+  --accent:#f59e0b;--accent-tx:#fbbf24;--ok:#22c55e;--ok-tx:#4ade80;--bad:#ef4444;--bad-tx:#f87171;
+  --away:#60a5fa;--home:#f59e0b;
+  --ring:#93c5fd;--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.25);
+  --r:10px;--r-sm:6px;--t:180ms;
+  --mono:'Fira Code',ui-monospace,SFMono-Regular,Consolas,monospace;
+  --sans:'Fira Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+[data-theme=light]{
+  --bg:#f5f7fb;--surface:#fff;--surface-2:#eef2f9;--surface-3:#e2e8f4;
+  --tx:#0f1a33;--tx-2:#3d4a66;--tx-3:#5a6784;--line:#d5deee;
+  --primary:#1e40af;--primary-2:#1e3a8a;--accent:#b45309;--accent-tx:#7c3c06;
+  --ok:#15803d;--ok-tx:#14532d;--bad:#b91c1c;--bad-tx:#991b1b;--away:#1d4ed8;--home:#b45309;
+  --ring:#1e40af;--shadow:0 1px 2px rgba(15,26,51,.06),0 6px 18px rgba(15,26,51,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 var(--sans);min-height:100dvh}
+a{color:var(--primary-2)}[data-theme=light] a{color:var(--primary)}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:4px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;background:var(--primary);color:var(--on-primary);padding:10px 14px;border-radius:8px;z-index:100}.skip:focus{left:12px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--tx-2)}.dim{color:var(--tx-3)}.sm{font-size:14px}.xs{font-size:13px}
+.ok{color:var(--ok-tx)}.bad{color:var(--bad-tx)}.acc{color:var(--accent-tx)}
+svg.i{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-3px}
+/* header */
+.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:12px;min-height:60px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.brand{display:flex;align-items:center;gap:10px;min-height:44px;font-weight:700;font-size:18px;text-decoration:none;color:var(--tx);margin-right:auto}
+.brand b{display:grid;place-items:center;width:34px;height:34px;border-radius:8px;background:var(--primary);color:#fff;font-family:var(--mono);font-size:14px}
+.brand small{display:block;font-weight:400;font-size:12px;color:var(--tx-3)}
+nav.main{display:flex;gap:4px}
+nav.main a{display:flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:8px;text-decoration:none;color:var(--tx-2);font-weight:500;transition:background var(--t),color var(--t)}
+nav.main a:hover{background:var(--surface-2);color:var(--tx)}
+nav.main a[aria-current=page]{background:var(--surface-3);color:var(--tx)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:500;transition:background var(--t),border-color var(--t),transform 120ms}
+.btn:hover{background:var(--surface-2);border-color:var(--primary)}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
+.btn.primary:hover{background:#1d4ed8;border-color:#1d4ed8}
+[data-theme=light] .btn.primary:hover{background:#1a3894;border-color:#1a3894}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn.icon{width:44px;padding:0}
+.spin{animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+/* status line */
+.status{border-bottom:1px solid var(--line);background:var(--surface)}
+.status .wrap{display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding-top:8px;padding-bottom:8px;font-size:13px;color:var(--tx-2)}
+.status span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--tx-3)}.dot.on{background:var(--ok)}.dot.warn{background:var(--accent)}
+main{padding:20px 0 64px}
+h1{font-size:26px;line-height:1.2;margin:0 0 4px}h2{font-size:20px;margin:0 0 12px}h3{font-size:16px;margin:0 0 10px}
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.kpi .k{font-size:13px;color:var(--tx-3)}.kpi .v{font-family:var(--mono);font-size:22px;font-weight:600;margin-top:2px}.kpi .s{font-size:13px;color:var(--tx-2)}
+@media(max-width:800px){.kpis{grid-template-columns:repeat(2,1fr)}}
+/* filters */
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0 14px}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:3px;gap:2px}
+.seg button{min-height:44px;padding:0 12px;border:0;background:none;border-radius:6px;cursor:pointer;color:var(--tx-2);font-weight:500}
+.seg button[aria-pressed=true]{background:var(--surface-3);color:var(--tx)}
+label.sel{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--tx-2)}
+select{min-height:44px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:0 10px}
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;text-decoration:none;color:var(--tx);box-shadow:var(--shadow);transition:border-color var(--t),transform var(--t)}
+.card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.card .when{display:flex;justify-content:space-between;font-size:13px;color:var(--tx-3);margin-bottom:8px}
+.team{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:10px;padding:4px 0}
+.ab{display:grid;place-items:center;height:30px;border-radius:6px;font-family:var(--mono);font-weight:600;font-size:13px;background:var(--surface-3)}
+.ab.a{box-shadow:inset 3px 0 0 var(--away)}.ab.h{box-shadow:inset 3px 0 0 var(--home)}
+.team .nm{font-weight:600;line-height:1.2}.team .nm small{display:block;font-weight:400;font-size:13px;color:var(--tx-3)}
+.team .pc{font-family:var(--mono);font-weight:600;font-size:18px}
+.prob{display:flex;height:8px;border-radius:5px;overflow:hidden;margin:10px 0;background:var(--surface-3)}
+.prob i{display:block;height:100%}.prob .pa{background:var(--away)}.prob .ph{background:var(--home)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:13px;padding:3px 9px;border-radius:99px;background:var(--surface-2);color:var(--tx-2);border:1px solid var(--line)}
+.chip.warn{color:var(--accent-tx);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.chip.bad{color:var(--bad-tx);border-color:color-mix(in srgb,var(--bad) 40%,var(--line))}
+.chip.ok{color:var(--ok-tx);border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+.chip svg.i{width:14px;height:14px}
+.pick{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:14px;display:flex;justify-content:space-between;gap:8px}
+.pick b{color:var(--ok-tx)}
+.score{font-family:var(--mono);font-weight:600}
+/* sections */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
+.panel h2{display:flex;align-items:center;gap:8px}
+.back{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--primary-2);text-decoration:none;font-weight:500}
+.hero{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;text-align:center}
+.hero .side .ab{height:48px;font-size:18px;margin:0 auto 6px;width:72px}
+.hero .side .big{font-family:var(--mono);font-size:34px;font-weight:600}
+.hero .vs{color:var(--tx-3);font-family:var(--mono)}
+.subnav{position:sticky;top:var(--top-h,61px);z-index:30;background:var(--bg);display:flex;gap:6px;flex-wrap:wrap;padding:8px 0;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.subnav a{display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border-radius:8px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--tx-2);font-size:14px;font-weight:500}
+.subnav a:hover{color:var(--tx);border-color:var(--primary)}
+section[id]{scroll-margin-top:130px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:820px){.two,.three{grid-template-columns:1fr}.hero .side .big{font-size:26px}}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;position:relative}
+.tw[data-scroll]::after{content:"Se desliza →";position:sticky;right:0;bottom:0;float:right;font-size:12px;background:var(--surface-3);color:var(--tx-2);padding:2px 8px;border-radius:99px;margin:-26px 4px 4px 0}
+@media(max-width:700px){
+  /* la tabla de apuestas se vuelve tarjetas: en 375 px no cabe y escondía la mitad */
+  table.apuestas thead{display:none}
+  table.apuestas,table.apuestas tbody,table.apuestas tr,table.apuestas td{display:block;width:100%}
+  table.apuestas tr{border:1px solid var(--line);border-radius:8px;padding:8px;margin-bottom:8px}
+  table.apuestas td{border:0;padding:3px 0;text-align:left!important}
+  table.apuestas td[data-l]::before{content:attr(data-l) ": ";color:var(--tx-3);font-size:13px}
+  table.apuestas tfoot tr{background:var(--surface-2)}
+}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{font-size:13px;color:var(--tx-3);font-weight:500;white-space:nowrap}
+tbody tr:hover{background:var(--surface-2)}
+td.r,th.r{text-align:right}
+.better{font-weight:700;color:var(--tx)}.better::after{content:" ▲";font-size:10px;color:var(--ok-tx)}
+.worse{color:var(--tx-3)}
+.stat{background:var(--surface-2);border-radius:8px;padding:10px 12px}
+.stat .k{font-size:13px;color:var(--tx-3)}.stat .v{font-family:var(--mono);font-size:18px;font-weight:600}
+ul.clean{margin:0;padding-left:18px}ul.clean li{margin:3px 0}
+#s-fuentes ul.clean li{margin:0}
+#s-fuentes a{display:inline-block;min-height:44px;line-height:44px}
+.note{border-left:3px solid var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));padding:10px 12px;border-radius:6px;font-size:14px;margin:10px 0}
+.note.info{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 10%,var(--surface))}
+.note.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--surface))}
+.note.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--surface))}
+.range{display:grid;gap:4px;margin:12px 0}.range label{display:flex;justify-content:space-between;font-size:14px}
+input[type=range]{width:100%;accent-color:var(--primary);min-height:32px}
+input.odds{width:92px;min-height:40px;border:1px solid var(--line);background:var(--surface-2);border-radius:6px;padding:0 8px;font-family:var(--mono);text-align:right}
+input.odds[aria-invalid=true]{border-color:var(--bad)}
+input.stake{width:110px;min-height:44px;border:1px solid var(--line);background:var(--surface-2);border-radius:8px;padding:0 10px;font-family:var(--mono)}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:5px;background:var(--surface-3);white-space:nowrap}
+.tag.t0{background:color-mix(in srgb,var(--ok) 22%,var(--surface-2));color:var(--ok-tx)}
+.tag.t1{background:color-mix(in srgb,var(--primary) 22%,var(--surface-2));color:var(--primary-2)}
+.tag.t2{background:color-mix(in srgb,var(--accent) 20%,var(--surface-2));color:var(--accent-tx)}
+.tag.t3,.tag.t4{background:var(--surface-3);color:var(--tx-2)}
+.res{font-weight:600;font-size:13px}.res.w{color:var(--ok-tx)}.res.l{color:var(--bad-tx)}.res.p{color:var(--tx-2)}
+.pl-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.big-odds{font-family:var(--mono);font-size:26px;font-weight:600;color:var(--accent-tx)}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--surface-3);border:1px solid var(--line);padding:12px 16px;border-radius:10px;box-shadow:var(--shadow);z-index:90;max-width:min(560px,calc(100% - 32px));font-size:14px}
+footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--tx-3);font-size:13px}
+.empty{padding:28px;text-align:center;color:var(--tx-2)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* al cambiar de tema se apagan las transiciones: si no, Chrome deja congelado el color viejo */
+.sin-anim *,.sin-anim *::before,.sin-anim *::after{transition:none!important}
+@media(max-width:560px){nav.main a span{display:none}nav.main a{padding:0 12px}.brand small{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#/"><b>W3</b><span>NFL · Semana 3<small>Temporada 2026</small></span></a>
+    <nav class="main" aria-label="Principal">
+      <a href="#/" data-nav="juegos" aria-label="Juegos" title="Juegos"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Juegos</span></a>
+      <a href="#/combinadas" data-nav="combinadas" aria-label="Combinadas" title="Combinadas"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span>Combinadas</span></a>
+      <a href="#/boleto" data-nav="boleto" aria-label="Mi boleto" title="Mi boleto"><svg class="i" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1 0 4 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-4 2 2 0 0 1 0-4z"/><path d="M9 9v6"/></svg><span>Mi boleto</span></a>
+      <a href="#/metodo" data-nav="metodo" aria-label="Método" title="Método"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg><span>Método</span></a>
+    </nav>
+    <a class="btn" href="futbol.html" title="Liga MX, LaLiga, Champions">Futbol</a>
+    <button class="btn primary" id="live" type="button" aria-describedby="liveState"><svg class="i" id="liveIco" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg><span>Actualizar en vivo</span></button>
+    <button class="btn icon" id="theme" type="button" aria-label="Cambiar a tema claro"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  </div>
+</header>
+<div class="status"><div class="wrap" id="statusLine"></div></div>
+<main id="main" tabindex="-1"><div class="wrap" id="view"></div></main>
+<footer><div class="wrap">Análisis con datos públicos, no garantía. Apuesta solo lo que puedas perder. Si el juego deja de ser diversión, busca ayuda.</div></footer>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<script>
+const DATA = /*__DATA__*/{"games":[],"league":null,"meta":{}};
+
+/* ================== constantes y estado ================== */
+const SDM=13.5, SDT=10.5, VIG=0.95, STAKES=[400,250,150,100,100];
+const KINDS=['Fuerte','Sólida','Media','Spread','Total'];
+const KIND_HELP=['~82 %: hándicap alterno del favorito del modelo','Ganador directo, o hándicap alterno si el momio no paga','Total con 5 puntos de colchón','El spread del mercado, del lado que el modelo ve mejor','El total normal: casi un volado'];
+const TZ='America/Mexico_City';
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const S={
+  adj:store.get('w3.adj',{}),        // {id:{m,t}}
+  book:store.get('w3.book',{}),      // {"id-i": americanOdds}
+  live:store.get('w3.live',{}),      // {id:{lines,score,state,detail,at}}
+  wx:store.get('w3.wx',{}),          // {id:{...}}
+  inj:store.get('w3.inj',{}),        // {abbr:{items,listed}} reporte de ESPN en vivo
+  injAt:store.get('w3.injAt',null),
+  liveAt:store.get('w3.liveAt',null),
+  filter:store.get('w3.filter','all'),sort:store.get('w3.sort','time'),
+  custom:store.get('w3.custom',{}),stake:store.get('w3.stake',{seg:150,real:100,son:100,custom:100}),
+};
+const G=DATA.games.slice().sort((a,b)=>a.id-b.id);
+const byId=Object.fromEntries(G.map(g=>[g.id,g]));
+
+/* ================== utilidades ================== */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const fmt=(n,d=1)=>n==null||isNaN(n)?'—':Number(n).toFixed(d).replace(/\.0+$/,'');
+const sgn=n=>(n>0?'+':'')+fmt(n);
+const pct=p=>Math.round(p*100)+'%';
+const money=n=>'$'+Math.round(n).toLocaleString('es-MX');
+function erf(x){const s=Math.sign(x);x=Math.abs(x);const t=1/(1+.3275911*x);return s*(1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-.284496736)*t+.254829592)*t*Math.exp(-x*x))}
+const Phi=z=>.5*(1+erf(z/Math.SQRT2));
+function invPhi(p){let lo=-8,hi=8;for(let i=0;i<60;i++){const m=(lo+hi)/2;Phi(m)<p?lo=m:hi=m}return(lo+hi)/2}
+const imp=ml=>ml<0?-ml/(-ml+100):100/(ml+100);
+const decFair=p=>Math.max(1.01,(1/p)*VIG);
+const us2dec=a=>a>0?1+a/100:1+100/(-a);
+const dec2us=d=>d>=2?'+'+Math.round((d-1)*100):'−'+Math.round(100/(d-1));
+function parseUS(s){if(s==null)return null;const t=String(s).trim().replace('−','-').replace(/^\+/,'');if(!/^-?\d{3,5}$/.test(t))return null;const n=+t;return Math.abs(n)>=100?n:null}
+const half=x=>Math.round(x-.5)+.5;
+const decAUS=d=>d>=2?Math.round((d-1)*100):-Math.round(100/(d-1));   // momio decimal (2.50) a americano (+150) // siempre termina en .5
+function when(g,opt){const d=new Date(g.kickoff_utc);if(isNaN(d))return g.kickoff_cdmx||'';return d.toLocaleString('es-MX',Object.assign({timeZone:TZ,weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit'},opt||{})).replace(/\./g,'')}
+function toast(msg,ms=4200){const t=$('#toast');t.innerHTML=msg;t.hidden=false;clearTimeout(t._h);t._h=setTimeout(()=>t.hidden=true,ms)}
+const ICON={
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+ pin:'<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+ temp:'<path d="M14 14.8V4a2 2 0 1 0-4 0v10.8a4 4 0 1 0 4 0z"/>',
+ wind:'<path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/>',
+ drop:'<path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/>',
+ dome:'<path d="M3 20h18M5 20v-6a7 7 0 0 1 14 0v6"/><path d="M9 20v-4h6v4"/>',
+ grass:'<path d="M4 20c2-4 3-8 3-12M10 20c0-4 1-7 3-10M16 20c0-3 1-6 4-9M2 20h20"/>',
+ alert:'<path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/>',
+ mountain:'<path d="m3 20 6-10 4 6 3-4 5 8H3z"/>',
+ plane:'<path d="M10 18 8 21h3l3-4h4a2 2 0 0 0 0-4h-4L11 5H8l2 8H6l-2-2H2l2 4-2 4h2l2-2z"/>',
+ users:'<circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-3.3 3.1-6 7-6s7 2.7 7 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M22 20c0-2.6-1.8-4.8-4.5-5.6"/>',
+ check:'<path d="m5 12 5 5 9-10"/>',x:'<path d="M6 6l12 12M18 6 6 18"/>',
+ left:'<path d="m15 18-6-6 6-6"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>',
+ trend:'<path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/>',flame:'<path d="M12 22a7 7 0 0 0 7-7c0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-2 2-5 5-5 8a7 7 0 0 0 7 7z"/>',
+ snow:'<path d="M12 2v20M4.9 7l14.2 10M4.9 17 19.1 7"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ moon:'<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
+};
+const ic=(n,cls='')=>`<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICON[n]||''}</svg>`;
+
+/* ================== modelo ================== */
+function linesOf(g){const L=Object.assign({},g.lines),lv=S.live[g.id];if(lv&&lv.lines){for(const k of ['spread_home','total','ml_away','ml_home'])if(lv.lines[k]!=null&&!isNaN(lv.lines[k]))L[k]=lv.lines[k];L._live=true}return L}
+function sideTxt(team,x){return x===0?`${team} gana (moneyline)`:`${team} ${x>0?'−'+fmt(x):'+'+fmt(-x)}`}
+function model(g){
+  const L=linesOf(g),u=S.adj[g.id]||{m:0,t:0};
+  const pa=imp(L.ml_away),ph=imp(L.ml_home),pH=ph/(pa+ph);
+  const mkt=-L.spread_home,mlM=SDM*invPhi(pH),base=(mkt+mlM)/2;
+  const am=clamp(+(g.model&&g.model.margin_adj_home)||0,-3,3),at=clamp(+(g.model&&g.model.total_adj)||0,-4,4);
+  const mu=base+am+u.m,tot=L.total+at+u.t;
+  const pHome=1-Phi(-mu/SDM);
+  const favHome=mu>=0,fav=favHome?g.teams[1]:g.teams[0],dog=favHome?g.teams[0]:g.teams[1],fm=Math.abs(mu);
+  const pSide=(isFav,x)=>1-Phi((x-(isFav?fm:-fm))/SDM); // P(margen del equipo > x)
+  const bets=[];
+  const alt=(target)=>{const x=half(fm+SDM*invPhi(1-target));return{kind:'side',team:fav.abbr,teamName:fav.name,home:favHome,x,p:pSide(true,x),txt:sideTxt(fav.abbr,x)+' (hándicap alterno)'}};
+  bets.push(alt(.82));
+  const pFav=pSide(true,0);
+  if(pFav>=.55&&pFav<=.78)bets.push({kind:'side',team:fav.abbr,home:favHome,x:0,p:pFav,txt:sideTxt(fav.abbr,0)});
+  else bets.push(alt(.65));
+  // dirección del total: 1) el modelo, 2) hacia dónde se movió la línea desde que abrió, 3) si no hay nada, es un volado
+  const lean=tot-L.total,open=g.lines&&g.lines.open_total;let overLean,totWhy;
+  if(Math.abs(lean)>=.1){overLean=lean>0;totWhy=''}
+  else if(open!=null&&Math.abs(L.total-open)>=.5){overLean=L.total>open;totWhy=`Casi un volado: el modelo no ve ventaja. Para desempatar se toma el lado hacia donde se movió la línea (abrió en ${fmt(open)}, hoy ${fmt(L.total)}).`}
+  else{overLean=false;totWhy='Sin ventaja clara para ningún lado: es un volado.'}
+  let tl=overLean?L.total-5:L.total+5;
+  if(Number.isInteger(tl))tl+=overLean?-0.5:0.5;   // nunca dejar línea entera: habría empate
+  bets.push({kind:'total',dir:overLean?'over':'under',line:tl,p:overLean?1-Phi((tl-tot)/SDT):Phi((tl-tot)/SDT),txt:`${overLean?'Más':'Menos'} de ${fmt(tl)} puntos (total alterno)`,note:totWhy});
+  // spread del mercado
+  const line=Math.abs(L.spread_home),mktFavHome=L.spread_home<=0,mfIsFav=mktFavHome===favHome;
+  const mf=mktFavHome?g.teams[1]:g.teams[0],md=mktFavHome?g.teams[0]:g.teams[1];
+  const pCov=pSide(mfIsFav,line);
+  if(line===0)bets.push({kind:'side',team:fav.abbr,home:favHome,x:0,p:pFav,txt:sideTxt(fav.abbr,0)+' (pick\'em)'});
+  else if(pCov>=.5)bets.push({kind:'side',team:mf.abbr,home:mktFavHome,x:line,p:pCov,txt:`${mf.abbr} −${fmt(line)} (spread)`});
+  else bets.push({kind:'side',team:md.abbr,home:!mktFavHome,x:-line,p:1-pCov,txt:`${md.abbr} +${fmt(line)} (spread)`});
+  const pO=1-Phi((L.total-tot)/SDT);
+  bets.push({kind:'total',dir:overLean?'over':'under',line:L.total,p:overLean?pO:1-pO,txt:`${overLean?'Más':'Menos'} de ${fmt(L.total)} puntos`,note:totWhy});
+  if(bets[3].p<.524)bets[3].note='Ventaja mínima: a −110 necesita 52.4 % para salir a mano. Solo vale con mejor momio.';
+  bets.forEach((b,i)=>{b.i=i;b.kindName=KINDS[i];b.stake=STAKES[i];
+    b.min=1/b.p;                                   // momio de equilibrio: abajo de esto se pierde a la larga
+    b.bk=[g.id,i,b.kind,b.kind==='total'?b.dir:b.team,b.kind==='total'?b.line:b.x].join('|'); // la clave es la SELECCIÓN
+    const bo=S.book[b.bk];b.book=bo;b.d=bo?us2dec(bo):null;
+    b.ret=b.d?b.stake*b.d:null;b.ev=b.d?b.p*b.ret-b.stake:null;b.grade=grade(g,b)});
+  return{L,mu,tot,pHome,fav,dog,favHome,bets,base,mkt,mlM,am,at,u,
+    ptsH:(tot+mu)/2,ptsA:(tot-mu)/2};
+}
+function grade(g,b){const lv=S.live[g.id];if(!lv||!lv.score||lv.state!=='post')return null;const{away,home}=lv.score;
+  if(b.kind==='total'){const t=away+home;if(t===b.line)return'p';return(b.dir==='over'?t>b.line:t<b.line)?'w':'l'}
+  const m=b.home?home-away:away-home;if(m===b.x)return'p';return m>b.x?'w':'l'}
+
+/* ================== vistas ================== */
+const V=$('#view');
+function route(){setTimeout(()=>{medirTop();marcarScroll()},0);
+  const h=location.hash.replace(/^#\/?/,'');const [a,b]=h.split('/');
+  document.querySelectorAll('nav.main a').forEach(x=>x.removeAttribute('aria-current'));
+  const cur=a==='combinadas'?'combinadas':a==='metodo'?'metodo':a==='boleto'?'boleto':'juegos';
+  document.querySelector(`nav.main a[data-nav=${cur}]`).setAttribute('aria-current','page');
+  if(a==='juego'&&byId[+b])viewGame(byId[+b]);else if(a==='combinadas')viewParlays();else if(a==='metodo')viewMethod();else if(a==='boleto')viewTicket();else viewList();
+  statusLine();
+}
+function statusLine(){
+  const m=DATA.meta||{},lv=S.liveAt;
+  $('#statusLine').innerHTML=`<span><i class="dot on"></i>Datos investigados y verificados: ${esc(m.researched||'—')}</span>
+  <span id="liveState"><i class="dot ${lv?'on':'warn'}"></i>${lv?'En vivo: '+new Date(lv).toLocaleString('es-MX',{timeZone:TZ,day:'numeric',month:'short',hour:'numeric',minute:'2-digit'}):'Sin actualizar en vivo'}</span>
+  <span>Horas en CDMX</span>`;
+}
+function kickState(g){const lv=S.live[g.id];if(!lv||!lv.state||lv.state==='pre')return'';return lv.state==='post'?`<span class="chip ok">Final ${lv.score.away}-${lv.score.home}</span>`:`<span class="chip warn">En juego ${lv.score.away}-${lv.score.home} · ${esc(lv.detail||'')}</span>`}
+function wxOf(g){const w=S.wx[g.id];return w&&w.covered?Object.assign({live:true},w):g.weather||{}}
+const isTurf=g=>/^\s*(artificial|sint[eé]tic|turf|fieldturf|césped artificial)/i.test(g.venue&&g.venue.surface||'');
+const roofShort=g=>isIndoor(g)?(/retr/i.test(g.venue.roof)?'Techo retráctil':'Domo'):'Al aire libre';
+const cut=(s,n)=>{s=String(s||'').replace(/^[A-Za-zÁÉÍÓÚÑ.]+:\s*/,'');const i=s.search(/[.(;]/);const b=i>0&&i<n?s.slice(0,i).trim():s;return b.length>n?b.slice(0,n-1)+'…':b};
+function isIndoor(g){const r=(g.venue&&g.venue.roof||'').toLowerCase().trim();if(/^(abierto|open|al aire)/.test(r))return false;return /domo|dome|cerrad|retr|techad|indoor|fijo/.test(r)}
+function condChips(g){
+  const v=g.venue||{},w=wxOf(g),out=[];
+  out.push(`<span class="chip">${ic(isIndoor(g)?'dome':'sun')}${roofShort(g)}</span>`);
+  out.push(`<span class="chip">${ic('grass')}${isTurf(g)?'Artificial':'Pasto natural'}</span>`);
+  if(!isIndoor(g)&&w.temp_c!=null)out.push(`<span class="chip">${ic('temp')}${fmt(w.temp_c,0)}°C</span>`);
+  if(!isIndoor(g)&&w.wind_kmh!=null&&w.wind_kmh>=20)out.push(`<span class="chip warn">${ic('wind')}${fmt(w.wind_kmh,0)} km/h</span>`);
+  if(!isIndoor(g)&&w.precip_pct!=null&&w.precip_pct>=40)out.push(`<span class="chip warn">${ic('drop')}${fmt(w.precip_pct,0)}% lluvia</span>`);
+  if(v.altitude_m>1000)out.push(`<span class="chip warn">${ic('mountain')}${fmt(v.altitude_m,0)} m</span>`);
+  if(v.neutral)out.push(`<span class="chip warn">${ic('pin')}Sede neutral</span>`);
+  const fuera=g.teams.flatMap(t=>t.injuries||[]).filter(x=>x.impact==='alto'&&/out|ir|pup|fuera|no jugar|doubtful|duda/i.test(x.status||'')&&!/activ|cleared|probable|s[ií] juega/i.test(x.status||''));
+  if(fuera.length)out.push(`<span class="chip bad" title="${esc(fuera.map(x=>x.name+' ('+x.pos+')').join(', '))}">${ic('alert')}${fuera.length} fuera o en duda</span>`);
+  return out.join('');
+}
+function viewList(){
+  document.title='NFL Semana 3 · 2026';
+  if(!G.length){V.innerHTML='<div class="empty">No hay datos cargados.</div>';return}
+  const Ms=G.map(g=>({g,m:model(g)}));
+  const topFav=Ms.slice().sort((a,b)=>Math.max(b.m.pHome,1-b.m.pHome)-Math.max(a.m.pHome,1-a.m.pHome))[0];
+  const topTot=Ms.slice().sort((a,b)=>b.m.tot-a.m.tot)[0];
+  const closest=Ms.slice().sort((a,b)=>Math.abs(a.m.mu)-Math.abs(b.m.mu))[0];
+  let list=Ms.filter(({g})=>S.filter==='all'||g.day_label===S.filter);
+  if(S.sort==='conf')list.sort((a,b)=>Math.abs(b.m.pHome-.5)-Math.abs(a.m.pHome-.5));
+  else if(S.sort==='total')list.sort((a,b)=>b.m.tot-a.m.tot);
+  else list.sort((a,b)=>new Date(a.g.kickoff_utc)-new Date(b.g.kickoff_utc)||a.g.id-b.g.id);
+  const days=['all','Jueves','Domingo','Lunes'];
+  const visibles=Ms.filter(({g})=>S.filter==='all'||g.day_label===S.filter);
+  V.innerHTML=`<h1>${S.filter==='all'?'Los 16 juegos de la semana 3':`${visibles.length} juego${visibles.length===1?'':'s'} del ${S.filter.toLowerCase()}`}</h1>
+  <p class="muted">Toca un juego para ver todo: equipos, lesiones, clima, estadística y las 5 apuestas de $1,000.</p>
+  <div class="kpis">
+   <div class="kpi"><div class="k">Juegos</div><div class="v">${visibles.length}</div><div class="s">${money(visibles.length*1000)} en juego</div></div>
+   <div class="kpi"><div class="k">Favorito más claro</div><div class="v">${pct(Math.max(topFav.m.pHome,1-topFav.m.pHome))}</div><div class="s">${esc(topFav.m.fav.abbr)} vs ${esc(topFav.m.dog.abbr)}</div></div>
+   <div class="kpi"><div class="k">Juego más parejo</div><div class="v">${pct(Math.max(closest.m.pHome,1-closest.m.pHome))}</div><div class="s">${esc(closest.g.teams[0].abbr)} @ ${esc(closest.g.teams[1].abbr)}</div></div>
+   <div class="kpi"><div class="k">Más puntos esperados</div><div class="v">${fmt(topTot.m.tot)}</div><div class="s">${esc(topTot.g.teams[0].abbr)} @ ${esc(topTot.g.teams[1].abbr)}</div></div>
+  </div>
+  <div class="bar">
+   <div class="seg" role="group" aria-label="Filtrar por día">${days.map(d=>`<button type="button" aria-pressed="${S.filter===d}" data-f="${d}">${d==='all'?'Todos':d}</button>`).join('')}</div>
+   <label class="sel">Ordenar <select id="sort"><option value="time">Por hora</option><option value="conf">Por confianza</option><option value="total">Por puntos esperados</option></select></label>
+  </div>
+  <div class="grid">${list.map(({g,m})=>card(g,m)).join('')||'<div class="empty">Ningún juego ese día.</div>'}</div>`;
+  $('#sort').value=S.sort;
+  $('#sort').onchange=e=>{S.sort=e.target.value;store.set('w3.sort',S.sort);viewList()};
+  V.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{S.filter=b.dataset.f;store.set('w3.filter',S.filter);viewList()});
+}
+function card(g,m){
+  const [A,H]=g.teams,L=m.L,b=m.bets[0];
+  return`<a class="card" href="#/juego/${g.id}" aria-label="${esc(A.name)} en ${esc(H.name)}, ${esc(when(g))}">
+   <div class="when"><span>${ic('clock')} ${esc(when(g))}</span><span>${esc(g.network||'')}</span></div>
+   <div class="team"><span class="ab a">${esc(A.abbr)}</span><span class="nm">${esc(A.name)}<small>${esc(A.record)} · visita</small></span><span class="pc">${pct(1-m.pHome)}</span></div>
+   <div class="team"><span class="ab h">${esc(H.abbr)}</span><span class="nm">${esc(H.name)}<small>${esc(H.record)} · ${g.venue&&g.venue.neutral?'sede neutral':'local'}</small></span><span class="pc">${pct(m.pHome)}</span></div>
+   <div class="prob" aria-hidden="true"><i class="pa" style="width:${(1-m.pHome)*100}%"></i><i class="ph" style="width:${m.pHome*100}%"></i></div>
+   <div class="xs muted mono">${esc(H.abbr)} ${L.spread_home>0?'+':''}${fmt(L.spread_home)} · O/U ${fmt(L.total)} · Esperado ${fmt(m.ptsA,0)}-${fmt(m.ptsH,0)}</div>
+   <div class="chips">${kickState(g)}${condChips(g)}</div>
+   <div class="pick"><span class="muted">Fuerte</span><span><b>${esc(b.txt)}</b> · ${pct(b.p)}${b.grade?` <span class="res ${b.grade}">${b.grade==='w'?'✓ ganó':b.grade==='l'?'✗ perdió':'empate'}</span>`:''}</span></div>
+  </a>`;
+}
+/* ---------- juego ---------- */
+const METRICS=[['Puntos a favor por juego','ppg',1],['Puntos en contra por juego','papg',-1],['Yardas por juego','ypg',1],['Yardas permitidas por juego','ypg_allowed',-1],['Yardas por pase','pass_ypg',1],['Yardas por carrera','rush_ypg',1],['Diferencial de balones','turnover_diff',1],['3ª oportunidad %','third_down_pct',1],['Zona roja %','red_zone_pct',1],['Capturas hechas','sacks',1],['Capturas permitidas','sacks_allowed',-1],['Castigos por juego','penalties_pg',-1]];
+function cmpRow(label,a,h,dir){if(a==null&&h==null)return'';let ca='',ch='';if(a!=null&&h!=null&&a!==h){const aB=dir>0?a>h:a<h;ca=aB?'better':'worse';ch=aB?'worse':'better'}
+  return`<tr><th scope="row" class="muted" style="font-weight:400">${label}</th><td class="r num ${ca}">${fmt(a)}</td><td class="r num ${ch}">${fmt(h)}</td></tr>`}
+function resultsChips(t){return(t.results||[]).slice().sort((a,b)=>a.week-b.week).map(r=>{
+  // el marcador manda: los agentes escribieron G/W/V y P/L/D
+  const w=r.pf>r.pa,l=r.pf<r.pa,ot=/\b(ot|te|extra)\b/i.test(r.result||'');
+  return`<div class="xs" style="margin:4px 0"><span class="tag ${w?'t0':l?'':'t3'}" style="${l?'color:var(--bad-tx)':''}">S${r.week} ${w?'G':l?'P':'E'}${ot?' TE':''}</span> <span class="num">${fmt(r.pf,0)}-${fmt(r.pa,0)}</span> ${r.home_away&&/vis|away|@/i.test(r.home_away)?'@':'vs'} ${esc(r.opp)}${r.note?` <span class="dim">· ${esc(r.note)}</span>`:''}</div>`}).join('')||'<span class="dim xs">Sin datos</span>'}
+function teamBlock(t,side){
+  const e=t.experience||{},q=t.qb||{};
+  const pl=(arr,icn)=>arr&&arr.length?`<ul class="clean xs">${arr.map(p=>`<li>${ic(icn)} <b>${esc(p.name)}</b> <span class="dim">${esc(p.pos)}</span> — ${esc(p.note)}</li>`).join('')}</ul>`:'<span class="dim xs">Sin datos</span>';
+  return`<div class="panel" style="margin:0">
+   <h3><span class="ab ${side}" style="display:inline-grid;width:44px;margin-right:8px">${esc(t.abbr)}</span>${esc(t.name)} <span class="dim">${esc(t.record)}</span></h3>
+   <div class="three" style="margin-bottom:10px">
+    <div class="stat"><div class="k">QB</div><div class="v" style="font-size:15px">${esc(q.name||'—')}</div><div class="xs dim">${q.age?fmt(q.age,0)+' años':''}${q.seasons!=null?' · '+fmt(q.seasons,0)+' temp.':''}${q.status?' · '+esc(q.status):''}</div></div>
+    <div class="stat"><div class="k">Entrenador</div><div class="v" style="font-size:15px">${esc(t.coach||'—')}</div><div class="xs dim">${t.rest_days!=null?fmt(t.rest_days,0)+' días de descanso':''}</div></div>
+    <div class="stat"><div class="k">Plantilla</div><div class="v" style="font-size:15px">${e.avg_age?fmt(e.avg_age)+' años prom.':'—'}</div><div class="xs dim">${e.rookies_on_roster!=null?fmt(e.rookies_on_roster,0)+' novatos':''}${e.rookie_starters&&e.rookie_starters.length?' · '+e.rookie_starters.length+' titulares':''}</div></div>
+   </div>
+   ${q.recent?`<p class="xs"><b>Últimos juegos del QB:</b> ${esc(q.recent)}</p>`:''}
+   <h3 class="sm" style="margin-top:10px">Resultados</h3>${resultsChips(t)}
+   <div class="two" style="margin-top:10px"><div><h3 class="sm">En racha</h3>${pl(t.hot_players,'flame')}</div><div><h3 class="sm">Fríos</h3>${pl(t.cold_players,'snow')}</div></div>
+   ${e.rookie_starters&&e.rookie_starters.length?`<p class="xs"><b>Novatos titulares:</b> ${e.rookie_starters.map(esc).join(', ')}</p>`:''}
+   ${e.key_veterans&&e.key_veterans.length?`<p class="xs"><b>Veteranos clave:</b> ${e.key_veterans.map(esc).join(', ')}</p>`:''}
+   ${e.note?`<p class="xs dim">${esc(e.note)}</p>`:''}
+   ${t.travel?`<p class="xs">${ic('plane')} ${esc(t.travel)}</p>`:''}
+   ${t.conditions_history?`<p class="xs"><b>En estas condiciones:</b> ${esc(t.conditions_history)}</p>`:''}
+   <div class="two"><div><h3 class="sm">Fortalezas</h3><ul class="clean xs">${(t.strengths||[]).map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div><div><h3 class="sm">Debilidades</h3><ul class="clean xs">${(t.weaknesses||[]).map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div></div>
+   <p class="xs dim">Contra el spread: ${esc(t.ats||'—')} · Over/Under: ${esc(t.ou||'—')}</p>
+  </div>`;
+}
+function injTable(t){const inj=t.injuries||[];if(!inj.length)return`<p class="xs dim">${esc(t.abbr)}: sin bajas relevantes reportadas.</p>`;
+  const ord={alto:0,medio:1,bajo:2};
+  return`<div class="tw"><table><caption class="sm" style="text-align:left;padding:6px 0;font-weight:600">${esc(t.name)}</caption><thead><tr><th>Jugador</th><th>Pos.</th><th>Estatus</th><th>Impacto</th><th class="r">≈ pts</th></tr></thead><tbody>
+  ${inj.slice().sort((a,b)=>ord[a.impact]-ord[b.impact]).map(x=>{const st=esc(x.status||''),corto=esc(cut(x.status,26)),resto=corto!==st?st:'';
+  return`<tr><td><b>${esc(x.name)}</b>${(x.note||resto)?`<div class="xs dim">${[resto,esc(x.note||'')].filter(Boolean).join(' · ')}</div>`:''}</td><td>${esc(x.pos)}</td><td>${corto}</td><td><span class="tag ${x.impact==='alto'?'':'t3'}" style="${x.impact==='alto'?'color:var(--bad-tx)':x.impact==='medio'?'color:var(--accent-tx)':''}">${esc(x.impact)}</span></td><td class="r num">${x.pts!=null?fmt(x.pts):'—'}</td></tr>`}).join('')}
+  </tbody></table></div>`}
+function liveInj(t){const x=S.inj&&S.inj[t.abbr];if(!x)return'';
+  if(!x.items.length)return`<p class="xs dim">${esc(t.abbr)} · reporte ESPN en vivo: sin bajas.</p>`;
+  return`<details style="margin:8px 0"><summary class="sm" style="cursor:pointer;min-height:36px">${esc(t.abbr)} · reporte ESPN en vivo: <b>${x.items.length}</b> jugadores no activos</summary><div class="tw"><table><thead><tr><th>Jugador</th><th>Pos.</th><th>Estatus</th><th>Nota</th></tr></thead><tbody>${x.items.map(i=>`<tr><td>${esc(i.name)}</td><td>${esc(i.pos)}</td><td>${esc(i.status)}</td><td class="xs dim">${esc(i.comment)}</td></tr>`).join('')}</tbody></table></div>${x.listed>=25?'<p class="xs dim">ESPN enseña como máximo 25 por equipo: puede haber más.</p>':''}</details>`}
+function wxBlock(g){
+  if(isIndoor(g))return`<p>${ic('dome')} Techado: el clima no cuenta.</p>`;
+  const w=wxOf(g);
+  return`<div class="three">
+   <div class="stat"><div class="k">${ic('temp')} Temperatura</div><div class="v">${w.temp_c!=null?fmt(w.temp_c,0)+'°C':'—'}</div></div>
+   <div class="stat"><div class="k">${ic('wind')} Viento</div><div class="v">${w.wind_kmh!=null?fmt(w.wind_kmh,0)+' km/h':'—'}</div>${w.gust_kmh!=null?`<div class="xs dim">ráfagas ${fmt(w.gust_kmh,0)}</div>`:''}</div>
+   <div class="stat"><div class="k">${ic('drop')} Lluvia</div><div class="v">${w.precip_pct!=null?fmt(w.precip_pct,0)+'%':'—'}</div>${w.humidity!=null?`<div class="xs dim">humedad ${fmt(w.humidity,0)}%</div>`:''}</div>
+  </div>
+  <p class="xs dim">${w.live?'Pronóstico Open-Meteo a la hora del juego (actualizado en vivo).':w.is_forecast?'Pronóstico a la hora del juego.':'Clima típico de la zona en esta fecha, no pronóstico.'} ${esc(w.summary||'')} ${w.source?'· '+esc(w.source):''}</p>
+  ${w.wind_kmh>=25?'<div class="note">Viento fuerte: históricamente baja el juego aéreo y los totales (≈ −2 a −3 pts).</div>':''}
+  ${w.precip_pct>=60?'<div class="note">Lluvia probable: más carrera, más balones sueltos, total a la baja.</div>':''}`;
+}
+function viewGame(g){
+  const m=model(g),[A,H]=g.teams,L=m.L,v=g.venue||{};
+  document.title=`${A.abbr} @ ${H.abbr} · Semana 3`;
+  const lv=S.live[g.id];
+  const reasons=(g.model&&g.model.reasons)||[];
+  const anyBook=m.bets.some(b=>b.book),posEV=m.bets.filter(b=>b.book&&b.ev>0);
+  V.innerHTML=`<a class="back" href="#/">${ic('left')} Todos los juegos</a>
+  <div class="panel">
+   <div class="xs muted" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px"><span>${ic('clock')} ${esc(when(g,{weekday:'long',month:'long'}))} (CDMX)</span><span>${ic('pin')} ${esc(v.stadium)}, ${esc(v.city)}</span>${g.network?`<span>${esc(g.network)}</span>`:''}</div>
+   <h1 class="sr">${esc(A.name)} en ${esc(H.name)}, ${esc(when(g))}</h1>
+   <div class="hero">
+    <div class="side"><div class="ab a">${esc(A.abbr)}</div><div>${esc(A.name)}</div><div class="xs dim">${esc(A.record)} · visita</div><div class="big">${pct(1-m.pHome)}</div></div>
+    <div class="vs">@<div class="xs" style="margin-top:6px">${lv&&lv.score?`<span class="score" style="font-size:20px">${lv.score.away}-${lv.score.home}</span><div class="xs">${esc(lv.state==='post'?'Final':lv.detail||'')}</div>`:''}</div></div>
+    <div class="side"><div class="ab h">${esc(H.abbr)}</div><div>${esc(H.name)}</div><div class="xs dim">${esc(H.record)} · ${v.neutral?'sede neutral':'local'}</div><div class="big">${pct(m.pHome)}</div></div>
+   </div>
+   <div class="prob" style="height:12px" role="img" aria-label="${esc(A.abbr)} ${pct(1-m.pHome)}, ${esc(H.abbr)} ${pct(m.pHome)}"><i class="pa" style="width:${(1-m.pHome)*100}%"></i><i class="ph" style="width:${m.pHome*100}%"></i></div>
+   <div class="three" style="margin-top:12px">
+    <div class="stat"><div class="k">Marcador esperado</div><div class="v">${esc(A.abbr)} ${fmt(m.ptsA,1)} – ${fmt(m.ptsH,1)} ${esc(H.abbr)}</div></div>
+    <div class="stat"><div class="k">Margen esperado</div><div class="v">${esc(m.fav.abbr)} por ${fmt(Math.abs(m.mu))}</div><div class="xs dim">mercado: ${L.spread_home===0?'parejo':esc(L.spread_home<0?H.abbr:A.abbr)+' por '+fmt(Math.abs(L.spread_home))}</div></div>
+    <div class="stat"><div class="k">Total esperado</div><div class="v">${fmt(m.tot)}</div><div class="xs dim">mercado: ${fmt(L.total)}</div></div>
+   </div>
+  </div>
+  <nav class="subnav" aria-label="Secciones del juego"><a href="#s-apuestas" data-jump>Apuestas</a><a href="#s-equipos" data-jump>Equipos</a><a href="#s-stats" data-jump>Estadística</a><a href="#s-lesiones" data-jump>Lesiones</a><a href="#s-cond" data-jump>Condiciones</a><a href="#s-modelo" data-jump>Modelo</a><a href="#s-fuentes" data-jump>Fuentes</a></nav>
+
+  <section id="s-apuestas" class="panel" aria-labelledby="h-ap">
+   <h2 id="h-ap">${ic('trend')} Las 5 apuestas · $1,000</h2>
+   <div class="tw"><table class="apuestas"><thead><tr><th>Tipo</th><th>Apuesta</th><th class="r">Prob.</th><th class="r" title="Por debajo de este momio, la apuesta pierde dinero a la larga">Momio mínimo</th><th class="r">Tu casa</th><th class="r">Monto</th><th class="r">Cobras</th><th class="r">Valor esp.</th></tr></thead><tbody>
+   ${m.bets.map(b=>`<tr><td><span class="tag t${b.i}" title="${esc(KIND_HELP[b.i])}">${b.kindName}</span></td><td>${esc(b.txt)}${b.grade?` <span class="res ${b.grade}">${b.grade==='w'?'✓ ganó':b.grade==='l'?'✗ perdió':'empate'}</span>`:''}${b.note?`<div class="xs dim">${esc(b.note)}</div>`:''}</td>
+     <td data-l="Probabilidad" class="r num ${b.p>=.75?'ok':b.p>=.6?'acc':''}">${pct(b.p)}</td>
+     <td data-l="Momio mínimo" class="r num acc">${dec2us(b.min)}</td>
+     <td data-l="Tu casa" class="r"><label class="sr" for="bo-${b.i}">Momio de tu casa para ${esc(b.txt)}</label><input class="odds" id="bo-${b.i}" inputmode="text" placeholder="ej. −150" value="${b.book!=null?(b.book>0?'+':'')+b.book:''}" data-bk="${esc(b.bk)}"></td>
+     <td data-l="Monto" class="r num">${money(b.stake)}</td><td data-l="Cobras" class="r num">${b.ret!=null?money(b.ret):'<span class="dim">—</span>'}</td>
+     <td data-l="Valor esperado" class="r num ${b.ev==null?'dim':b.ev>0?'ok':'bad'}">${b.ev==null?'—':(b.ev>=0?'+':'−')+money(Math.abs(b.ev))}</td></tr>`).join('')}
+   </tbody><tfoot><tr><th colspan="5">Total</th><td class="r num"><b>${money(1000)}</b></td><td class="r num">${(()=>{const c=m.bets.filter(b=>b.ret!=null);return c.length?money(c.reduce((s,b)=>s+b.ret,0)):'<span class="dim">—</span>'})()}</td><td class="r num">${(()=>{const c=m.bets.filter(b=>b.ev!=null);if(!c.length)return'<span class="dim">—</span>';const e=c.reduce((s,b)=>s+b.ev,0);return(e>=0?'+':'−')+money(Math.abs(e))+(c.length<5?` <span class="xs dim">(${c.length} de 5)</span>`:'')})()}</td></tr></tfoot></table></div>
+   ${!anyBook?'<div class="note info"><b>Cómo se usa:</b> "Momio mínimo" es lo que esa apuesta tiene que pagarte para no perder dinero a la larga. Abre Playdoit, compara, y si te paga MENOS que ese número, sáltala. Escribe lo que veas en "Tu casa" y ahí sí sale cuánto cobras y si tiene valor. Ojo: los hándicaps de Playdoit son enteros (+3, +4, +6) y los de aquí terminan en .5, así que el precio no es comparable directo: en los enteros puede haber empate y devolución.</div>':posEV.length?`<div class="note ok">Con los momios de tu casa, ${posEV.length} de 5 ${posEV.length===1?'apuesta tiene':'apuestas tienen'} valor: ${posEV.map(b=>esc(b.kindName)).join(', ')}.</div>`:m.bets.every(b=>b.book)?'<div class="note">Con los momios de tu casa ninguna de las 5 tiene valor. La recomendación honesta: no apostar este juego o buscar mejor momio.</div>':''}
+   <details class="xs" style="margin:8px 0"><summary style="cursor:pointer;min-height:40px;color:var(--tx-2)">¿Qué significa cada tipo?</summary>
+    <ul class="clean xs" style="margin-top:6px">${KINDS.map((k,i)=>`<li><b>${k}</b> (${money(STAKES[i])}): ${esc(KIND_HELP[i])}</li>`).join('')}</ul></details>
+   ${(()=>{const lados=m.bets.filter(b=>b.kind==='side');const mismo=lados.length>=2&&lados.every(b=>b.team===lados[0].team);
+     const dinero=lados.reduce((s,b)=>s+b.stake,0);
+     return`<div class="note"><b>Antes de copiarlas:</b> ${mismo?`${money(dinero)} de los $1,000 van al mismo equipo (${esc(lados[0].team)}) con distinto colchón. No son apuestas independientes: si ${esc(lados[0].team)} se cae feo, se caen las tres juntas. `:''}En Playdoit los hándicaps "seguros" (+4, +6) se pagan entre −400 y −550, casi siempre por debajo del mínimo de esta tabla. Donde su margen es más chico es en el spread y el total de siempre, a −110.</div>`})()}
+   ${g.props_ideas&&g.props_ideas.length?`<h3 style="margin-top:14px">Ideas de apuestas de jugador</h3><p class="xs dim">No van en los $1,000; son para quien quiera buscarlas en su casa. Las que no traen número es porque la casa aún no publica esa línea: pídela y compárala con la razón.</p><ul class="clean sm">${g.props_ideas.slice().sort((a,b)=>(/\d/.test(b.lean+b.market)?1:0)-(/\d/.test(a.lean+a.market)?1:0)).map(p=>`<li><b>${esc(p.player)}</b> · ${esc(p.market)} → <b class="acc">${esc(p.lean)}</b>${/\d/.test(p.lean+p.market)?'':' <span class="chip">sin línea publicada</span>'} <span class="dim">— ${esc(p.why)}</span></li>`).join('')}</ul>`:''}
+  </section>
+
+  <section id="s-equipos" aria-label="Equipos"><div class="two" style="margin-bottom:14px">${teamBlock(A,'a')}${teamBlock(H,'h')}</div></section>
+
+  <section id="s-stats" class="panel" aria-labelledby="h-st"><h2 id="h-st">Estadística 2026 cara a cara</h2>
+   <div class="tw"><table><thead><tr><th>Métrica</th><th class="r">${esc(A.abbr)}</th><th class="r">${esc(H.abbr)}</th></tr></thead><tbody>
+   ${METRICS.map(([l,k,d])=>cmpRow(l,(A.stats||{})[k],(H.stats||{})[k],d)).join('')||'<tr><td colspan="3" class="dim">Sin datos</td></tr>'}
+   </tbody></table></div><p class="xs dim">▲ = mejor de los dos en esa métrica. Solo 2 juegos jugados: muestra chica, pesa poco.</p></section>
+
+  <section id="s-lesiones" class="panel" aria-labelledby="h-le"><h2 id="h-le">${ic('alert')} Lesiones</h2>
+   ${injTable(A)}${liveInj(A)}${injTable(H)}${liveInj(H)}
+   <p style="margin-top:10px"><button class="btn" type="button" id="injBtn">${ic('alert')} ${S.injAt?'Volver a bajar':'Bajar'} el reporte de lesiones de ESPN</button> <span class="xs dim">${S.injAt?'Bajado: '+new Date(S.injAt).toLocaleString('es-MX',{timeZone:TZ,day:'numeric',month:'short',hour:'numeric',minute:'2-digit'})+' · ':''}pesa ~9 MB, tarda unos segundos</span></p>
+   <p class="xs dim">"≈ pts" es cuánto mueve el spread esa baja. El mercado ya descuenta las bajas conocidas; si sale una noticia nueva, muévela en el Modelo.</p></section>
+
+  <section id="s-cond" class="panel" aria-labelledby="h-co"><h2 id="h-co">Campo y condiciones</h2>
+   <div class="three" style="margin-bottom:12px">
+    <div class="stat"><div class="k">${ic('pin')} Estadio</div><div class="v" style="font-size:15px">${esc(v.stadium)}</div><div class="xs dim">${esc(v.city)}${v.neutral?' · sede neutral':''}</div></div>
+    <div class="stat"><div class="k">${ic('grass')} Superficie</div><div class="v" style="font-size:15px">${isTurf(g)?'Artificial':'Pasto natural'}</div><div class="xs dim">${esc(v.surface)}</div></div>
+    <div class="stat"><div class="k">${ic('dome')} Techo</div><div class="v" style="font-size:15px">${roofShort(g)}</div><div class="xs dim">${esc(v.roof)}${v.altitude_m!=null?` · ${fmt(v.altitude_m,0)} m sobre el mar`:''}</div></div>
+   </div>
+   ${v.notes?`<p class="sm">${esc(v.notes)}</p>`:''}
+   <h3>Clima</h3>${wxBlock(g)}
+   ${g.situational&&g.situational.length?`<h3 style="margin-top:12px">Factores de la situación</h3><ul class="clean sm">${g.situational.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}
+   ${g.key_matchups&&g.key_matchups.length?`<h3 style="margin-top:12px">Duelos clave</h3><ul class="clean sm">${g.key_matchups.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}
+   ${g.h2h?`<h3 style="margin-top:12px">Historial entre ambos</h3><p class="sm">${esc(g.h2h)}</p>`:''}
+  </section>
+
+  <section id="s-modelo" class="panel" aria-labelledby="h-mo"><h2 id="h-mo">Cómo llega el modelo a estos números</h2>
+   <div class="tw"><table><thead><tr><th>Paso</th><th class="r">Margen a favor de ${esc(H.abbr)}</th><th class="r">Total</th></tr></thead><tbody>
+    <tr><td>Mercado: spread ${L._live?`<span class="chip ok">en vivo · ${esc(S.live[g.id].lines.provider||'ESPN')}</span>`:`<span class="xs dim">(${esc((g.lines.sources||[]).slice(0,2).join(', ')||'al investigar')})</span>`}</td><td class="r num">${sgn(m.mkt)}</td><td class="r num">${fmt(L.total)}</td></tr>
+    <tr><td>Mercado: lo que implica el moneyline (${L.ml_away>0?'+':''}${L.ml_away} / ${L.ml_home>0?'+':''}${L.ml_home}, sin comisión)</td><td class="r num">${sgn(m.mlM)}</td><td></td></tr>
+    ${g.lines.open_spread_home!=null||g.lines.open_total!=null?`<tr><td>Dónde abrió la línea${g.lines.movement?`<div class="xs dim">${esc(g.lines.movement)}</div>`:''}${g.lines.public_pct_note?`<div class="xs dim">${esc(g.lines.public_pct_note)}</div>`:''}</td><td class="r num">${g.lines.open_spread_home!=null?sgn(-g.lines.open_spread_home):'—'}</td><td class="r num">${g.lines.open_total!=null?fmt(g.lines.open_total):'—'}</td></tr>`:''}
+    <tr><td><b>Punto de partida</b> (promedio de los dos)</td><td class="r num"><b>${sgn(m.base)}</b></td><td class="r num"><b>${fmt(L.total)}</b></td></tr>
+    ${reasons.map(r=>`<tr><td>${esc(r.factor)}<div class="xs dim">${esc(r.why)}</div></td><td class="r num">${sgn(r.margin)}</td><td class="r num">${sgn(r.total)}</td></tr>`).join('')}
+    ${(m.am!==(+g.model.margin_adj_home||0)||m.at!==(+g.model.total_adj||0))?`<tr><td class="xs dim" colspan="3">Ajuste recortado al tope (margen ±3, total ±4).</td></tr>`:''}
+    ${(m.u.m||m.u.t)?`<tr><td>Tus ajustes</td><td class="r num">${sgn(m.u.m)}</td><td class="r num">${sgn(m.u.t)}</td></tr>`:''}
+    <tr><td><b>Resultado del modelo</b></td><td class="r num"><b>${sgn(m.mu)}</b></td><td class="r num"><b>${fmt(m.tot)}</b></td></tr>
+   </tbody></table></div>
+   ${(!m.am&&!m.at)?'<div class="note info">En este juego el modelo <b>no movió nada</b>: los verificadores tumbaron los ajustes por falta de evidencia o porque el mercado ya los tenía dentro. O sea que estos números son los del mercado, traducidos a probabilidad.</div>':''}
+   <h3 style="margin-top:14px">Tus ajustes (noticias de última hora)</h3>
+   <div class="range"><label for="rm"><span>Margen a favor de ${esc(H.abbr)}</span><b class="num" id="lm">${sgn(m.u.m)} pts</b></label><input id="rm" type="range" min="-10" max="10" step=".5" value="${m.u.m}"></div>
+   <div class="range"><label for="rt"><span>Total de puntos</span><b class="num" id="lt">${sgn(m.u.t)} pts</b></label><input id="rt" type="range" min="-10" max="10" step=".5" value="${m.u.t}"></div>
+   <p class="xs dim">Guía: QB titular fuera 3-6 · WR1, tackle izquierdo o pass rusher estrella 0.5-1.5 · viento >25 km/h: total −2 a −3 · lluvia fuerte: total −1.5. Solo mueve lo que salió DESPUÉS de la línea.</p>
+   <button class="btn" type="button" id="resetAdj">Quitar mis ajustes</button>
+  </section>
+
+  <section id="s-fuentes" class="panel" aria-labelledby="h-fu"><h2 id="h-fu">Fuentes y huecos</h2>
+   <ul class="clean xs">${(g.sources||[]).map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)}</a></li>`).join('')}</ul>
+   ${g.data_gaps&&g.data_gaps.length?`<h3 style="margin-top:12px">Lo que no se pudo confirmar</h3><ul class="clean xs">${g.data_gaps.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}
+   ${g._verify?`<p class="xs dim">Verificación adversaria: ${g._verify.corrections} correcciones, ${g._verify.removed} datos quitados por no confirmarse · confianza ${esc(g._verify.confidence)}.</p>`:''}
+  </section>`;
+  // eventos
+  const rm=$('#rm'),rt=$('#rt');
+  rm.oninput=()=>$('#lm').textContent=sgn(+rm.value)+' pts';rt.oninput=()=>$('#lt').textContent=sgn(+rt.value)+' pts';
+  const commit=()=>{S.adj[g.id]={m:+rm.value,t:+rt.value};store.set('w3.adj',S.adj);rerender()};
+  rm.onchange=commit;rt.onchange=commit;
+  $('#resetAdj').onclick=()=>{delete S.adj[g.id];store.set('w3.adj',S.adj);rerender()};
+  $('#injBtn').onclick=async()=>{const b=$('#injBtn');b.disabled=true;b.innerHTML=ic('info','spin')+' Bajando…';
+    try{await liveInjuries();S.injAt=new Date().toISOString();store.set('w3.injAt',S.injAt);rerender();toast('Reporte de lesiones de ESPN al momento.')}
+    catch(e){b.disabled=false;b.textContent='Reintentar';toast('ESPN no respondió ('+esc(e.message||e)+'). Intenta otra vez.')}};
+  V.querySelectorAll('input.odds').forEach(inp=>{
+    inp.onblur=inp.onchange=()=>{const k=inp.dataset.bk,v=inp.value.trim();
+      const err=inp.parentElement.querySelector('.err');if(err)err.remove();
+      if(!v){delete S.book[k];inp.removeAttribute('aria-invalid');store.set('w3.book',S.book);rerender();return}
+      const n=parseUS(v);if(n==null){inp.setAttribute('aria-invalid','true');
+        inp.insertAdjacentHTML('afterend','<div class="err xs bad" role="alert">Escríbelo así: −150 o +130</div>');
+        toast('Momio no válido. Escríbelo en formato americano: −150 o +130.');return}
+      if(S.book[k]===n)return;S.book[k]=n;store.set('w3.book',S.book);rerender()};
+    inp.onkeydown=e=>{if(e.key==='Enter')inp.blur()};
+  });
+  V.querySelectorAll('[data-jump]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));t&&t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
+  function rerender(){const y=scrollY,a=document.activeElement,f=a&&a.id,bk=a&&a.dataset&&a.dataset.bk;
+    viewGame(g);scrollTo(0,y);
+    const vuelve=bk?V.querySelector(`input[data-bk="${CSS.escape(bk)}"]`):(f?document.getElementById(f):null);
+    if(vuelve)vuelve.focus({preventScroll:true})}
+}
+/* ---------- combinadas ---------- */
+function parlayCalc(picks){let p=1,d=1,conBook=0;
+  picks.forEach(x=>{p*=x.b.p;d*=(x.b.book?us2dec(x.b.book):x.b.min);if(x.b.book)conBook++});
+  return{p,d,conBook,total:picks.length}}
+function parlayBox(key,title,desc,idx){
+  const picks=G.map(g=>({g,b:model(g).bets[idx]}));const{p,d,conBook}=parlayCalc(picks);const st=S.stake[key]||100;
+  const graded=picks.filter(x=>x.b.grade),lost=graded.filter(x=>x.b.grade==='l').length;
+  const equilibrio=1/d, ev=p*st*d-st;
+  return`<div class="panel"><div class="pl-head"><div><h2>${title}</h2><p class="muted sm" style="margin:0">${desc}</p></div><div style="text-align:right"><div class="big-odds">×${d>=100?Math.round(d).toLocaleString('es-MX'):d.toFixed(1)}</div><div class="xs dim">${conBook?`momio combinado (${conBook} de ${picks.length} con tu casa)`:'momio de equilibrio, sin comisión'}</div></div></div>
+  <div class="three" style="margin:12px 0">
+   <div class="stat"><div class="k">Probabilidad de que salgan las ${picks.length}</div><div class="v">${(p*100).toFixed(p<.01?3:1)}%</div><div class="xs dim">1 de cada ${Math.round(1/p).toLocaleString('es-MX')}</div></div>
+   <div class="stat"><label class="k" for="st-${key}">Le metes</label><div><input class="stake" id="st-${key}" type="number" min="10" step="10" value="${st}" data-k="${key}"></div></div>
+   <div class="stat"><div class="k">Cobrarías</div><div class="v">${money(st*d)}</div><div class="xs dim">valor esperado ${ev>=0?'+':'−'}${money(Math.abs(ev))}</div></div>
+  </div>
+  <div class="note ${p>=equilibrio?'ok':''}">Para que valga la pena necesitas que salga <b>${(equilibrio*100).toFixed(2)}%</b> de las veces y el modelo le da <b>${(p*100).toFixed(2)}%</b>. ${p>=equilibrio?'Con estos momios sí conviene.':`A ese precio pierde dinero a la larga: tendrían que pagarte ×${Math.round(1/p).toLocaleString('es-MX')} para estar parejos.`} ${conBook?'':'Ese momio es el "justo" sin comisión: en tu casa será más bajo, así que la cuenta real es peor.'}</div>
+  ${graded.length?`<div class="note ${lost?'':'ok'}">${graded.length} de ${picks.length} ya se jugaron: ${lost?lost+' perdida'+(lost>1?'s':'')+' — la combinada ya no sale.':'todas ganadas por ahora.'}</div>`:''}
+  <div class="tw"><table><thead><tr><th>Juego</th><th>Selección</th><th class="r">Prob.</th></tr></thead><tbody>${picks.map(x=>`<tr><td class="xs muted" style="white-space:nowrap">${esc(x.g.teams[0].abbr)} @ ${esc(x.g.teams[1].abbr)}</td><td class="sm">${esc(x.b.txt)}${x.b.grade?` <span class="res ${x.b.grade}">${x.b.grade==='w'?'✓':x.b.grade==='l'?'✗':'='}</span>`:''}</td><td class="r num">${pct(x.b.p)}</td></tr>`).join('')}</tbody></table></div></div>`;
+}
+function viewParlays(){
+  document.title='Combinadas · Semana 3';
+  const custom=G.map(g=>{const k=S.custom[g.id];return k==null||k===''?null:{g,b:model(g).bets[+k]}}).filter(Boolean);
+  const c=custom.length?parlayCalc(custom):null,cst=S.stake.custom||100;
+  V.innerHTML=`<h1>Combinadas con los 16 juegos</h1>
+  <p class="muted">Cada pata se multiplica: aunque cada una sea muy probable, las 16 juntas casi nunca salen. Por eso aquí van $100-150, no el grueso del dinero. Revisa que tu casa acepte 16 selecciones y hándicaps alternos; el momio real puede ser distinto.</p>
+  ${parlayBox('seg','Segura','La apuesta "Fuerte" de cada juego: hándicap alterno del favorito, ~82 % cada una.',0)}
+  ${parlayBox('real','Realista','La "Sólida" de cada juego: el ganador directo, o un hándicap alterno si el moneyline casi no paga.',1)}
+  ${parlayBox('son','Soñadora','El spread del mercado de cada juego, del lado que el modelo ve con ventaja. Paga una barbaridad y casi nunca sale.',3)}
+  <div class="panel"><h2>Arma la tuya</h2><p class="muted sm">Elige una apuesta por juego (o déjalo fuera). Menos patas = mucho más probable.</p>
+   ${custom.length?'':'<div class="note info">Todavía no eliges nada: escoge abajo al menos un juego y aquí aparece la cuenta.</div>'}
+   <div class="tw"><table><thead><tr><th>Juego</th><th>Selección</th></tr></thead><tbody>
+   ${G.map(g=>{const m=model(g);return`<tr><td class="xs muted" style="white-space:nowrap">${esc(g.teams[0].abbr)} @ ${esc(g.teams[1].abbr)}</td><td><label class="sr" for="cu-${g.id}">Selección para ${esc(g.teams[0].abbr)} @ ${esc(g.teams[1].abbr)}</label><select id="cu-${g.id}" data-g="${g.id}" style="width:100%"><option value="">— Fuera —</option>${m.bets.map(b=>`<option value="${b.i}" ${String(S.custom[g.id])===String(b.i)?'selected':''}>${b.kindName}: ${esc(b.txt)} (${pct(b.p)})</option>`).join('')}</select></td></tr>`}).join('')}
+   </tbody></table></div>
+   ${c?`<div class="three" style="margin-top:12px"><div class="stat"><div class="k">${custom.length} ${custom.length===1?'pata':'patas'} · probabilidad</div><div class="v ${c.p>=.1?'ok':c.p>=.02?'acc':'bad'}">${(c.p*100).toFixed(c.p<.01?3:1)}%</div><div class="xs dim">${c.p>=.5?`sale ${(c.p*100).toFixed(0)} de cada 100 veces`:`1 de cada ${Math.round(1/c.p).toLocaleString('es-MX')}`}</div></div><div class="stat"><label class="k" for="st-custom">Le metes</label><div><input class="stake" id="st-custom" type="number" min="10" step="10" value="${cst}" data-k="custom"></div></div><div class="stat"><div class="k">Cobrarías (×${c.d.toFixed(2)})</div><div class="v">${money(cst*c.d)}</div></div></div>`:'<p class="dim sm" style="margin-top:10px">Elige al menos un juego.</p>'}
+  </div>`;
+  V.querySelectorAll('input.stake').forEach(i=>i.onchange=()=>{const v=Math.max(10,+i.value||100);S.stake[i.dataset.k]=v;store.set('w3.stake',S.stake);const y=scrollY;viewParlays();scrollTo(0,y)});
+  V.querySelectorAll('select[data-g]').forEach(s=>s.onchange=()=>{S.custom[s.dataset.g]=s.value;store.set('w3.custom',S.custom);const y=scrollY;viewParlays();scrollTo(0,y);const el=document.getElementById(s.id);el&&el.focus()});
+}
+/* ---------- mi boleto (Playdoit) ---------- */
+const ALIAS={'ARZ':'ARI','LA CHARGERS':'LAC','LA RAMS':'LAR','NY GIANTS':'NYG','NY JETS':'NYJ','WAS':'WAS','WSH':'WAS','TB':'TB','GB':'GB','NO':'NO','SF':'SF','KC':'KC','NE':'NE','LV':'LV'};
+function findTeam(txt){
+  const t=String(txt||'').toUpperCase().replace(/[.•]/g,' ').trim();
+  let best=null;
+  G.forEach(g=>g.teams.forEach(x=>{
+    const ab=x.abbr.toUpperCase(),nick=x.name.toUpperCase().split(' ').pop(),ciudad=x.name.toUpperCase().replace(' '+nick,'');
+    if(t.includes(nick)&&(!best||best.nick!==nick))best={g,x,nick};
+    else if(!best&&(new RegExp('\\b'+ab+'\\b').test(t)||ALIAS[t.split(' ')[0]]===ab))best={g,x,nick};
+  }));
+  return best;
+}
+function parseTicket(txt){
+  const legs=[],meta={};
+  const stake=txt.match(/VALOR APOSTADO\s*\$?\s*([\d,]+(?:\.\d+)?)/i);if(stake)meta.stake=+stake[1].replace(/,/g,'');
+  const tot=txt.match(/GANANCIA TOTAL:?\s*\$?\s*([\d,]+(?:\.\d+)?)/i);if(tot)meta.payout=+tot[1].replace(/,/g,'');
+  const bono=txt.match(/BONO\s*\$?\s*([\d,]+(?:\.\d+)?)/i);if(bono)meta.bonus=+bono[1].replace(/,/g,'');
+  const mom=txt.match(/MOMIOS:\s*([+-]?\d{3,6}|\d+\.\d+)\s*$/m)||txt.match(/MOMIOS:\s*([+-]?\d{4,6}|\d+\.\d+)/);
+  if(mom)meta.parlayOdds=/\./.test(mom[1])?decAUS(+mom[1]):+mom[1];
+  // bloques: línea de partido "AAA @ BBB" seguida de una selección con Momios.
+  // El PDF a veces parte una selección en varios renglones: se vuelve a unir con el suyo.
+  const lines=[];
+  for(const ln of txt.split(/\r?\n/).map(s=>s.trim()).filter(Boolean)){
+    const prev=lines[lines.length-1];
+    if(prev&&/^(Ganador|H[áa]ndicap|Total|M[áa]s|Menos)/i.test(prev)&&!/Momios:\s*[+-]?\d/i.test(prev))lines[lines.length-1]=prev+' '+ln;
+    else lines.push(ln);
+  }
+  let cur=null;
+  for(const ln of lines){
+    const vs=ln.match(/^(.+?)\s+@\s+(.+?)$/);
+    if(vs&&!/momios/i.test(ln)){cur={away:vs[1],home:vs[2]};continue}
+    const sel=ln.match(/^(Ganador|H[áa]ndicap|Total|Más|Menos)[^:]*:\s*(.+?)\s*Momios:\s*([+-]?\d{3,6}|\d+\.\d+)/i);
+    if(sel&&cur){legs.push({kind:sel[1].toLowerCase(),sel:sel[2].replace(/•\s*pago(\s*anticipado)?/i,'').trim(),odds:/\./.test(sel[3])?decAUS(+sel[3]):+sel[3],early:/pago/i.test(sel[2]),...cur});cur=null}
+  }
+  return{legs,meta};
+}
+function analyzeTicket(txt){
+  const{legs,meta}=parseTicket(txt);
+  const rows=legs.map(l=>{
+    const away=findTeam(l.away),home=findTeam(l.home);
+    const g=(home&&home.g)||(away&&away.g);
+    if(!g)return{...l,err:'No reconocí este partido en la semana 3'};
+    const m=model(g),pick=findTeam(l.sel);
+    if(/total|más|menos/i.test(l.kind)){
+      const n=(l.sel.match(/-?\d+(?:\.\d+)?/)||[])[0];if(n==null)return{...l,err:'No entendí la línea del total'};
+      const over=/m[áa]s|over/i.test(l.sel),line=+n,p=over?1-Phi((line-m.tot)/SDT):Phi((line-m.tot)/SDT);
+      const push=Number.isInteger(line)?Math.max(0,Phi((line+.5-m.tot)/SDT)-Phi((line-.5-m.tot)/SDT)):0;
+      return{...l,g,txt:`${over?'Más':'Menos'} de ${line} · ${g.teams[0].abbr}@${g.teams[1].abbr}`,p,push,imp:imp(l.odds)};
+    }
+    if(!pick)return{...l,err:'No reconocí el equipo de la selección'};
+    const isHome=pick.x.side==='home',mu=isHome?m.mu:-m.mu;
+    const hs=(l.sel.match(/\(([+-]?\d+(?:\.\d+)?)\)/)||[])[1],h=hs!=null?+hs:null;
+    const x=h!=null?-h:0;                          // (+4) = recibe 4 → gana si su margen > -4
+    const p=1-Phi((x-mu)/SDM);
+    const push=h!=null&&Number.isInteger(x)?Math.max(0,Phi((x+.5-mu)/SDM)-Phi((x-.5-mu)/SDM)):0;
+    return{...l,g,txt:`${pick.x.abbr}${h!=null?' '+(h>0?'+'+fmt(h):fmt(h)):' gana'} · ${g.teams[0].abbr}@${g.teams[1].abbr}`,p,push,imp:imp(l.odds)};
+  });
+  const ok=rows.filter(r=>!r.err);
+  const P=ok.reduce((s,r)=>s*r.p,1);
+  const Ppush=ok.reduce((s,r)=>s*(r.p+r.push),1);   // con empates: la pata se cae y el boleto sigue vivo
+  const decs=ok.reduce((s,r)=>s*us2dec(r.odds),1);
+  const stake=meta.stake||150,payout=meta.payout||stake*decs;
+  // cinturón de seguridad: si el momio del cupón no cuadra con las patas leídas, me faltó leer alguna
+  const cupon=meta.parlayOdds!=null?us2dec(meta.parlayOdds):null;
+  const descuadre=cupon&&ok.length&&Math.abs(cupon/decs-1)>.03?{cupon,leido:decs}:null;
+  return{rows,meta,P,Ppush,decs,stake,payout,ev:P*payout-stake,need:stake/payout,descuadre};
+}
+function viewTicket(){
+  document.title='Mi boleto · Semana 3';
+  const saved=store.get('w3.ticket',(DATA.meta||{}).ticket||'');
+  const a=saved.trim()?analyzeTicket(saved):null;
+  V.innerHTML=`<h1>Mi boleto</h1>
+  <p class="muted">Pega aquí el texto de tu cupón de Playdoit (o de cualquier casa) y te digo qué probabilidad real tiene según el modelo, cuánto necesitas para salir a mano y qué patas te están cobrando de más. Nada sale de tu navegador.</p>
+  <div class="panel"><label class="sr" for="tk">Texto del cupón</label>
+   <textarea id="tk" rows="8" style="width:100%;background:var(--surface-2);color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:10px;font:14px var(--mono)" placeholder="Ejemplo:&#10;ATL Falcons @ GB Packers&#10;Ganador (incl. prórroga): GB Packers Momios: -275&#10;...&#10;VALOR APOSTADO $150.00&#10;GANANCIA TOTAL: $12,380.46">${esc(saved)}</textarea>
+   <div class="bar" style="margin-top:10px"><button class="btn primary" id="an" type="button">Analizar</button><button class="btn" id="cl" type="button">Limpiar</button></div></div>
+  ${!a?'':a.rows.length?`
+  ${a.descuadre?`<div class="note bad">Ojo: leí <b>${a.rows.length}</b> patas, pero tu cupón paga <b>×${a.descuadre.cupon.toFixed(2)}</b> y esas ${a.rows.length} juntas dan <b>×${a.descuadre.leido.toFixed(2)}</b>. Me faltó leer alguna: revisa que cada selección quede junto a su "Momios:". Todo lo de abajo está calculado solo con lo que sí leí.</div>`:''}
+  <div class="panel"><h2>Las ${a.rows.length} patas</h2>
+   <p class="xs dim">Ordenadas de la peor pagada a la mejor: las de hasta arriba son las que más te cuestan.</p>
+   <div class="tw"><table><thead><tr><th>Selección</th><th class="r">Tu momio</th><th class="r">PD implica</th><th class="r">Modelo</th><th class="r">Diferencia</th><th class="r">Empate</th></tr></thead><tbody>
+   ${a.rows.slice().sort((x,y)=>(x.err?1:0)-(y.err?1:0)||((x.p-x.imp)-(y.p-y.imp))).map(r=>r.err?`<tr><td>${esc(r.away)} @ ${esc(r.home)} — ${esc(r.sel)}</td><td colspan="5" class="bad">${esc(r.err)}</td></tr>`:
+     `<tr><td>${esc(r.txt)}${r.early?' <span class="chip ok">pago anticipado</span>':''}</td><td class="r num">${r.odds>0?'+':'−'}${Math.abs(r.odds)}</td><td class="r num">${pct(r.imp)}</td><td class="r num">${pct(r.p)}</td><td class="r num ${r.p-r.imp>0?'ok':'bad'}">${((r.p-r.imp)*100).toFixed(1)} pts</td><td class="r num dim">${r.push>0.005?pct(r.push):'—'}</td></tr>`).join('')}
+   </tbody></table></div>
+   <p class="xs dim">Ojo con la columna "Empate": en la NFL los márgenes de 3 y de 7 puntos son bastante más comunes que lo que supone una curva normal, así que en hándicaps de 3 y 7 la probabilidad de empate real es MAYOR que la que ves aquí. Y el "pago anticipado" de Playdoit (te pagan si tu equipo se pone arriba por cierto margen) no está metido en estos números: juega a tu favor.</p>
+   <p class="xs dim">"Diferencia" = lo que el modelo cree menos lo que implica tu momio. En negativo, la casa te cobra de más en esa pata (es su margen). "Empate" es la probabilidad de que el resultado caiga justo en la línea: en Playdoit esa pata se cae y se recalcula el boleto.</p></div>
+  <div class="panel"><h2>El boleto completo</h2>
+   <div class="three">
+    <div class="stat"><div class="k">Probabilidad de que salgan las ${a.rows.filter(r=>!r.err).length}</div><div class="v ${a.P>=a.need?'ok':'bad'}">${(a.P*100).toFixed(2)}%</div><div class="xs dim">1 de cada ${Math.round(1/a.P).toLocaleString('es-MX')}</div></div>
+    <div class="stat"><div class="k">Necesitas para salir a mano</div><div class="v">${(a.need*100).toFixed(2)}%</div><div class="xs dim">${money(a.stake)} → ${money(a.payout)} (${(a.payout/a.stake).toFixed(1)}×)</div></div>
+    <div class="stat"><div class="k">Valor esperado</div><div class="v ${a.ev>=0?'ok':'bad'}">${a.ev>=0?'+':'−'}${money(Math.abs(a.ev))}</div><div class="xs dim">sobre ${money(a.stake)} apostados</div></div>
+   </div>
+   ${a.Ppush>a.P*1.05?`<p class="sm">Contando que los empates no tumban el boleto (se cae la pata y baja el pago), la probabilidad de seguir vivo sube a ${(a.Ppush*100).toFixed(2)}%.</p>`:''}
+   ${a.ev<0?`<div class="note">Con estos momios el boleto pierde dinero a la larga: pagan ${(a.payout/a.stake).toFixed(1)}× y haría falta que pagaran ${(1/a.P).toFixed(0)}× para estar parejos. Bajarle patas sube muchísimo la probabilidad: cada pata de ~70 % que quitas casi multiplica por 1.4 las de ganar.</div>`:'<div class="note ok">Con estos momios el boleto tiene valor esperado positivo según el modelo.</div>'}
+   ${a.meta.bonus?`<p class="xs dim">Incluye el bono de ${money(a.meta.bonus)} que reporta el cupón.</p>`:''}
+  </div>`:'<div class="panel"><p class="muted">No reconocí ninguna selección en ese texto. Pega el cupón completo, con las líneas de "Momios:".</p></div>'}`;
+  $('#an').onclick=()=>{store.set('w3.ticket',$('#tk').value);viewTicket()};
+  $('#cl').onclick=()=>{store.set('w3.ticket','');viewTicket()};
+}
+/* ---------- método ---------- */
+function viewMethod(){
+  document.title='Método · Semana 3';const m=DATA.meta||{},vf=G.map(g=>g._verify).filter(Boolean);
+  const corr=vf.reduce((s,v)=>s+v.corrections,0),rem=vf.reduce((s,v)=>s+v.removed,0);
+  V.innerHTML=`<h1>Cómo se calcula todo</h1>
+  <div class="panel"><h2>1. De dónde salen los datos</h2><ul class="clean sm">
+   <li><b>Investigación:</b> un agente por juego buscó resultados, QBs, lesiones, plantilla, entrenador, estadística, estadio, clima y líneas, cada dato con fuente.</li>
+   <li><b>Verificación adversaria:</b> otro agente, sin ver cómo se buscó, intentó tumbar cada dato con fuentes independientes. ${vf.length?`Hizo <b>${corr}</b> correcciones y quitó <b>${rem}</b> datos que no se pudieron confirmar.`:''}</li>
+   <li><b>En vivo:</b> el botón "Actualizar en vivo" baja de ESPN las líneas y los marcadores (y califica tus apuestas cuando termina un juego) y de Open-Meteo el pronóstico a la hora exacta del juego.</li>
+   <li>Datos investigados: ${esc(m.researched||'—')}.</li></ul></div>
+  <div class="panel"><h2>2. El modelo</h2><ul class="clean sm">
+   <li><b>Parte del mercado.</b> Las casas ya meten lo público (lesiones conocidas, récords, forma). Se promedia el margen del spread con el que implica el moneyline sin comisión.</li>
+   <li><b>Ajusta solo lo que el mercado suele subestimar:</b> clima pronosticado, altitud, viaje de costa a costa a la 1 pm del Este, jueves con 3 días de descanso, sede neutral, noticias posteriores a la línea. Cada factor ±1.5; en total, margen ±3 y puntos ±4. Todo a la vista en cada juego.</li>
+   <li><b>Probabilidades:</b> distribución normal del margen (desviación 13.5 pts) y del total (10.5 pts), los valores históricos de la NFL.</li>
+   <li><b>Las 5 apuestas por juego</b> suman $1,000: Fuerte $400 (~82%), Sólida $250, Media $150, Spread $100, Total $100. Todas las líneas alternas terminan en .5 para que no haya empate.</li>
+   <li><b>Dirección de los totales:</b> si el modelo no tiene ajuste propio, es casi un volado y se dice así. Para desempatar se toma el lado hacia donde se movió la línea desde que abrió; eso no da ventaja, porque la línea de hoy ya incluye esas noticias.</li>
+   <li><b>Valor esperado:</b> con el "momio justo" siempre sale negativo por la comisión. Solo con el momio real de tu casa sabes si una apuesta vale la pena.</li></ul></div>
+  <div class="panel"><h2>3. Lo que no hace</h2><ul class="clean sm">
+   <li>No ve el reporte final de lesiones si sale después de la investigación: usa "Actualizar en vivo" y los ajustes de cada juego.</li>
+   <li>No toma en cuenta que las patas de una combinada estén relacionadas (p. ej. favorito y "menos de" en el mismo juego).</li>
+   <li>No es garantía. Nadie le gana al mercado de forma constante sin información que el mercado no tenga.</li></ul></div>
+  <div class="panel"><h2>4. Borrar lo guardado</h2><p class="sm muted">Tus ajustes, momios y combinadas se guardan en este navegador.</p><button class="btn" id="wipe" type="button">Borrar mis ajustes y momios</button></div>`;
+  $('#wipe').onclick=()=>{if(!confirm('¿Borrar tus ajustes, momios y combinadas guardados?'))return;Object.keys(localStorage).filter(k=>k.startsWith('w3.')).forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
+    S.adj={};S.book={};S.custom={};S.stake={seg:150,real:100,son:100,custom:100};S.live={};S.wx={};S.inj={};S.liveAt=null;S.injAt=null;
+    toast('Listo: se borró todo lo guardado en este navegador (ajustes, momios, combinadas y lo bajado de ESPN).');route()};
+}
+
+/* ================== en vivo ================== */
+/*__LIVE__*/
+async function goLive(){
+  const btn=$('#live'),ico=$('#liveIco');btn.disabled=true;ico.classList.add('spin');
+  const msgs=[];let fail=0;
+  const [a,b]=await Promise.allSettled([liveESPN(),liveWeather()]);
+  if(a.status==='fulfilled')msgs.push(`ESPN: ${a.value} de ${G.length} juegos al día`);else{fail++;msgs.push('ESPN no respondió ('+esc(a.reason&&a.reason.message||a.reason)+')')}
+  if(b.status==='fulfilled')msgs.push(`clima: ${b.value} estadios abiertos`);else{fail++;msgs.push('Open-Meteo no respondió ('+esc(b.reason&&b.reason.message||b.reason)+')')}
+  const emparejados=a.status==='fulfilled'?a.value:0;
+  if(emparejados>0){S.liveAt=new Date().toISOString();store.set('w3.liveAt',S.liveAt)}
+  else if(a.status==='fulfilled')msgs.push('ojo: ESPN respondió pero no emparejó ningún juego, así que las líneas siguen siendo las de la investigación')
+  store.set('w3.live',S.live);store.set('w3.wx',S.wx);
+  btn.disabled=false;ico.classList.remove('spin');const y=scrollY;route();scrollTo(0,y);
+  toast(msgs.join(' · ')+'.'+(fail?' <button class="btn" type="button" style="min-height:36px;margin-left:8px" onclick="goLive()">Reintentar</button>':''),fail?9000:4500);
+}
+async function liveWeather(){
+  let n=0;
+  await Promise.all(G.map(async g=>{
+    const v=g.venue||{};if(isIndoor(g)||v.lat==null||v.lon==null)return;
+    const k=new Date(g.kickoff_utc);if(isNaN(k))return;
+    const day=k.toISOString().slice(0,10),hr=k.toISOString().slice(0,13)+':00';
+    const url=`https://api.open-meteo.com/v1/forecast?latitude=${v.lat}&longitude=${v.lon}&hourly=temperature_2m,precipitation_probability,wind_speed_10m,wind_gusts_10m,relative_humidity_2m&timezone=UTC&start_date=${day}&end_date=${day}`;
+    const r=await fetch(url);if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();
+    const i=(j.hourly&&j.hourly.time||[]).indexOf(hr);if(i<0)return;
+    const H=j.hourly;S.wx[g.id]={covered:true,temp_c:H.temperature_2m[i],precip_pct:H.precipitation_probability[i],wind_kmh:H.wind_speed_10m[i],gust_kmh:H.wind_gusts_10m[i],humidity:H.relative_humidity_2m[i],source:'Open-Meteo',is_forecast:true};n++;
+  }));
+  return n;
+}
+document.getElementById('live').onclick=goLive;
+
+/* ================== tema e inicio ================== */
+function applyTheme(t){const r=document.documentElement;r.classList.add('sin-anim');r.dataset.theme=t;void r.offsetWidth;
+ requestAnimationFrame(()=>requestAnimationFrame(()=>r.classList.remove('sin-anim')));
+ const b=$('#theme');b.setAttribute('aria-label',t==='dark'?'Cambiar a tema claro':'Cambiar a tema oscuro');b.innerHTML=`<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${ICON[t==='dark'?'sun':'moon']}</svg>`}
+applyTheme(store.get('w3.theme','dark'));
+$('#theme').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';store.set('w3.theme',t);applyTheme(t)};
+function medirTop(){const h=document.querySelector('.top');if(h)document.documentElement.style.setProperty('--top-h',h.getBoundingClientRect().height+'px')}
+medirTop();addEventListener('resize',medirTop);
+// aviso de "se desliza" solo cuando la tabla de verdad se corta
+function marcarScroll(){document.querySelectorAll('.tw').forEach(d=>{d.scrollWidth>d.clientWidth+4?d.setAttribute('data-scroll',''):d.removeAttribute('data-scroll')})}
+let lastRoute='';
+addEventListener('hashchange',()=>{const h=location.hash;const isGame=/^#\/juego\//.test(h);route();if(h!==lastRoute){scrollTo(0,0);const t=V.querySelector('h1,h2');if(t){t.setAttribute('tabindex','-1');t.focus({preventScroll:true})}}lastRoute=h});
+route();
+// al abrir: si las líneas tienen más de 30 minutos, se refrescan solas (se mueven todo el tiempo)
+(function auto(){const viejo=!S.liveAt||(Date.now()-new Date(S.liveAt).getTime())>30*60*1000;
+ if(viejo&&navigator.onLine!==false)setTimeout(()=>goLive(),400)})();
+</script>
+</body>
+</html>

@@ -1,0 +1,531 @@
+{
+  "id": 3,
+  "away": "Los Angeles Chargers",
+  "home": "Buffalo Bills",
+  "kickoff_utc": "2026-09-27T17:00:00Z",
+  "kickoff_cdmx": "Dom 27 sep · 11:00 am",
+  "day_label": "Domingo",
+  "network": "FOX",
+  "venue": {
+    "stadium": "Highmark Stadium (nuevo, 2026)",
+    "city": "Orchard Park, NY",
+    "lat": 42.77306,
+    "lon": -78.79222,
+    "surface": "Pasto natural (Kentucky bluegrass, con calefacción bajo el campo)",
+    "roof": "Abierto (toldo sobre ~65% de las gradas; campo descubierto)",
+    "altitude_m": 235,
+    "neutral": false,
+    "notes": "Estadio nuevo, abrió el 23 jun 2026. El pasto se levantó en la pretemporada y los Bills cambiaron todo el pasto (anunciado el 29 ago) antes del 17 sep. Allen dijo que ya pisaba mejor. LAC juega en casa sobre sintético (SoFi): será su primer juego en pasto natural en 2026."
+  },
+  "weather": {
+    "summary": "Pronóstico: soleado, cerca de 21 °C a la hora del juego, viento del norte de 3 a 10 km/h, 1% de lluvia. Clima neutral. Ojo: CBS reporta viento NE de 16 a 24 km/h; el NWS dice menos.",
+    "temp_c": 21,
+    "wind_kmh": 8,
+    "precip_pct": 1,
+    "humidity": 41,
+    "is_forecast": true,
+    "source": "NWS api.weather.gov (malla BUF 39,42) + Open-Meteo por hora, consultados el 22 sep 2026"
+  },
+  "lines": {
+    "spread_home": -7,
+    "total": 50.5,
+    "ml_away": 270,
+    "ml_home": -340,
+    "open_spread_home": -2.5,
+    "open_total": 48.5,
+    "movement": "Abrió BUF -2.5 / 48.5 (DraftKings, línea adelantada) con ML -142/+120. La adelantada pasó a -4.5 después de la sem. 1 (VSiN). Tras la sem. 2 reabrió en -7 / 50.5 (FanDuel) y ahí sigue en todas las casas. El ML subió a -340/+270 (rango -335 a -390). BetMGM pone el total en 50.",
+    "public_pct_note": "CBS Sports: BUF -7 se lleva más del 95% de los boletos y del dinero.",
+    "sources": [
+      "ESPN pickcenter (DraftKings) 22 sep",
+      "VegasInsider consenso 21 sep",
+      "FanDuel vía Buffalo Rumblings/Yahoo",
+      "Caesars vía SI",
+      "VSiN"
+    ]
+  },
+  "teams": [
+    {
+      "side": "away",
+      "name": "Los Angeles Chargers",
+      "abbr": "LAC",
+      "record": "0-2",
+      "coach": "Jim Harbaugh (3ª temporada; 11-6 en 2024 y en 2025). Coordinador ofensivo: Mike McDaniel. Coordinador defensivo: Chris O'Leary",
+      "rest_days": 7,
+      "travel": "Los Ángeles a Orchard Park: ~3,550 km y 3 husos horarios (del Pacífico al Este). La patada es a las 10:00 am de su hora. Es su primer viaje de la temporada regular.",
+      "ats": "0-2 ATS (perdió como favorito de -8.5/-9.5 y de -6.5)",
+      "ou": "0-2 (dos unders: 40 y 40 puntos)",
+      "conditions_history": "Primer juego de visita y primero en pasto natural en 2026 (en casa juega en sintético). LAC tiene 3 juegos a la 1 pm ET en 2026. En 2025 los equipos del Pacífico fueron 10-7 en ese horario (NFL.com).",
+      "results": [
+        {
+          "week": 1,
+          "opp": "ARI",
+          "home_away": "local",
+          "pf": 14,
+          "pa": 26,
+          "result": "P",
+          "note": "Sorpresa: ARI tuvo el balón 37:31 y ganó 393-268 en yardas. LAC fue 0/3 en 4ª oportunidad, le bloquearon un despeje y Herbert lanzó 1 INT."
+        },
+        {
+          "week": 2,
+          "opp": "LV",
+          "home_away": "local",
+          "pf": 14,
+          "pa": 26,
+          "result": "P",
+          "note": "3 pérdidas (2 INT de Herbert y un fumble de Hampton). Joe Alt hizo 3 salidas en falso y un holding que acabó en safety. Cousins lanzó 3 TD."
+        }
+      ],
+      "qb": {
+        "name": "Justin Herbert",
+        "age": 28,
+        "seasons": 7,
+        "recent": "Sem. 1 vs ARI: 17/27, 209 yds, 1 TD, 1 INT, 3 capturas (QBR 45.6). Sem. 2 vs LV: 15/27, 192 yds, 1 TD, 2 INT, 3 capturas, 3 fumbles sin perder ninguno (QBR 15.7). Covers lo pone 28º en EPA por jugada.",
+        "status": "Sano. No aparece en el reporte de lesiones de ESPN."
+      },
+      "hot_players": [
+        {
+          "name": "Ladd McConkey",
+          "pos": "WR",
+          "note": "8 rec, 117 yds y 1 TD en 10 objetivos, aunque se lastimó la cadera en la sem. 1."
+        },
+        {
+          "name": "Omarion Hampton",
+          "pos": "RB",
+          "note": "35 acarreos, 137 yds y 2 TD. Pero perdió un fumble en cada juego."
+        },
+        {
+          "name": "Derwin James Jr.",
+          "pos": "S",
+          "note": "17 tackles en 2 juegos. Juega con yeso por el meñique izquierdo fracturado."
+        }
+      ],
+      "cold_players": [
+        {
+          "name": "Justin Herbert",
+          "pos": "QB",
+          "note": "3 INT y 6 capturas en 2 juegos; QBR de 15.7 en la sem. 2."
+        },
+        {
+          "name": "Quentin Johnston",
+          "pos": "WR",
+          "note": "3 rec y 24 yds en 11 objetivos."
+        },
+        {
+          "name": "Joe Alt",
+          "pos": "OT",
+          "note": "3 salidas en falso y un holding que acabó en safety en la sem. 2."
+        },
+        {
+          "name": "Khalil Mack",
+          "pos": "OLB",
+          "note": "La presión casi no aparece: LAC tiene 3 capturas en 2 juegos y Mack solo 1."
+        }
+      ],
+      "injuries": [
+        {
+          "name": "Kayode Awosika",
+          "pos": "G",
+          "status": "Se perderá tiempo (fíbula). Trevor Penning lo reemplaza en LG.",
+          "impact": "medio",
+          "pts": 0.3,
+          "note": "Harbaugh: estará fuera algunos juegos. No lo pusieron en IR."
+        },
+        {
+          "name": "Dalvin Tomlinson",
+          "pos": "DT",
+          "status": "Se perderá tiempo (isquiotibial)",
+          "impact": "medio",
+          "pts": 0.3,
+          "note": "Es el NT titular en el depth chart de ESPN."
+        },
+        {
+          "name": "David Njoku",
+          "pos": "TE",
+          "status": "IR (fíbula), mínimo 4 juegos",
+          "impact": "medio",
+          "pts": 0.4,
+          "note": "Llevaba 6 rec y 67 yds. Oronde Gadsden queda como el único TE activo."
+        },
+        {
+          "name": "Charlie Kolar",
+          "pos": "TE",
+          "status": "IR (antebrazo), mínimo 4 juegos",
+          "impact": "bajo",
+          "pts": 0.2,
+          "note": "TE bloqueador. Afecta el juego terrestre de McDaniel."
+        },
+        {
+          "name": "Trey Pipkins III",
+          "pos": "OL",
+          "status": "No jugó la sem. 2 (rodilla); podría no jugar la sem. 3",
+          "impact": "bajo",
+          "pts": 0.1,
+          "note": "OL suplente; 2º en LG en el depth chart de ESPN."
+        },
+        {
+          "name": "Elijah Molden",
+          "pos": "S",
+          "status": "No jugó la sem. 2 (isquiotibial, desde la sem. 1); ESPN lo marca 'Out'",
+          "impact": "bajo",
+          "pts": 0.1,
+          "note": "Hizo 5 tackles en la sem. 1."
+        },
+        {
+          "name": "Deane Leonard",
+          "pos": "CB",
+          "status": "No jugó la sem. 2 (abdomen); ESPN lo marca 'Out'",
+          "impact": "bajo",
+          "pts": 0.1,
+          "note": "Suplente de CB."
+        },
+        {
+          "name": "Derwin James Jr.",
+          "pos": "S",
+          "status": "Jugará con yeso (meñique izquierdo fracturado)",
+          "impact": "bajo",
+          "pts": 0,
+          "note": "Volvió y terminó el juego de la sem. 2 con 7 tackles."
+        },
+        {
+          "name": "Denzel Perryman",
+          "pos": "LB",
+          "status": "IR desde el 8 sep (ESPN)",
+          "impact": "bajo",
+          "pts": 0,
+          "note": "Ya estaba fuera en las sem. 1 y 2: no cambia nada frente a lo que el mercado ya vio."
+        }
+      ],
+      "experience": {
+        "avg_age": 26.6,
+        "rookies_on_roster": 11,
+        "rookie_starters": [
+          "Jake Slaughter (C)"
+        ],
+        "key_veterans": [
+          "Khalil Mack (35 años, 13 temporadas)",
+          "Justin Herbert (7 temporadas)",
+          "Derwin James Jr. (9 temporadas)",
+          "Bud Dupree (12 temporadas)",
+          "Tony Jefferson (12 temporadas)"
+        ],
+        "note": "Edad y novatos calculados con el roster de ESPN sin práctica (60 jugadores). El centro titular es novato (el C Tyler Biadasz está en IR desde agosto) y en la sem. 2 falló un snap en 3ª y 1."
+      },
+      "stats": {
+        "ppg": 14,
+        "papg": 26,
+        "ypg": 289,
+        "ypg_allowed": 349,
+        "pass_ypg": 185,
+        "rush_ypg": 104,
+        "turnover_diff": -4,
+        "third_down_pct": 31.8,
+        "red_zone_pct": 80,
+        "sacks": 3,
+        "sacks_allowed": 6,
+        "penalties_pg": 7.5
+      },
+      "strengths": [
+        "Defensa contra la carrera: 86.5 yds/juego permitidas; Jeanty hizo 48 yds en 21 acarreos",
+        "Defensa contra la carrera 5ª en EPA por jugada y mejor calificación de PFF contra la carrera (79.2), según Chargers.com",
+        "En zona roja anotó TD en 4 de 5 visitas"
+      ],
+      "weaknesses": [
+        "Pérdidas de balón: 5 entregadas y -4 de diferencial",
+        "3ª oportunidad: 31.8%",
+        "Poca presión: 3 capturas en 2 juegos",
+        "Permite pases largos: completaciones de 40, 42 y 27 yds vs LV",
+        "Línea ofensiva con castigos y un centro novato; solo le queda 1 TE"
+      ]
+    },
+    {
+      "side": "home",
+      "name": "Buffalo Bills",
+      "abbr": "BUF",
+      "record": "2-0",
+      "coach": "Joe Brady (1er año como entrenador en jefe). Coordinador ofensivo: Pete Carmichael. Coordinador defensivo: Jim Leonhard",
+      "rest_days": 10,
+      "travel": "En casa, sin viaje. Viene de jugar el jueves 17 sep (TNF).",
+      "ats": "2-0 ATS",
+      "ou": "2-0 (dos overs: 67 y 72 puntos)",
+      "conditions_history": "1-0 en el nuevo estadio (41-31 vs DET, jueves por la noche). Es el tercer equipo en la historia que arranca 2-0 permitiendo 30 o más puntos en cada juego (CBS).",
+      "results": [
+        {
+          "week": 1,
+          "opp": "HOU",
+          "home_away": "visita",
+          "pf": 36,
+          "pa": 31,
+          "result": "G",
+          "note": "Allen: 334 yds, 2 TD por aire y 2 por tierra. Kincaid hizo 130 yds. BUF no perdió el balón y HOU perdió 2 fumbles."
+        },
+        {
+          "week": 2,
+          "opp": "DET",
+          "home_away": "local",
+          "pf": 41,
+          "pa": 31,
+          "result": "G",
+          "note": "Jueves. Cook corrió 135 yds, Allen lanzó 3 TD y corrió 2 más, BUF fue 9/12 en 3ª y 5/5 en zona roja. Oliver no jugó y Moore salió por el hombro."
+        }
+      ],
+      "qb": {
+        "name": "Josh Allen",
+        "age": 30,
+        "seasons": 9,
+        "recent": "Sem. 1 @HOU: 20/29, 334 yds, 2 TD, 0 INT, más 23 yds y 2 TD por tierra. Sem. 2 vs DET: 20/31, 248 yds, 3 TD, 0 INT, más 69 yds y 2 TD por tierra. Es el favorito al MVP (+250, SI).",
+        "status": "Sano. No aparece en el reporte de lesiones."
+      },
+      "hot_players": [
+        {
+          "name": "Josh Allen",
+          "pos": "QB",
+          "note": "582 yds, 5 TD por aire, 4 TD por tierra y 0 pérdidas en 2 juegos."
+        },
+        {
+          "name": "Dalton Kincaid",
+          "pos": "TE",
+          "note": "12 rec, 225 yds y 1 TD en 14 objetivos."
+        },
+        {
+          "name": "James Cook III",
+          "pos": "RB",
+          "note": "192 yds en 34 acarreos (5.6 por acarreo); 135 yds y 1 TD vs DET."
+        },
+        {
+          "name": "Greg Rousseau",
+          "pos": "EDGE",
+          "note": "4 capturas, 4 tackles para pérdida y 9 golpes al QB en 2 juegos."
+        }
+      ],
+      "cold_players": [
+        {
+          "name": "Khalil Shakir",
+          "pos": "WR",
+          "note": "Producción discreta: 7 rec, 88 yds y 0 TD en 12 objetivos."
+        }
+      ],
+      "injuries": [
+        {
+          "name": "Ed Oliver",
+          "pos": "DT",
+          "status": "Día a día (espasmos de cadera). No jugó la sem. 2; CBS dice que probablemente juegue.",
+          "impact": "medio",
+          "pts": 0.5,
+          "note": "Se lastimó en el calentamiento. BUF vuelve a practicar el miércoles 23 sep."
+        },
+        {
+          "name": "DJ Moore",
+          "pos": "WR",
+          "status": "Día a día (esguince de la articulación AC del hombro). ESPN lo tiene en duda.",
+          "impact": "medio",
+          "pts": 0.5,
+          "note": "5 rec, 100 yds y 1 TD en la sem. 1. Se espera que practique esta semana (Yahoo)."
+        },
+        {
+          "name": "T.J. Sanders",
+          "pos": "DT",
+          "status": "No jugó la sem. 2 (rodilla); Brady dijo que estuvo cerca de jugar",
+          "impact": "bajo",
+          "pts": 0.3,
+          "note": "DE titular en el depth chart de ESPN."
+        },
+        {
+          "name": "Ty Johnson",
+          "pos": "RB",
+          "status": "No jugó la sem. 2 (isquiotibial); estuvo cerca de volver",
+          "impact": "bajo",
+          "pts": 0.1,
+          "note": "RB de 3ª oportunidad."
+        },
+        {
+          "name": "Tyrell Shavers",
+          "pos": "WR",
+          "status": "Lista PUP de reserva (cirugía de ligamento cruzado anterior)",
+          "impact": "bajo",
+          "pts": 0,
+          "note": "Jugador de fondo de plantilla. ESPN estima su regreso para el 12 oct."
+        }
+      ],
+      "experience": {
+        "avg_age": 26.2,
+        "rookies_on_roster": 9,
+        "rookie_starters": [
+          "Tommy Doman Jr. (P)"
+        ],
+        "key_veterans": [
+          "Josh Allen (9 temporadas)",
+          "Dion Dawkins (32 años, 10 temporadas)",
+          "Bradley Chubb (9 temporadas)",
+          "C.J. Gardner-Johnson (8 temporadas)",
+          "Connor McGovern (8 temporadas)"
+        ],
+        "note": "Edad y novatos calculados con el roster de ESPN sin práctica (57 jugadores). El CB novato Davison Igbinosun tuvo 5 tackles vs DET."
+      },
+      "stats": {
+        "ppg": 38.5,
+        "papg": 31,
+        "ypg": 427.5,
+        "ypg_allowed": 368,
+        "pass_ypg": 283,
+        "rush_ypg": 144.5,
+        "turnover_diff": 2,
+        "third_down_pct": 57.1,
+        "red_zone_pct": 75,
+        "sacks": 7,
+        "sacks_allowed": 4,
+        "penalties_pg": 7.5
+      },
+      "strengths": [
+        "Ofensiva nº 1 de la NFL con 38.5 pts/juego",
+        "0 pérdidas de balón en 2 juegos",
+        "3ª oportunidad: 57.1%",
+        "Allen como amenaza doble: 4 TD por tierra",
+        "Presión: 7 capturas; 3º en tasa de presión según Covers"
+      ],
+      "weaknesses": [
+        "Defensa de pase: 6 TD permitidos, 273 yds/juego por aire y 0 INT",
+        "Permite 31 pts/juego",
+        "Lesiones en la DL interior (Oliver y Sanders)",
+        "10 castigos y 85 yds en la sem. 1"
+      ]
+    }
+  ],
+  "model": {
+    "margin_adj_home": 0,
+    "total_adj": 0,
+    "reasons": [
+      {
+        "factor": "Descanso",
+        "margin": 0,
+        "total": 0,
+        "why": "BUF llega con 10 días de descanso y LAC con 7. VSiN dice que la línea pasó de 4.5 a 7 por el descanso y la patada temprana: ya está en el número."
+      },
+      {
+        "factor": "Viaje y horario temprano",
+        "margin": 0,
+        "total": 0,
+        "why": "LAC cruza 3 husos y juega a las 10 am de su hora. VSiN lo cuenta como causa del movimiento. En 2025 los equipos del Pacífico fueron 10-7 en ese horario. No se cuenta dos veces."
+      },
+      {
+        "factor": "Sobrerreacción al 0-2",
+        "margin": 0,
+        "total": 0,
+        "why": "El 0-2 y el -4 en pérdidas son públicos. VSiN explica el movimiento por descanso y horario, no por el récord. Más del 95% del dinero va con BUF, pero todas las casas siguen en -7: no hay base para ajustar."
+      },
+      {
+        "factor": "Ofensiva mermada de LAC",
+        "margin": 0,
+        "total": 0,
+        "why": "Njoku y Kolar se lastimaron el domingo y el IR se confirmó el lunes; el total siguió en 50.5. Los 14 pts/juego y el 31.8% en 3ª ya son públicos."
+      },
+      {
+        "factor": "Clima",
+        "margin": 0,
+        "total": 0,
+        "why": "Soleado, ~21 °C y viento de 3 a 10 km/h: no afecta."
+      },
+      {
+        "factor": "Césped natural nuevo",
+        "margin": 0,
+        "total": 0,
+        "why": "Se cambió todo el pasto antes de la sem. 2 y Allen dijo que pisaba mejor. No hay evidencia para ajustar."
+      }
+    ]
+  },
+  "h2h": "Serie histórica: LAC 25-14-2 (incluye playoffs). Con Allen, BUF va 2-1. Últimos: BUF 24-22 en LA (23 dic 2023), BUF 27-17 en Buffalo (29 nov 2020), LAC 31-20 en Buffalo (16 sep 2018), LAC 54-24 en LA (19 nov 2017). LAC va 5-3 ATS en los últimos 8 duelos (SI).",
+  "key_matchups": [
+    "Interior de la OL de LAC (C novato Jake Slaughter y LG suplente Trevor Penning) vs la presión de BUF (Rousseau 4 capturas, Chubb 1.5, Deone Walker). Depende de si juegan Oliver y Sanders.",
+    "Carrera de BUF (Cook 5.6 por acarreo; Allen 4 TD por tierra) vs la defensa terrestre de LAC (86.5 yds/juego permitidas, mejor calificación de PFF).",
+    "McConkey y Tre' Harris vs una secundaria de BUF que permitió 6 TD de pase y 0 INT.",
+    "Kincaid vs los LB y safeties de LAC: el TE McBride le hizo 9-95-1 en la sem. 1.",
+    "Pérdidas de balón: LAC tiene -4 (5 entregadas) y BUF +2 (0 entregadas)."
+  ],
+  "situational": [
+    "LAC cruza 3 husos en su primer viaje de la temporada regular y juega a las 10:00 am de su hora.",
+    "BUF llega con 10 días de descanso (jugó el jueves); LAC con 7.",
+    "LAC está 0-2 y Harbaugh suma 5 derrotas seguidas contando playoffs, su primera racha así en la NFL o en la universidad (CBS).",
+    "LAC es el primer equipo en empezar 0-2 perdiendo ante dos rivales que habían perdido 14 o más juegos el año anterior (CBS).",
+    "No es juego de división ni revancha directa. Después BUF recibe a NE (división) y LAC visita SEA.",
+    "Primer juego de LAC en pasto natural en 2026; en casa juega sobre sintético.",
+    "Más del 95% del público va con BUF -7, un número clave."
+  ],
+  "props_ideas": [
+    {
+      "player": "Dalton Kincaid",
+      "market": "Yardas por recepción",
+      "lean": "Más",
+      "why": "Lleva 225 yds en 14 objetivos. Si Moore juega limitado, le llegan más balones. El TE de ARI le hizo 9-95-1 a LAC."
+    },
+    {
+      "player": "Ladd McConkey",
+      "market": "Yardas por recepción",
+      "lean": "Más",
+      "why": "Lleva 117 yds en 10 objetivos. BUF permitió 142 yds a St. Brown y 75 a Collins (WR1) y 273 yds/juego por aire."
+    },
+    {
+      "player": "Oronde Gadsden",
+      "market": "Recepciones",
+      "lean": "Más",
+      "why": "Es el único TE activo. Los TE de LAC suman 13 rec en 15 objetivos en 2 juegos; Gadsden hizo 4 de 4."
+    },
+    {
+      "player": "James Cook III",
+      "market": "Yardas por tierra",
+      "lean": "Menos",
+      "why": "LAC permite 86.5 yds/juego por tierra y dejó a Jeanty en 2.3 por acarreo. Además, las carreras de Allen le quitan acarreos en zona roja."
+    }
+  ],
+  "sources": [
+    {"title": "ESPN API scoreboard 27 sep 2026 (sede, hora, líneas DK)", "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260927"},
+    {"title": "ESPN API summary LAC@BUF (pickcenter, lesiones, líderes)", "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=401872953"},
+    {"title": "ESPN recap Cardinals 26-14 Chargers (sem. 1)", "url": "https://www.espn.com/nfl/recap?gameId=401872926"},
+    {"title": "ESPN recap Raiders 26-14 Chargers (sem. 2)", "url": "https://www.espn.com/nfl/recap?gameId=401872941"},
+    {"title": "ESPN recap Bills 41-31 Lions (sem. 2)", "url": "https://www.espn.com/nfl/recap?gameId=401872932"},
+    {"title": "ESPN API box score HOU-BUF (sem. 1)", "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=401872660"},
+    {"title": "ESPN API box score DET-BUF (sem. 2)", "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=401872932"},
+    {"title": "ESPN core API estadísticas de equipo 2026 LAC", "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/types/2/teams/24/statistics"},
+    {"title": "ESPN core API estadísticas de equipo 2026 BUF", "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/types/2/teams/2/statistics"},
+    {"title": "ESPN core API lesiones LAC", "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams/24/injuries"},
+    {"title": "ESPN roster LAC", "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/lac/roster"},
+    {"title": "ESPN roster BUF", "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/buf/roster"},
+    {"title": "Chargers.com: cuerpo técnico", "url": "https://www.chargers.com/team/coaches-roster/"},
+    {"title": "BuffaloBills.com: cuerpo técnico", "url": "https://www.buffalobills.com/team/coaches-roster/"},
+    {"title": "Wikipedia: 2026 Los Angeles Chargers season", "url": "https://en.wikipedia.org/wiki/2026_Los_Angeles_Chargers_season"},
+    {"title": "Wikipedia: 2026 Buffalo Bills season", "url": "https://en.wikipedia.org/wiki/2026_Buffalo_Bills_season"},
+    {"title": "ESPN: Bills to take time with Ed Oliver, DJ Moore injuries", "url": "https://www.espn.com/nfl/story/_/id/49975029/bills-take-ed-oliver-dj-moore-injuries"},
+    {"title": "Chargers.com: 5 Takeaways, Kolar y Njoku a IR", "url": "https://www.chargers.com/news/charlie-kolar-david-njoku-injured-reserve-fantasy"},
+    {"title": "Chargers.com: 5 Takeaways tras el 0-2", "url": "https://www.chargers.com/news/raiders-recap-week-2-2026"},
+    {"title": "Yahoo: Four Key Chargers Players Will Miss Time", "url": "https://sports.yahoo.com/articles/four-key-chargers-players-miss-010853508.html"},
+    {"title": "BoltBeat: slew of negative injury updates", "url": "https://boltbeat.com/chargers-get-a-slew-of-negative-injury-updates-with-pivotal-bills-matchup-looming"},
+    {"title": "Heavy: Chargers injury news before Buffalo trip", "url": "https://heavy.com/sports/nfl/los-angeles-chargers/chargers-patrick-herbert-kayode-awosika-trey-pipkins-injury-buffalo/"},
+    {"title": "Yahoo: Bills encouraging injury updates on DJ Moore, Ed Oliver", "url": "https://sports.yahoo.com/articles/bills-encouraging-injury-updates-dj-161020066.html"},
+    {"title": "Buffalowdown: Joe Brady hint on Bills depth", "url": "https://buffalowdown.com/joe-brady-offers-encouraging-hint-on-bills-depth-ahead-of-week-3-01m2tz03h5ay"},
+    {"title": "SI: What to expect if DJ Moore misses Week 3", "url": "https://www.si.com/nfl/bills/onsi/injuries-what-bills-fans-should-expect-if-dj-moore-misses-week-3-vs-chargers"},
+    {"title": "VegasInsider: NFL Week 3 odds 2026", "url": "https://www.vegasinsider.com/nfl/nfl-week-3-odds-2026/"},
+    {"title": "VSiN: Week 3 line moves", "url": "https://vsin.com/nfl/nfl-odds-week-3-schedule-line-moves-and-matchups/"},
+    {"title": "Yahoo/Buffalo Rumblings: opening lines Week 3 (FanDuel)", "url": "https://sports.yahoo.com/articles/bills-vs-chargers-odds-opening-201425609.html"},
+    {"title": "Covers: Chargers vs Bills prediction Week 3", "url": "https://www.covers.com/nfl/chargers-vs-bills-predictions-odds-early-leans-week-3-2026"},
+    {"title": "Covers: Chargers 2026 ATS/O-U", "url": "https://www.covers.com/sport/football/nfl/teams/main/los-angeles-chargers/2026"},
+    {"title": "Covers: Bills 2026 ATS/O-U", "url": "https://www.covers.com/sport/football/nfl/teams/main/buffalo-bills/2026"},
+    {"title": "SI Betting: Chargers vs Bills prediction, trends", "url": "https://www.si.com/betting/chargers-vs-bills-prediction-odds-spread-injuries-trends-for-nfl-week-3-2026"},
+    {"title": "CBS Sports: Winless Chargers made unwanted history", "url": "https://www.cbssports.com/betting/news/winless-chargers-have-made-unwanted-history-face-season-defining-nfl-week-3-game-at-bills-on-sunday/"},
+    {"title": "Stats Insider: Bills vs Chargers prediction", "url": "https://www.statsinsider.com.au/news/bills-vs-chargers-prediction-and-preview-nfl-week-3-2026"},
+    {"title": "NFL.com: 2026 schedule travel, rest, early kickoffs", "url": "https://www.nfl.com/news/2026-nfl-schedule-release-how-do-travel-rest-prime-time-and-outdoor-games-impact-teams"},
+    {"title": "Wikipedia: Highmark Stadium (2026)", "url": "https://en.wikipedia.org/wiki/Highmark_Stadium"},
+    {"title": "Yahoo: Highmark Stadium turf details", "url": "https://sports.yahoo.com/articles/highmark-stadium-turf-details-why-080001669.html"},
+    {"title": "NWS pronóstico Orchard Park", "url": "https://api.weather.gov/gridpoints/BUF/39,42/forecast"},
+    {"title": "Open-Meteo pronóstico por hora", "url": "https://api.open-meteo.com/v1/forecast?latitude=42.77306&longitude=-78.79222&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,wind_speed_10m&timezone=America%2FNew_York&start_date=2026-09-27&end_date=2026-09-27"},
+    {"title": "Champs or Chumps: Bills vs Chargers H2H", "url": "https://champsorchumps.us/team/nfl/buffalo-bills/head-to-head/los-angeles-chargers"}
+  ],
+  "data_gaps": [
+    "El reporte oficial de lesiones de la sem. 3 aún no sale: los Bills vuelven a practicar el miércoles 23 sep. ESPN marca 'Out' a Oliver, Sanders y Ty Johnson y 'Questionable' a Moore, pero eso viene de la sem. 2.",
+    "Molden, Pipkins y Leonard no jugaron la sem. 2 y ESPN los marca 'Out' con el estatus de esa semana; falta el reporte de la sem. 3. McConkey (cadera, sem. 1) sí jugó la sem. 2 y no aparece en la lista.",
+    "El tipo de lesión de Njoku varía entre fuentes (fíbula, rodilla o brazo). CBS dice que Njoku y Kolar se pierden la temporada; Chargers y ESPN hablan de IR con mínimo 4 juegos. Se usó la versión del club.",
+    "No hay % de público por casa; solo la nota de CBS (más del 95% de boletos y dinero en BUF).",
+    "La línea de apertura -2.5 / 48.5 es la adelantada de DraftKings. La reapertura tras la sem. 2 fue -7 / 50.5 (FanDuel).",
+    "Las líneas de cierre de las sem. 1 y 2 difieren entre Covers y DraftKings (p. ej. LAC -9.5 vs -8.5). El resultado ATS no cambia.",
+    "No se encontró con fuente el récord de LAC con Harbaugh en juegos a la 1 pm ET ni el ATS histórico de BUF con Allen en casa.",
+    "La edad promedio y los novatos se calcularon con el roster de ESPN sin práctica; no es una cifra oficial. Los novatos titulares salen del depth chart de ESPN, que puede estar desactualizado.",
+    "El clima es un pronóstico a 5 días. CBS reporta viento NE de 16 a 24 km/h y el NWS de 3 a 10 km/h."
+  ]
+}

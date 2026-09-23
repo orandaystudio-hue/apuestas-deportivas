@@ -1,0 +1,606 @@
+{
+  "id": 5,
+  "away": "Tennessee Titans",
+  "home": "New York Giants",
+  "kickoff_utc": "2026-09-27T17:00:00Z",
+  "kickoff_cdmx": "Dom 27 sep · 11:00 am",
+  "day_label": "Domingo",
+  "network": "CBS",
+  "venue": {
+    "stadium": "MetLife Stadium",
+    "city": "East Rutherford, NJ",
+    "lat": 40.8135,
+    "lon": -74.0745,
+    "surface": "Artificial (volvió a sintético tras el Mundial 2026; marca no confirmada)",
+    "roof": "Abierto",
+    "altitude_m": 4,
+    "neutral": false,
+    "notes": "Casa de NYG. ESPN la marca como no-pasto y al aire libre. Altitud aprox. según la elevación del punto de Open-Meteo. Sede normal, no neutral."
+  },
+  "weather": {
+    "summary": "Nublado, unos 21 °C, viento de 18 km/h con ráfagas de 27 km/h, 25-31% de probabilidad de lluvia. Pronóstico a 5 días.",
+    "temp_c": 21,
+    "wind_kmh": 18,
+    "humidity": 37,
+    "precip_pct": 31,
+    "is_forecast": true,
+    "source": "Open-Meteo (consulta 22 sep; 1 pm ET: 21.2 °C, 18.5 km/h, ráfagas 27 km/h, 31%); AccuWeather vía ESPN: 20 °C (68 °F), ráfagas de 17 mph, 25% de lluvia"
+  },
+  "lines": {
+    "spread_home": -3.5,
+    "total": 40.5,
+    "ml_away": 145,
+    "ml_home": -175,
+    "open_spread_home": -3,
+    "open_total": 45.5,
+    "movement": "Abrió NYG -3 y 45.5 (DraftKings vía ESPN; VegasInsider igual). El 21 sep, antes del MNF, estaba en NYG -6, 43.5, ML +225/-278 (ESPN; SI lo da en -5.5). Tras la lesión de Dart en el MNF bajó a NYG -3.5 (-105) en DraftKings y -3 en la mayoría de las casas (VegasInsider); total 40.5; ML -175/+145 (DK) y -165/+140 (bet365, Covers).",
+    "public_pct_note": "Action Network: 60% de los boletos van con NYG y 40% con TEN. El % de dinero no está disponible (es de pago).",
+    "sources": [
+      "DraftKings vía ESPN (pickcenter, 22 sep)",
+      "ESPN Betting, 21 sep 12:50 pm ET",
+      "VegasInsider (7 casas, 22 sep)",
+      "Covers (bet365/Betway)",
+      "Action Network",
+      "SI Betting"
+    ]
+  },
+  "teams": [
+    {
+      "side": "away",
+      "name": "Tennessee Titans",
+      "abbr": "TEN",
+      "record": "0-2",
+      "coach": "Robert Saleh (1er año con TEN)",
+      "rest_days": 7,
+      "travel": "Nashville a East Rutherford, unos 1,220 km. Pasa de hora del Centro a hora del Este (+1 h): la patada de 1 pm ET es a las 12 pm de Nashville. Es su primer juego de visita del año.",
+      "results": [
+        {
+          "week": 1,
+          "opp": "NYJ",
+          "home_away": "home",
+          "pf": 10,
+          "pa": 23,
+          "result": "L",
+          "note": "Los Jets ganaron 367-195 en yardas y tuvieron el balón 38:46. Ward sufrió 3 capturas. Fue el debut de Saleh contra su exequipo."
+        },
+        {
+          "week": 2,
+          "opp": "PHI",
+          "home_away": "home",
+          "pf": 20,
+          "pa": 24,
+          "result": "L",
+          "note": "Perdió con un TD de Hurts a 9 segundos del final. Hooker y Harris interceptaron. Se jugó con 37 °C y el sintético a 69 °C."
+        }
+      ],
+      "qb": {
+        "name": "Cam Ward",
+        "age": 24,
+        "seasons": 2,
+        "recent": "S1: 19/32, 140 yds, 1 TD, 0 INT, 3 capturas. S2: 13/20, 183 yds, 0 TD, 0 INT, más 2 TD por tierra. Lleva 323 yds en 2 juegos y ninguna pérdida.",
+        "status": "Sano, sin designación de lesión."
+      },
+      "injuries": [
+        {
+          "name": "Cor'Dale Flott",
+          "pos": "CB",
+          "status": "Out en S2 (cuádriceps); estatus de S3 sin confirmar",
+          "impact": "medio",
+          "pts": 0.5,
+          "note": "Titular en la esquina izquierda. En S2 lo suplió Micah Robinson."
+        },
+        {
+          "name": "James Williams Sr.",
+          "pos": "LB",
+          "status": "Out en S2 (codo); estatus de S3 sin confirmar",
+          "impact": "bajo",
+          "pts": 0.3,
+          "note": "LB lado fuerte titular. Su reemplazo es Owen Pappoe (Dorian Mausi está en IR)."
+        },
+        {
+          "name": "Fernando Carmona",
+          "pos": "G",
+          "status": "Questionable (hombro)",
+          "impact": "bajo",
+          "pts": 0.3,
+          "note": "Guardia derecho titular y novato. Se lastimó contra PHI."
+        },
+        {
+          "name": "Milo Eifler",
+          "pos": "LB",
+          "status": "IR",
+          "impact": "bajo",
+          "pts": 0,
+          "note": "En IR desde el 8 sep."
+        },
+        {
+          "name": "Kendell Brooks",
+          "pos": "S",
+          "status": "IR",
+          "impact": "bajo",
+          "pts": 0,
+          "note": "Profundidad en la secundaria. IR de toda la temporada."
+        }
+      ],
+      "hot_players": [
+        {
+          "name": "Amani Hooker",
+          "pos": "S",
+          "note": "Contra PHI interceptó en la zona de anotación y la devolvió 92 yds. Lleva 16 tacleadas en 2 juegos."
+        },
+        {
+          "name": "Anthony Hill Jr.",
+          "pos": "LB",
+          "note": "Novato de 2ª ronda. Lleva 26 tacleadas en 2 juegos (16 en S1)."
+        },
+        {
+          "name": "Jeffery Simmons",
+          "pos": "DT",
+          "note": "Contra PHI: 1 captura, 1 tacleada con pérdida y 3 golpes al QB."
+        },
+        {
+          "name": "Tyjae Spears",
+          "pos": "RB",
+          "note": "En S2 sumó 70 yds en 9 toques con solo 19 jugadas en el campo."
+        },
+        {
+          "name": "Joey Slye",
+          "pos": "K",
+          "note": "Perfecto: 3 de 3 en goles de campo y 3 de 3 en puntos extra."
+        }
+      ],
+      "cold_players": [
+        {
+          "name": "Carnell Tate",
+          "pos": "WR",
+          "note": "Novato: 7 recepciones, 65 yds y 0 TD en 11 blancos."
+        },
+        {
+          "name": "Wan'Dale Robinson",
+          "pos": "WR",
+          "note": "6 recepciones y 47 yds en 2 juegos. En 2025 hizo 1,014 yds con NYG."
+        },
+        {
+          "name": "Gunnar Helm",
+          "pos": "TE",
+          "note": "6 recepciones en 7 blancos, unas 40 yds y sin TD."
+        },
+        {
+          "name": "Cam Ward",
+          "pos": "QB",
+          "note": "Sin juego aéreo: 4.4 yds por intento en S1 y solo 20 pases en S2."
+        }
+      ],
+      "strengths": [
+        "Pérdidas: solo 1 balón perdido en 2 juegos y 2 INT forzadas contra PHI.",
+        "Corrida eficiente: 4.4 yds por acarreo como equipo (Pollard 4.7, Spears 5.3).",
+        "Frente defensivo con Simmons: 3 capturas y 2 INT a Hurts.",
+        "Pateador confiable: Slye no ha fallado (3 de 3 en FG y 3 de 3 en PAT)."
+      ],
+      "weaknesses": [
+        "Ataque aéreo pobre: 148 yds netas por juego.",
+        "Ward bajo presión: 5 capturas permitidas en 2 juegos.",
+        "Poca posesión (21:14 y 23:35): la defensa pasa mucho tiempo en el campo y permite 354 yds por juego.",
+        "En 3ª oportunidad, PHI les convirtió 11 de 18."
+      ],
+      "stats": {
+        "ppg": 15,
+        "papg": 23.5,
+        "ypg": 243,
+        "ypg_allowed": 354,
+        "pass_ypg": 148,
+        "rush_ypg": 95,
+        "turnover_diff": 1,
+        "third_down_pct": 40,
+        "red_zone_pct": 60,
+        "sacks": 3,
+        "sacks_allowed": 5,
+        "penalties_pg": 5.5
+      },
+      "ats": "1-1 ATS (no cubrió -1.5 vs NYJ; cubrió +7 vs PHI)",
+      "ou": "1-1 (Under 39.5 vs NYJ con 33 pts; Over 39.5 vs PHI con 44)",
+      "conditions_history": "En 2026 va 0-2 en casa sobre sintético (Nissan Stadium), la S2 con calor extremo. Aún no juega de visita. Su último juego en MetLife fue en oct 2021: perdió 27-24 contra los Jets. Contra los Giants ahí ganó 17-0 (dic 2018).",
+      "experience": {
+        "avg_age": 26.03,
+        "rookies_on_roster": 11,
+        "rookie_starters": [
+          "Carnell Tate (WR)",
+          "Anthony Hill Jr. (MLB)",
+          "Fernando Carmona (RG)"
+        ],
+        "key_veterans": [
+          "Jeffery Simmons (DT, 29)",
+          "Calvin Ridley (WR, 31)",
+          "Tony Pollard (RB, 29)",
+          "John Franklin-Myers (DE, 29)",
+          "Amani Hooker (S, 28)",
+          "Mitchell Trubisky (QB2, 32)"
+        ],
+        "note": "Edad promedio calculada con el roster de ESPN (79 jugadores, incluye la escuadra de práctica)."
+      }
+    },
+    {
+      "side": "home",
+      "name": "New York Giants",
+      "abbr": "NYG",
+      "record": "1-1",
+      "coach": "John Harbaugh (1er año en NYG)",
+      "rest_days": 6,
+      "travel": "Juega en casa, pero viene de jugar el lunes 21 en Inglewood: unos 3,940 km y 3 husos horarios de regreso, con semana corta.",
+      "results": [
+        {
+          "week": 1,
+          "opp": "DAL",
+          "home_away": "home",
+          "pf": 28,
+          "pa": 20,
+          "result": "W",
+          "note": "Dart: 23/29, 230 yds y 3 TD. Likely atrapó 2 TD. Convirtieron 9 de 11 en 3ª oportunidad. Fue el debut de Harbaugh (SNF)."
+        },
+        {
+          "week": 2,
+          "opp": "LAR",
+          "home_away": "away",
+          "pf": 6,
+          "pa": 28,
+          "result": "L",
+          "note": "Dart salió en la 1ª serie por la rodilla izquierda. Winston: 11/27, 111 yds, 1 INT. Davante Adams les hizo 195 yds (MNF)."
+        }
+      ],
+      "qb": {
+        "name": "Jameis Winston",
+        "age": 32,
+        "seasons": 12,
+        "recent": "S2 (entró en el 1er cuarto): 11/27, 111 yds, 0 TD, 1 INT en la zona de anotación, 2 capturas. Jaxson Dart en S1: 23/29, 230 yds, 3 TD, 0 INT y 54 yds por tierra.",
+        "status": "Probable titular. Dart (23 años, 2ª temporada) aparece como Doubtful en ESPN por un esguince del ligamento colateral medial (LCM) de la rodilla izquierda. Rayos X negativos; resonancia el martes 22 sep. ESPN: se perderá «algún tiempo», pero no es lesión de largo plazo."
+      },
+      "injuries": [
+        {
+          "name": "Jaxson Dart",
+          "pos": "QB",
+          "status": "Doubtful (esguince de LCM, rodilla izquierda; reporte oficial pendiente)",
+          "impact": "alto",
+          "pts": 3,
+          "note": "Lo reemplaza Winston. La línea ya se movió de -6 a -3/-3.5. On3 habla de 2 a 4 semanas fuera (sin confirmar)."
+        },
+        {
+          "name": "Malik Nabers",
+          "pos": "WR",
+          "status": "Questionable (hombro derecho)",
+          "impact": "medio",
+          "pts": 1,
+          "note": "Se le salió el hombro, se lo acomodó y volvió al juego. Rayos X el martes 22. ESPN: no se espera una baja larga."
+        },
+        {
+          "name": "Brian Burns",
+          "pos": "EDGE",
+          "status": "Questionable (esguince de tobillo bajo, izquierdo)",
+          "impact": "medio",
+          "pts": 1,
+          "note": "Salió con bota (ESPN). Es su mejor pasador; NYG tiene solo 1 captura en 2 juegos. ESPN: no se espera una baja larga."
+        },
+        {
+          "name": "Andrew Thomas",
+          "pos": "LT",
+          "status": "Questionable (ingle)",
+          "impact": "medio",
+          "pts": 1,
+          "note": "Se lastimó en el 4º cuarto. ESPN reporta que no se espera una baja larga."
+        },
+        {
+          "name": "Paulson Adebo",
+          "pos": "CB",
+          "status": "IR (rodilla)",
+          "impact": "medio",
+          "pts": 0.5,
+          "note": "Se lastimó en S1 vs DAL; a IR el 18 sep. Mínimo 4 juegos fuera."
+        },
+        {
+          "name": "Deonte Banks",
+          "pos": "CB",
+          "status": "Out en S2 (pantorrilla); estatus de S3 sin confirmar",
+          "impact": "bajo",
+          "pts": 0.3,
+          "note": "Titular en la esquina izquierda y regresador de patadas según el depth chart de ESPN."
+        },
+        {
+          "name": "Micah McFadden",
+          "pos": "LB",
+          "status": "Out en S2 (cuello); estatus de S3 sin confirmar",
+          "impact": "bajo",
+          "pts": 0,
+          "note": "Suplente de Tremaine Edmunds en el depth chart de ESPN."
+        }
+      ],
+      "hot_players": [
+        {
+          "name": "Isaiah Likely",
+          "pos": "TE",
+          "note": "13 recepciones, 111 yds y 2 TD en 18 blancos. Con Winston tuvo 9 blancos."
+        },
+        {
+          "name": "Jevon Holland",
+          "pos": "S",
+          "note": "Interceptó en los 2 juegos y en S2 forzó y recuperó un fumble."
+        },
+        {
+          "name": "Darnell Mooney",
+          "pos": "WR",
+          "note": "4 recepciones y 75 yds (18.8 por recepción)."
+        },
+        {
+          "name": "Malachi Fields",
+          "pos": "WR",
+          "note": "Novato: 4 recepciones y 55 yds en 10 blancos."
+        }
+      ],
+      "cold_players": [
+        {
+          "name": "Malik Nabers",
+          "pos": "WR",
+          "note": "En S2: 1 recepción de 1 yd en 4 blancos, y además la lesión de hombro."
+        },
+        {
+          "name": "Cam Skattebo",
+          "pos": "RB",
+          "note": "En S2: 36 yds en 12 acarreos (3.0 por acarreo)."
+        },
+        {
+          "name": "Jameis Winston",
+          "pos": "QB",
+          "note": "41% de pases completos, 4.1 yds por intento y 1 INT."
+        },
+        {
+          "name": "Pass rush de NYG",
+          "pos": "DEF",
+          "note": "Solo 1 captura en 2 juegos, y Burns está en duda."
+        }
+      ],
+      "strengths": [
+        "Con Dart el ataque fue eficiente: 394 yds y 9 de 11 en 3ª vs DAL.",
+        "Likely es blanco seguro en rutas cortas.",
+        "Holland provoca pérdidas: +1 de diferencial.",
+        "Corrida con Skattebo: 81 yds y TD en S1."
+      ],
+      "weaknesses": [
+        "Sin Dart el ataque se cayó: 182 yds, 3 de 14 en 3ª, 0 de 2 en zona roja.",
+        "Casi sin presión al QB (1 captura).",
+        "Secundaria mermada: Adebo en IR, Banks en duda; LAR les hizo 481 yds.",
+        "Castigos: 10 por 114 yds vs DAL."
+      ],
+      "stats": {
+        "ppg": 17,
+        "papg": 24,
+        "ypg": 288,
+        "ypg_allowed": 362.5,
+        "pass_ypg": 179.5,
+        "rush_ypg": 108.5,
+        "turnover_diff": 1,
+        "third_down_pct": 48,
+        "red_zone_pct": 66.7,
+        "sacks": 1,
+        "sacks_allowed": 4,
+        "penalties_pg": 6.5
+      },
+      "ats": "1-1 ATS (cubrió +3 vs DAL; no cubrió +7 en LAR)",
+      "ou": "1-1 (Over 47.5 vs DAL con 48 pts; Under 47.5 en LAR con 34)",
+      "conditions_history": "1-0 en casa en MetLife (sintético, de noche). 0-1 en SoFi (con techo). Este es su primer juego de 1 pm ET en 2026.",
+      "experience": {
+        "avg_age": 26.23,
+        "rookies_on_roster": 13,
+        "rookie_starters": [
+          "Arvell Reese (ILB)",
+          "Francis Mauigoa (RG)",
+          "Dominic Zvada (K)",
+          "Ben Mann (LS)"
+        ],
+        "key_veterans": [
+          "Jameis Winston (QB, 32)",
+          "Shelby Harris (DT, 35)",
+          "DJ Reader (NT, 32)",
+          "Jermaine Eluemunor (RT, 31)",
+          "Odell Beckham Jr. (WR, 33)",
+          "Brian Burns (EDGE, 28)",
+          "Tremaine Edmunds (LB, 28)"
+        ],
+        "note": "Edad promedio calculada con el roster de ESPN (79 jugadores, incluye la escuadra de práctica). El novato Colton Hood (CB) jugó en S2, pero es suplente en el depth chart."
+      }
+    }
+  ],
+  "model": {
+    "margin_adj_home": 0,
+    "total_adj": 0,
+    "reasons": [
+      {
+        "factor": "Semana corta de NYG tras el MNF en Los Ángeles",
+        "margin": 0,
+        "total": 0,
+        "why": "NYG jugó el lunes en Inglewood y vuelve de costa a costa (unos 3,940 km, 3 husos) con 6 días de descanso contra 7 de TEN. El calendario es público desde mayo y la línea ya lo trae; no hay fuente de que el mercado lo subestime. Sin ajuste."
+      },
+      {
+        "factor": "Viento pronosticado",
+        "margin": 0,
+        "total": 0,
+        "why": "Se esperan 18 km/h con ráfagas de 27 km/h en estadio abierto. Está debajo del nivel en que el viento suele bajar totales (unos 24 km/h sostenidos) y es un pronóstico a 5 días. Revisar el sábado."
+      },
+      {
+        "factor": "QB de NYG (Dart dudoso)",
+        "margin": 0,
+        "total": 0,
+        "why": "La línea ya bajó de -6 a -3/-3.5 y el total de 43.5 a 40.5 con Winston de titular. Aún no hay resultado de la resonancia; sin noticia nueva no se ajusta."
+      },
+      {
+        "factor": "Lesiones del MNF (Nabers, Burns, Thomas)",
+        "margin": 0,
+        "total": 0,
+        "why": "Todas ocurrieron en el MNF, antes de la línea actual (-3.5 / 40.5). Ya están en el precio."
+      },
+      {
+        "factor": "Césped sintético en ambos",
+        "margin": 0,
+        "total": 0,
+        "why": "TEN y NYG juegan en sintético en casa. Nadie tiene ventaja."
+      },
+      {
+        "factor": "Viaje de TEN",
+        "margin": 0,
+        "total": 0,
+        "why": "Son 1,220 km y +1 huso; la patada de 1 pm ET es a mediodía de Nashville. Sin efecto relevante."
+      }
+    ]
+  },
+  "key_matchups": [
+    "Pass rush de TEN (Simmons, Franklin-Myers, J. Johnson II) vs línea de NYG con Andrew Thomas en duda: Winston sufrió 2 capturas y completó 11 de 27 en S2.",
+    "Jameis Winston vs secundaria de TEN: Hooker y Harris interceptaron a Hurts; Flott en duda.",
+    "Línea de TEN (5 capturas permitidas) vs pass rush de NYG, que tiene solo 1 captura y a Burns en duda.",
+    "Isaiah Likely (18 blancos) vs LBs de TEN: el novato Hill Jr. y sin James Williams Sr. en S2.",
+    "Corrida de TEN (Pollard/Spears, 4.4 yds por acarreo) vs defensa de NYG que permitió 163 yds por tierra a LAR."
+  ],
+  "situational": [
+    "No es juego de división (AFC Sur vs NFC Este) ni revancha: el último duelo fue en 2022.",
+    "NYG juega en semana corta tras el MNF en la costa oeste (6 días de descanso) contra 7 días de TEN.",
+    "TEN hace su primer viaje del año tras dos juegos en casa; va 0-2 por tercer año seguido.",
+    "NYG, con su QB titular probablemente fuera, pone a Winston.",
+    "Wan'Dale Robinson (TEN) enfrenta a su exequipo tras 1,014 yds con NYG en 2025.",
+    "Ambos coaches son de primer año en su equipo (Saleh y Harbaugh)."
+  ],
+  "h2h": "La serie va 7-6 a favor de NYG. Últimos: 2022, NYG ganó 21-20 en Nashville; 2018, TEN ganó 17-0 en MetLife; 2014, NYG ganó 36-7 en Nashville.",
+  "props_ideas": [
+    {
+      "player": "Isaiah Likely",
+      "market": "Recepciones",
+      "lean": "Over",
+      "why": "13 recepciones en 18 blancos en 2 juegos; 9 blancos ya con Winston. TEN jugó S2 sin su LB titular James Williams Sr."
+    },
+    {
+      "player": "Cam Ward",
+      "market": "Yardas por pase",
+      "lean": "Under",
+      "why": "323 yds en 2 juegos (161.5 por juego) y solo 52 intentos. TEN esconde el pase y corre."
+    },
+    {
+      "player": "Jameis Winston",
+      "market": "Intercepciones (0.5)",
+      "lean": "Over",
+      "why": "Lanzó 1 INT en 27 intentos en S2, en la zona de anotación. La secundaria de TEN le hizo 2 INT a Hurts."
+    },
+    {
+      "player": "Tony Pollard",
+      "market": "Yardas por tierra",
+      "lean": "Over",
+      "why": "Líder en volumen: 99 yds en 21 acarreos (4.7). NYG permitió 163 yds por tierra a LAR."
+    }
+  ],
+  "sources": [
+    {
+      "title": "ESPN API: resumen TEN@NYG (líneas DK, lesiones, clima)",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=401872956"
+    },
+    {
+      "title": "ESPN API: scoreboard 27 sep 2026",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260927"
+    },
+    {
+      "title": "ESPN API: scoreboards semanas 1 y 2",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?seasontype=2&week=2&dates=2026"
+    },
+    {
+      "title": "ESPN/AP: Jets 23-10 Titans",
+      "url": "https://www.espn.com/nfl/game/_/gameId/401872924"
+    },
+    {
+      "title": "ESPN/AP: Eagles 24-20 Titans",
+      "url": "https://www.espn.com/nfl/game/_/gameId/401872939"
+    },
+    {
+      "title": "ESPN/AP: Giants 28-20 Cowboys",
+      "url": "https://www.espn.com/nfl/game/_/gameId/401872930"
+    },
+    {
+      "title": "ESPN/AP: Rams 28-6 Giants",
+      "url": "https://www.espn.com/nfl/game/_/gameId/401872947"
+    },
+    {
+      "title": "ESPN: Rams defeat depleted Giants 28-6",
+      "url": "https://www.espn.com/nfl/story/_/id/49999155/2026-nfl-week-2-los-angeles-rams-new-york-giants-matthew-stafford-jaxson-dart"
+    },
+    {
+      "title": "ESPN Betting: líneas Semana 3 (21 sep)",
+      "url": "https://www.espn.com/espn/betting/story/_/id/49995686/2026-nfl-week-3-schedule-odds-betting-point-spreads-totals"
+    },
+    {
+      "title": "ESPN: Dart, posible esguince de LCM (Thomas, Burns, Nabers)",
+      "url": "https://www.espn.com/nfl/story/_/id/50001578/giants-qb-jaxson-dart-exits-mnf-game-vs-rams-knee-injury"
+    },
+    {
+      "title": "ESPN Fantasy buzz 22 sep (impacto de Dart)",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/40699880/fantasy-football-injuries-position-battles-nfl-news-analysis"
+    },
+    {
+      "title": "SI Betting: la lesión de Dart mueve la línea",
+      "url": "https://www.si.com/betting/latest-jaxson-dart-injury-update-shifts-titans-vs-giants-odds-for-nfl-week-3"
+    },
+    {
+      "title": "On3: Dart, esguince de LCM, 2-4 semanas (no se pudo abrir)",
+      "url": "https://www.on3.com/pro/news/jaxson-dart-diagnosed-mcl-sprain-expected-miss-time"
+    },
+    {
+      "title": "VegasInsider: momios NFL",
+      "url": "https://www.vegasinsider.com/nfl/odds/las-vegas/"
+    },
+    {
+      "title": "Covers: momios NFL",
+      "url": "https://www.covers.com/sport/football/nfl/odds"
+    },
+    {
+      "title": "Action Network: % del público",
+      "url": "https://www.actionnetwork.com/nfl/public-betting"
+    },
+    {
+      "title": "ESPN API: rosters TEN y NYG",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/nyg/roster"
+    },
+    {
+      "title": "ESPN Core API: depth charts y lesiones",
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/19/depthcharts"
+    },
+    {
+      "title": "ESPN Core API: entrenadores 2026 (TEN)",
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/10/coaches"
+    },
+    {
+      "title": "ESPN API: calendario TEN 2021 (Jets 27-24 en MetLife)",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/ten/schedule?season=2021"
+    },
+    {
+      "title": "Yahoo/Sporting News: MetLife vuelve a sintético",
+      "url": "https://sports.yahoo.com/articles/why-metlife-stadium-reverted-back-165215853.html"
+    },
+    {
+      "title": "StatMuse: historial Giants vs Titans",
+      "url": "https://www.statmuse.com/nfl/ask/giants-vs-titans-record"
+    },
+    {
+      "title": "Champs or Chumps: historial NYG-TEN",
+      "url": "https://champsorchumps.us/team/nfl/new-york-giants/head-to-head/tennessee-titans"
+    },
+    {
+      "title": "Open-Meteo: pronóstico MetLife 27 sep",
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=40.8135&longitude=-74.0745&hourly=temperature_2m,wind_speed_10m,wind_gusts_10m,precipitation_probability&start_date=2026-09-27&end_date=2026-09-27"
+    }
+  ],
+  "data_gaps": [
+    "Las líneas de ESPN que dio el script (-6 / 43.5 / +225 / -278) son de antes de la lesión de Dart. La línea actual es -3.5 (DK) o -3 (consenso), con total de 40.5. SI da -5.5 como línea previa.",
+    "El reporte oficial de lesiones de la S3 aún no sale (el primero es el miércoles 23 sep). Los estatus son los preliminares de ESPN.",
+    "El resultado de la resonancia de Dart (martes 22 sep) no estaba publicado. ESPN solo dice que se perderá «algún tiempo»; el plazo de 2 a 4 semanas (On3) no se pudo confirmar.",
+    "No se confirmó el estatus de S3 de Flott, James Williams Sr., Banks y McFadden (fueron baja en S2).",
+    "No se confirmó la marca del césped sintético de MetLife en 2026.",
+    "El % de dinero del público no está disponible; solo hay % de boletos (Action Network, 60% NYG).",
+    "No hay líneas publicadas de props de jugador; las ideas son solo direccionales.",
+    "Las estadísticas de equipo salen de solo 2 juegos (muestra chica). Zona roja = TD por visita según ESPN.",
+    "La edad promedio se calculó con el roster de ESPN de 79 jugadores, que incluye la escuadra de práctica.",
+    "El registro ATS usa líneas de cierre de DraftKings (ESPN). No se revisó el historial ATS de 2025.",
+    "Las yardas de Helm varían por 1 (40 según Rotowire/ESPN, 41 sumando los box scores).",
+    "La altitud es aproximada (elevación del punto de Open-Meteo)."
+  ]
+}

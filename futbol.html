@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Futbol · Análisis y apuestas</title>
+<meta name="description" content="Análisis de Liga MX, LaLiga, Champions y más: probabilidades 1X2, goles, y 5 apuestas por partido.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0f1c;--surface:#111a2e;--surface-2:#172340;--surface-3:#1e2d52;--tx:#e6ecf8;--tx-2:#a7b4cf;--tx-3:#8593b3;--line:#24345c;
+ --primary:#2563eb;--primary-2:#60a5fa;--on-primary:#fff;--accent:#f59e0b;--accent-tx:#fbbf24;--ok:#22c55e;--ok-tx:#4ade80;--bad:#ef4444;--bad-tx:#f87171;
+ --away:#60a5fa;--home:#f59e0b;--draw:#94a3b8;--ring:#93c5fd;--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.25);--r:10px;--t:180ms;
+ --mono:'Fira Code',ui-monospace,Consolas,monospace;--sans:'Fira Sans',system-ui,'Segoe UI',sans-serif}
+[data-theme=light]{--bg:#f5f7fb;--surface:#fff;--surface-2:#eef2f9;--surface-3:#e2e8f4;--tx:#0f1a33;--tx-2:#3d4a66;--tx-3:#5a6784;--line:#d5deee;
+ --primary:#1e40af;--primary-2:#1e3a8a;--accent:#b45309;--accent-tx:#7c3c06;--ok:#15803d;--ok-tx:#14532d;--bad:#b91c1c;--bad-tx:#991b1b;--away:#1d4ed8;--home:#b45309;--draw:#475569;--ring:#1e40af;
+ --shadow:0 1px 2px rgba(15,26,51,.06),0 6px 18px rgba(15,26,51,.06)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 var(--sans);min-height:100dvh}
+a{color:var(--primary-2)}[data-theme=light] a{color:var(--primary)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:4px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;background:var(--primary);color:#fff;padding:10px 14px;border-radius:8px;z-index:100}.skip:focus{left:12px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--tx-2)}.dim{color:var(--tx-3)}.sm{font-size:14px}.xs{font-size:13px}
+.ok{color:var(--ok-tx)}.bad{color:var(--bad-tx)}.acc{color:var(--accent-tx)}
+svg.i{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-3px}
+.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:10px;min-height:60px;flex-wrap:wrap;padding:6px 16px}
+.brand{display:flex;align-items:center;gap:10px;min-height:44px;font-weight:700;font-size:18px;text-decoration:none;color:var(--tx);margin-right:auto}
+.brand b{display:grid;place-items:center;width:34px;height:34px;border-radius:8px;background:var(--primary);color:#fff;font-family:var(--mono);font-size:13px}
+.brand small{display:block;font-weight:400;font-size:12px;color:var(--tx-3)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:500;transition:background var(--t),border-color var(--t),transform 120ms}
+.btn:hover{background:var(--surface-2);border-color:var(--primary)}.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}.btn.primary:hover{background:#1d4ed8;border-color:#1d4ed8}
+[data-theme=light] .btn.primary:hover{background:#1a3894;border-color:#1a3894}
+.btn[disabled]{opacity:.5;cursor:not-allowed}.btn.icon{width:44px;padding:0}
+.spin{animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.status{border-bottom:1px solid var(--line);background:var(--surface)}
+.status .wrap{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:8px 16px;font-size:13px;color:var(--tx-2)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--tx-3)}.dot.on{background:var(--ok)}.dot.warn{background:var(--accent)}
+main{padding:20px 0 64px}
+h1{font-size:26px;line-height:1.2;margin:0 0 4px}h2{font-size:20px;margin:0 0 12px}h3{font-size:16px;margin:0 0 10px}
+.ligas{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.ligas button{min-height:42px;padding:0 14px;border-radius:99px;border:1px solid var(--line);background:var(--surface);cursor:pointer;color:var(--tx-2);font-weight:500;transition:background var(--t),color var(--t),border-color var(--t)}
+.ligas button[aria-pressed=true]{background:var(--primary);border-color:var(--primary);color:#fff}
+.ligas button[disabled]{opacity:.45}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px}
+.card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;text-decoration:none;color:var(--tx);box-shadow:var(--shadow);cursor:pointer;width:100%;text-align:left;transition:border-color var(--t),transform var(--t)}
+.card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.when{display:flex;justify-content:space-between;font-size:13px;color:var(--tx-3);margin-bottom:8px;gap:8px}
+.eq{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:3px 0;font-weight:600}
+.eq span:last-child{font-family:var(--mono)}
+.tri{display:flex;height:8px;border-radius:5px;overflow:hidden;margin:10px 0;background:var(--surface-3)}
+.tri i{display:block;height:100%}.tri .h{background:var(--home)}.tri .d{background:var(--draw)}.tri .a{background:var(--away)}
+.leg{display:flex;justify-content:space-between;font-size:12px;color:var(--tx-3)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:13px;padding:3px 9px;border-radius:99px;background:var(--surface-2);color:var(--tx-2);border:1px solid var(--line)}
+.chip.warn{color:var(--accent-tx)}.chip.ok{color:var(--ok-tx)}
+.pick{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:14px;display:flex;justify-content:space-between;gap:8px}
+.pick b{color:var(--ok-tx)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.three,.two{grid-template-columns:1fr}}
+.stat{background:var(--surface-2);border-radius:8px;padding:10px 12px}
+.stat .k{font-size:13px;color:var(--tx-3)}.stat .v{font-family:var(--mono);font-size:18px;font-weight:600}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left}
+thead th{font-size:13px;color:var(--tx-3);font-weight:500;white-space:nowrap}
+td.r,th.r{text-align:right}tbody tr:hover{background:var(--surface-2)}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:5px;background:var(--surface-3);white-space:nowrap}
+.tag.t0{background:color-mix(in srgb,var(--ok) 22%,var(--surface-2));color:var(--ok-tx)}
+.tag.t1{background:color-mix(in srgb,var(--primary) 22%,var(--surface-2));color:var(--primary-2)}
+.tag.t2{background:color-mix(in srgb,var(--accent) 20%,var(--surface-2));color:var(--accent-tx)}
+.note{border-left:3px solid var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));padding:10px 12px;border-radius:6px;font-size:14px;margin:10px 0}
+.note.info{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 10%,var(--surface))}
+.back{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--primary-2);text-decoration:none;font-weight:500;background:none;border:0;cursor:pointer;padding:0}
+input.odds{width:92px;min-height:40px;border:1px solid var(--line);background:var(--surface-2);border-radius:6px;padding:0 8px;font-family:var(--mono);text-align:right}
+.empty{padding:30px;text-align:center;color:var(--tx-2)}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--surface-3);border:1px solid var(--line);padding:12px 16px;border-radius:10px;box-shadow:var(--shadow);z-index:90;max-width:min(560px,calc(100% - 32px));font-size:14px}
+footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--tx-3);font-size:13px}
+.hm{display:grid;grid-template-columns:auto repeat(6,1fr);gap:2px;font-size:12px;font-family:var(--mono)}
+.hm div{padding:4px 2px;text-align:center;border-radius:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+.sin-anim *,.sin-anim *::before,.sin-anim *::after{transition:none!important}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#/"><b>FUT</b><span>Futbol<small>Liga MX · Europa</small></span></a>
+  <a class="btn" href="index.html" title="Ir al análisis de la NFL">NFL semana 3</a>
+  <button class="btn primary" id="load" type="button"><svg class="i" id="ico" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg><span>Actualizar partidos</span></button>
+  <button class="btn icon" id="theme" type="button" aria-label="Cambiar tema"></button>
+</div></header>
+<div class="status"><div class="wrap" id="statusLine"></div></div>
+<main id="main" tabindex="-1"><div class="wrap" id="view"><div class="empty">Cargando partidos…</div></div></main>
+<footer><div class="wrap">Datos de ESPN (momios de DraftKings) y modelo propio. Análisis, no garantía: apuesta solo lo que puedas perder.</div></footer>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<script>
+/* ============ configuración ============ */
+const LIGAS=[
+ {id:'mex.1',nom:'Liga MX',pais:'México'},
+ {id:'esp.1',nom:'LaLiga',pais:'España'},
+ {id:'uefa.champions',nom:'Champions',pais:'Europa'},
+ {id:'eng.1',nom:'Premier',pais:'Inglaterra'},
+ {id:'ita.1',nom:'Serie A',pais:'Italia'},
+ {id:'ger.1',nom:'Bundesliga',pais:'Alemania'},
+ {id:'fra.1',nom:'Ligue 1',pais:'Francia'},
+ {id:'uefa.europa',nom:'Europa League',pais:'Europa'},
+];
+// altitud aproximada de la ciudad sede (m). Pesa en Liga MX: el visitante de nivel del mar se cansa.
+const ALTITUD={'mexico city':2240,'ciudad de mexico':2240,'toluca':2660,'puebla':2135,'pachuca':2400,'queretaro':1820,'guadalajara':1566,'zapopan':1566,'leon':1815,'aguascalientes':1880,'san luis potosi':1860,'monterrey':540,'guadalupe':540,'san nicolas de los garza':540,'tijuana':30,'mazatlan':10,'cancun':10,'torreon':1120,'ciudad juarez':1130,'juarez':1130,'bogota':2640,'quito':2850,'la paz':3640,'denver':1600};
+const DIAS=12, DIAS_ATRAS=4, SD_CACHE='fb.cache', TZ='America/Mexico_City';
+const STAKES=[400,250,150,100,100], KINDS=['Fuerte','Sólida','Media','Valor','Riesgo'];
+/* ============ utilidades ============ */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const fmt=(n,d=2)=>n==null||isNaN(n)?'—':(+n).toFixed(d).replace(/\.?0+$/,'');
+const pct=p=>Math.round(p*100)+'%';
+const money=n=>'$'+Math.round(n).toLocaleString('es-MX');
+const imp=ml=>ml<0?-ml/(-ml+100):100/(ml+100);
+const us2dec=a=>a>0?1+a/100:1+100/(-a);
+const dec2us=d=>d>=2?'+'+Math.round((d-1)*100):'−'+Math.round(100/(d-1));
+const parseUS=s=>{const t=String(s??'').trim().replace('−','-').replace(/^\+/,'');return /^-?\d{3,5}$/.test(t)&&Math.abs(+t)>=100?+t:null};
+const mlNum=s=>{if(s==null)return null;const t=String(s).trim().toUpperCase().replace('−','-');if(t==='EVEN'||t==='EV')return 100;const n=parseInt(t.replace('+',''),10);return isNaN(n)?null:n};
+function toast(m,ms=4500){const t=$('#toast');t.innerHTML=m;t.hidden=false;clearTimeout(t._h);t._h=setTimeout(()=>t.hidden=true,ms)}
+const ICON={clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',pin:'<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+ mountain:'<path d="m3 20 6-10 4 6 3-4 5 8H3z"/>',ball:'<circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10z"/>',left:'<path d="m15 18-6-6 6-6"/>',
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ moon:'<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',trend:'<path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/>'};
+const ic=(n,c='')=>`<svg class="i ${c}" viewBox="0 0 24 24" aria-hidden="true">${ICON[n]||''}</svg>`;
+/* ============ Poisson ============ */
+const fact=n=>{let r=1;for(let i=2;i<=n;i++)r*=i;return r};
+const pois=(k,l)=>Math.exp(-l)*Math.pow(l,k)/fact(k);
+// Dixon-Coles: Poisson simple se queda corto en 0-0, 1-0, 0-1 y 1-1 (los empates)
+function tau(i,j,lh,la,rho){if(!rho)return 1;
+  if(i===0&&j===0)return 1-lh*la*rho;if(i===0&&j===1)return 1+lh*rho;
+  if(i===1&&j===0)return 1+la*rho;if(i===1&&j===1)return 1-rho;return 1}
+function matriz(lh,la,MAX=9,rho=0){const m=[];for(let i=0;i<=MAX;i++){m[i]=[];for(let j=0;j<=MAX;j++)m[i][j]=Math.max(0,pois(i,lh)*pois(j,la)*tau(i,j,lh,la,rho))}return m}
+function mercados(lh,la,rho=0){
+  const m=matriz(lh,la,9,rho);let H=0,D=0,A=0,btts=0,ou={};
+  const tot=[0.5,1.5,2.5,3.5,4.5];tot.forEach(t=>ou[t]=0);
+  for(let i=0;i<m.length;i++)for(let j=0;j<m.length;j++){const p=m[i][j];
+    if(i>j)H+=p;else if(i===j)D+=p;else A+=p;
+    if(i>0&&j>0)btts+=p;
+    tot.forEach(t=>{if(i+j>t)ou[t]+=p});}
+  const suma=H+D+A;H/=suma;D/=suma;A/=suma;btts/=suma;tot.forEach(t=>ou[t]/=suma);
+  const marcadores=[];for(let i=0;i<6;i++)for(let j=0;j<6;j++)marcadores.push({i,j,p:m[i][j]/suma});
+  marcadores.sort((a,b)=>b.p-a.p);
+  return{H,D,A,btts,ou,m,marcadores:marcadores.slice(0,6),
+    dcHX:H+D,dcHA:H+A,dcXA:D+A,
+    h_menos1:(()=>{let s=0;for(let i=0;i<m.length;i++)for(let j=0;j<m.length;j++)if(i-j>1)s+=m[i][j];return s/suma})(),
+    a_menos1:(()=>{let s=0;for(let i=0;i<m.length;i++)for(let j=0;j<m.length;j++)if(j-i>1)s+=m[i][j];return s/suma})(),
+    h_mas1:(()=>{let s=0;for(let i=0;i<m.length;i++)for(let j=0;j<m.length;j++)if(i-j>-1)s+=m[i][j];return s/suma})(),
+    a_mas1:(()=>{let s=0;for(let i=0;i<m.length;i++)for(let j=0;j<m.length;j++)if(j-i>-1)s+=m[i][j];return s/suma})()};
+}
+// busca los goles esperados (λ) que reproducen lo que dice el mercado
+function ajustar(pH,pD,pA,pOver,linea=2.5){
+  let mejor=null;
+  const prueba=(lh,la,rho)=>{const r=mercados(lh,la,rho);const o=r.ou[linea]!=null?r.ou[linea]:r.ou[2.5];
+    const e=Math.pow(r.H-pH,2)+Math.pow(r.A-pA,2)+Math.pow(r.D-pD,2)+(pOver!=null?Math.pow(o-pOver,2):0);
+    if(!mejor||e<mejor.e)mejor={lh,la,rho,e,r}};
+  for(let lh=0.3;lh<=3.6;lh+=0.1)for(let la=0.3;la<=3.6;la+=0.1)prueba(+lh.toFixed(2),+la.toFixed(2),0);
+  const{lh:l0,la:a0}=mejor;
+  for(let a=l0-0.12;a<=l0+0.12;a+=0.03)for(let b=a0-0.12;b<=a0+0.12;b+=0.03)for(let rho=-0.2;rho<=0.2001;rho+=0.05)prueba(+a.toFixed(3),+b.toFixed(3),+rho.toFixed(3));
+  const{lh,la,rho}=mejor;
+  for(let r2=rho-0.05;r2<=rho+0.05;r2+=0.01)prueba(lh,la,+r2.toFixed(3));
+  return mejor;
+}
+/* ============ estado ============ */
+const S={liga:store.get('fb.liga','mex.1'),cache:store.get(SD_CACHE,{}),book:store.get('fb.book',{}),tema:store.get('fb.tema','dark')};
+let VIEW={pantalla:'lista',id:null};
+/* ============ datos ============ */
+const api=async u=>{const r=await fetch(u);if(!r.ok)throw new Error('HTTP '+r.status);return r.json()};
+function ymd(d){return d.toISOString().slice(0,10).replace(/-/g,'')}
+async function bajar(ligaId){
+  const hoy=new Date(),dias=[];
+  for(let i=-DIAS_ATRAS;i<DIAS;i++){const d=new Date(hoy.getTime()+i*864e5);dias.push(ymd(d))}
+  const partidos=[];
+  const tandas=await Promise.all(dias.map(d=>api(`https://site.api.espn.com/apis/site/v2/sports/soccer/${ligaId}/scoreboard?dates=${d}`).catch(()=>null)));
+  tandas.filter(Boolean).forEach(j=>(j.events||[]).forEach(e=>{
+    const c=e.competitions&&e.competitions[0];if(!c)return;
+    const H=c.competitors.find(x=>x.homeAway==='home'),A=c.competitors.find(x=>x.homeAway==='away');if(!H||!A)return;
+    if(partidos.some(p=>p.id===e.id))return;
+    const o=(c.odds||[])[0]||null;
+    partidos.push({id:e.id,liga:ligaId,fecha:e.date,estado:(e.status&&e.status.type&&e.status.type.state)||'pre',
+      detalle:(e.status&&e.status.type&&e.status.type.shortDetail)||'',
+      local:{nom:H.team.displayName,ab:H.team.abbreviation,id:H.team.id,marcador:+H.score||0},
+      visita:{nom:A.team.displayName,ab:A.team.abbreviation,id:A.team.id,marcador:+A.score||0},
+      sede:(c.venue&&c.venue.fullName)||'',ciudad:(c.venue&&c.venue.address&&c.venue.address.city)||'',
+      neutral:!!c.neutralSite,
+      odds:o?{prov:(o.provider||{}).name,detalles:o.details,ou:o.overUnder,
+        mlH:mlNum(((o.moneyline||{}).home||{}).close?.odds ?? ((o.moneyline||{}).home||{}).current?.odds),
+        mlA:mlNum(((o.moneyline||{}).away||{}).close?.odds ?? ((o.moneyline||{}).away||{}).current?.odds),
+        mlD:mlNum((o.drawOdds||{}).moneyLine),
+        over:mlNum(((o.total||{}).over||{}).close?.odds),under:mlNum(((o.total||{}).under||{}).close?.odds)}:null});
+  }));
+  let tabla={};
+  try{const st=await api(`https://site.api.espn.com/apis/v2/sports/soccer/${ligaId}/standings`);
+    (st.children||[]).forEach(g=>((g.standings||{}).entries||[]).forEach(e=>{
+      const s=Object.fromEntries(e.stats.map(x=>[x.name,x.value]));
+      tabla[e.team.displayName]={pj:s.gamesPlayed,gf:s.pointsFor,gc:s.pointsAgainst,pts:s.points,pos:s.rank};
+    }));}catch(e){}
+  // calendario de cada equipo que juega: da la forma reciente y dónde juega de local
+  const ids=[...new Set(partidos.filter(p=>p.estado!=='post').flatMap(p=>[p.local.id,p.visita.id]).filter(Boolean))];
+  const forma={},casa={};
+  const cals=await Promise.all(ids.map(id=>api(`https://site.api.espn.com/apis/site/v2/sports/soccer/${ligaId}/teams/${id}/schedule`).then(j=>[id,j]).catch(()=>null)));
+  cals.filter(Boolean).forEach(([id,j])=>{
+    const lista=[];
+    (j.events||[]).forEach(e=>{
+      const c=e.competitions&&e.competitions[0];if(!c)return;
+      if(((c.status||{}).type||{}).state!=='post')return;
+      const mio=c.competitors.find(x=>String(x.team.id)===String(id)),otro=c.competitors.find(x=>String(x.team.id)!==String(id));
+      if(!mio||!otro)return;
+      const gol=x=>x&&x.score&&typeof x.score==='object'?+x.score.value:+x.score;
+      const gf=gol(mio),gc=gol(otro);if(isNaN(gf)||isNaN(gc))return;
+      if(mio.homeAway==='home'&&c.venue&&c.venue.address&&c.venue.address.city&&!casa[id])casa[id]=c.venue.address.city;
+      lista.push({fecha:e.date,rival:otro.team.displayName,local:mio.homeAway==='home',gf,gc,res:gf>gc?'G':gf<gc?'P':'E',torneo:(e.season&&e.season.slug)||''});
+    });
+    lista.sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+    forma[id]=lista.slice(0,6);
+  });
+  partidos.sort((a,b)=>new Date(a.fecha)-new Date(b.fecha));
+  return{partidos,tabla,forma,casa,at:new Date().toISOString()};
+}
+async function cargar(force){
+  const btn=$('#load'),ico=$('#ico');btn.disabled=true;ico.classList.add('spin');
+  try{
+    const c=S.cache[S.liga];
+    if(force||!c||(Date.now()-new Date(c.at).getTime())>25*60*1000){
+      S.cache[S.liga]=await bajar(S.liga);store.set(SD_CACHE,S.cache);
+      toast(`${S.cache[S.liga].partidos.length} partidos de ${LIGAS.find(l=>l.id===S.liga).nom}.`);
+    }
+  }catch(e){toast('No se pudieron bajar los partidos ('+esc(e.message)+'). <button class="btn" type="button" style="min-height:34px;margin-left:8px" onclick="cargar(true)">Reintentar</button>',9000)}
+  btn.disabled=false;ico.classList.remove('spin');render();
+}
+/* ============ modelo ============ */
+function altitudDe(p){return altitudCiudad(p.ciudad)}
+function altitudCiudad(ciudad){
+  const c=(ciudad||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  if(!c)return null;
+  for(const k in ALTITUD)if(c.includes(k))return ALTITUD[k];
+  return null;
+}
+// altura de casa de cada equipo: se saca de los partidos donde ES local
+function altitudCasa(equipo){
+  const c=S.cache[S.liga];if(!c)return null;
+  const ciudad=(c.casa||{})[equipo.id];
+  if(ciudad){const a=altitudCiudad(ciudad);if(a!=null)return a}
+  const suyo=c.partidos.find(x=>x.local.nom===equipo.nom&&!x.neutral&&x.ciudad);
+  return suyo?altitudCiudad(suyo.ciudad):null;
+}
+function ultimos(equipo,n=5){
+  const c=S.cache[S.liga];if(!c)return[];
+  return ((c.forma||{})[equipo.id]||[]).slice(0,n);
+}
+function modelo(p){
+  if(!p.odds||p.odds.mlH==null||p.odds.mlA==null||p.odds.mlD==null)return null;
+  const o=p.odds,s=imp(o.mlH)+imp(o.mlD)+imp(o.mlA);
+  const pH=imp(o.mlH)/s,pD=imp(o.mlD)/s,pA=imp(o.mlA)/s;
+  let pOver=null;
+  if(o.over!=null&&o.under!=null){const so=imp(o.over)+imp(o.under);pOver=imp(o.over)/so}
+  const linea=o.ou!=null?o.ou:2.5;
+  const base=ajustar(pH,pD,pA,pOver,linea);
+  // ajustes acotados
+  const razones=[];let dh=0,da=0;
+  const alt=altitudDe(p),altV=altitudCasa(p.visita);
+  const tabla=(S.cache[S.liga]||{}).tabla||{};
+  if(alt!=null&&alt>=1800&&!p.neutral&&altV!=null&&alt-altV>=1200){
+    razones.push({f:`Altura: ${p.ciudad} (~${alt} m) contra un visitante de ~${altV} m`,h:0.06,a:-0.06,
+      por:'El visitante que no vive en altura se cansa en el último tercio. El ajuste es chico porque el mercado ya lo sabe.'});
+    dh+=0.06;da-=0.06;
+  }else if(alt!=null&&alt>=1800&&altV!=null&&alt-altV<1200){
+    razones.push({f:'Altura: sin ventaja',h:0,a:0,por:`Los dos juegan en altura (local ~${alt} m, visitante ~${altV} m): no hay diferencia que cobrar.`});
+  }
+  const tl=tabla[p.local.nom],tv=tabla[p.visita.nom];
+  if(tl&&tv&&tl.pj>=5&&tv.pj>=5){
+    const gfl=tl.gf/tl.pj,gcv=tv.gc/tv.pj,gfv=tv.gf/tv.pj,gcl=tl.gc/tl.pj;
+    const lhStats=(gfl+gcv)/2,laStats=(gfv+gcl)/2;
+    const mezclaH=(lhStats-base.lh)*0.2,mezclaA=(laStats-base.la)*0.2;
+    const ch=Math.max(-0.25,Math.min(0.25,mezclaH)),ca=Math.max(-0.25,Math.min(0.25,mezclaA));
+    if(Math.abs(ch)>0.02||Math.abs(ca)>0.02){
+      razones.push({f:'Goles de la temporada',h:ch,a:ca,por:`${p.local.nom} marca ${fmt(gfl,2)} y recibe ${fmt(gcl,2)} por juego; ${p.visita.nom}, ${fmt(gfv,2)} y ${fmt(gcv,2)}. Se mezcla al 20 % con lo que dice el mercado.`});
+      dh+=ch;da+=ca;
+    }
+  }
+  const lh=Math.max(0.15,base.lh+dh),la=Math.max(0.15,base.la+da);
+  const r=mercados(lh,la,base.rho),rMkt=base.r;
+  return{pMkt:{H:pH,D:pD,A:pA,over:pOver},linea,base,lh,la,r,rMkt,razones,
+    apuestas:apuestas(p,r,lh,la,linea)};
+}
+function apuestas(p,r,lh,la,linea){
+  const L=p.local.ab||p.local.nom,V=p.visita.ab||p.visita.nom;
+  const cands=[
+    {t:`${L} o empate (doble oportunidad)`,p:r.dcHX,k:'dc'},
+    {t:`${V} o empate (doble oportunidad)`,p:r.dcXA,k:'dc'},
+    {t:'Alguno gana (sin empate)',p:r.dcHA,k:'dc'},
+    {t:`Gana ${L}`,p:r.H,k:'1x2'},{t:'Empate',p:r.D,k:'1x2'},{t:`Gana ${V}`,p:r.A,k:'1x2'},
+    {t:'Más de 1.5 goles',p:r.ou[1.5],k:'ou'},{t:'Menos de 1.5 goles',p:1-r.ou[1.5],k:'ou'},
+    {t:'Más de 2.5 goles',p:r.ou[2.5],k:'ou'},{t:'Menos de 2.5 goles',p:1-r.ou[2.5],k:'ou'},
+    {t:'Más de 3.5 goles',p:r.ou[3.5],k:'ou'},{t:'Menos de 3.5 goles',p:1-r.ou[3.5],k:'ou'},
+    {t:'Ambos anotan: sí',p:r.btts,k:'btts'},{t:'Ambos anotan: no',p:1-r.btts,k:'btts'},
+    {t:`${L} +1 (hándicap europeo)`,p:r.h_mas1,k:'hcp'},{t:`${V} +1 (hándicap europeo)`,p:r.a_mas1,k:'hcp'},
+    {t:`${L} -1 (hándicap europeo)`,p:r.h_menos1,k:'hcp'},{t:`${V} -1 (hándicap europeo)`,p:r.a_menos1,k:'hcp'},
+  ];
+  const cerca=(obj,meta)=>obj.slice().sort((a,b)=>Math.abs(a.p-meta)-Math.abs(b.p-meta))[0];
+  const usados=new Set(),out=[];
+  const toma=(sel)=>{if(!sel)return;if(usados.has(sel.t))return;usados.add(sel.t);out.push(sel)};
+  toma(cerca(cands.filter(c=>c.p>=.74&&c.p<=.93),.85)||cerca(cands,.85));
+  toma(cerca(cands.filter(c=>!usados.has(c.t)&&c.p>=.6&&c.p<=.78),.68));
+  toma(cerca(cands.filter(c=>!usados.has(c.t)&&c.p>=.5&&c.p<=.65),.57));
+  toma(cerca(cands.filter(c=>!usados.has(c.t)&&c.p>=.35&&c.p<=.52),.45));
+  const mrk=r.marcadores[0];
+  toma({t:`Marcador exacto ${mrk.i}-${mrk.j}`,p:mrk.p,k:'exacto'});
+  while(out.length<5)toma(cerca(cands.filter(c=>!usados.has(c.t)),.5));
+  return out.slice(0,5).map((b,i)=>{
+    const fair=1/b.p,est=Math.max(1.01,fair*0.94),bo=S.book[p.id+'-'+i];
+    const d=bo?us2dec(bo):est;
+    return{...b,i,kind:KINDS[i],stake:STAKES[i],fair,est,book:bo,d,ret:STAKES[i]*d,ev:b.p*STAKES[i]*d-STAKES[i]};
+  });
+}
+/* ============ vistas ============ */
+function when(iso){const d=new Date(iso);return isNaN(d)?'':d.toLocaleString('es-MX',{timeZone:TZ,weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit'}).replace(/\./g,'')}
+function statusLine(){
+  const c=S.cache[S.liga];
+  $('#statusLine').innerHTML=`<span><i class="dot ${c?'on':'warn'}"></i>${c?'Partidos al '+when(c.at):'Sin datos todavía'}</span>
+   <span>Fuente: ESPN${c&&c.partidos.some(p=>p.odds)?' · momios de DraftKings':''}</span><span>Horas en CDMX</span>`;
+}
+function render(){statusLine();VIEW.pantalla==='partido'?vistaPartido():vistaLista()}
+function vistaLista(){
+  const c=S.cache[S.liga],liga=LIGAS.find(l=>l.id===S.liga);
+  const prox=c?c.partidos.filter(p=>p.estado!=='post'):[];
+  const conM=prox.filter(p=>p.odds&&p.odds.mlH!=null);
+  $('#view').innerHTML=`<h1>Futbol · próximos ${DIAS} días</h1>
+  <div class="ligas" role="group" aria-label="Elegir liga">${LIGAS.map(l=>`<button type="button" aria-pressed="${l.id===S.liga}" data-l="${l.id}">${esc(l.nom)}</button>`).join('')}</div>
+  ${!c?'<div class="empty">Toca "Actualizar partidos" para bajar la cartelera.</div>':
+   !prox.length?`<div class="panel"><h2>${esc(liga.nom)} no tiene partidos en los próximos ${DIAS} días</h2>
+     <p class="muted">${c.partidos.length?'Los últimos partidos ya se jugaron. ':''}Las ligas de Europa paran por fecha FIFA a finales de septiembre y regresan alrededor del 9-10 de octubre. Liga MX sí juega.</p></div>`:
+   `<p class="muted">${prox.length} partidos, ${conM.length} con momios. Toca uno para ver el análisis completo y las 5 apuestas de $1,000.</p>
+    <div class="grid">${prox.map(tarjeta).join('')}</div>`}`;
+  $('#view').querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{S.liga=b.dataset.l;store.set('fb.liga',S.liga);cargar()});
+  $('#view').querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{VIEW={pantalla:'partido',id:b.dataset.p};location.hash='#/p/'+b.dataset.p;render();scrollTo(0,0)});
+}
+function tarjeta(p){
+  const m=modelo(p),alt=altitudDe(p);
+  return`<button class="card" type="button" data-p="${p.id}">
+   <div class="when"><span>${ic('clock')} ${when(p.fecha)}</span><span>${p.estado==='pre'?'':esc(p.detalle||'')}</span></div>
+   <div class="eq"><span>${esc(p.visita.nom)}</span><span>${m?pct(m.r.A):'—'}</span></div>
+   <div class="eq"><span>Empate</span><span>${m?pct(m.r.D):'—'}</span></div>
+   <div class="eq"><span>${esc(p.local.nom)} <span class="dim xs">(local)</span></span><span>${m?pct(m.r.H):'—'}</span></div>
+   ${m?`<div class="tri" aria-hidden="true"><i class="a" style="width:${m.r.A*100}%"></i><i class="d" style="width:${m.r.D*100}%"></i><i class="h" style="width:${m.r.H*100}%"></i></div>
+   <div class="leg"><span>visita</span><span>empate</span><span>local</span></div>
+   <div class="chips"><span class="chip">${ic('ball')}${fmt(m.lh+m.la,1)} goles esperados</span>${alt&&alt>=1800?`<span class="chip warn">${ic('mountain')}${alt} m</span>`:''}${p.neutral?'<span class="chip warn">cancha neutral</span>':''}</div>
+   <div class="pick"><span class="muted">Fuerte</span><span><b>${esc(m.apuestas[0].t)}</b> · ${pct(m.apuestas[0].p)}</span></div>`
+   :'<div class="chips"><span class="chip warn">Sin momios todavía</span></div>'}
+  </button>`;
+}
+function vistaPartido(){
+  const c=S.cache[S.liga];const p=(c?c.partidos:[]).find(x=>x.id===VIEW.id);
+  if(!p){VIEW={pantalla:'lista'};return vistaLista()}
+  const m=modelo(p),alt=altitudDe(p),tabla=(c.tabla)||{},tl=tabla[p.local.nom],tv=tabla[p.visita.nom];
+  $('#view').innerHTML=`<button class="back" type="button" id="volver">${ic('left')} Todos los partidos</button>
+  <div class="panel">
+   <div class="xs muted" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:8px"><span>${ic('clock')} ${when(p.fecha)} (CDMX)</span><span>${ic('pin')} ${esc(p.sede)}${p.ciudad?', '+esc(p.ciudad):''}</span>${alt?`<span>${ic('mountain')} ~${alt} m</span>`:''}</div>
+   <h1>${esc(p.visita.nom)} <span class="dim">en</span> ${esc(p.local.nom)}</h1>
+   ${!m?'<div class="note">Este partido todavía no tiene momios publicados, así que no hay modelo. Vuelve a actualizar más cerca de la fecha.</div>':`
+   <div class="tri" style="height:12px" role="img" aria-label="Local ${pct(m.r.H)}, empate ${pct(m.r.D)}, visita ${pct(m.r.A)}"><i class="a" style="width:${m.r.A*100}%"></i><i class="d" style="width:${m.r.D*100}%"></i><i class="h" style="width:${m.r.H*100}%"></i></div>
+   <div class="three" style="margin-top:12px">
+    <div class="stat"><div class="k">Gana ${esc(p.visita.ab||p.visita.nom)}</div><div class="v">${pct(m.r.A)}</div><div class="xs dim">mercado ${pct(m.pMkt.A)}</div></div>
+    <div class="stat"><div class="k">Empate</div><div class="v">${pct(m.r.D)}</div><div class="xs dim">mercado ${pct(m.pMkt.D)}</div></div>
+    <div class="stat"><div class="k">Gana ${esc(p.local.ab||p.local.nom)}</div><div class="v">${pct(m.r.H)}</div><div class="xs dim">mercado ${pct(m.pMkt.H)}</div></div>
+   </div>
+   <div class="three" style="margin-top:10px">
+    <div class="stat"><div class="k">Goles esperados</div><div class="v">${fmt(m.lh,2)} – ${fmt(m.la,2)}</div><div class="xs dim">total ${fmt(m.lh+m.la,2)}</div></div>
+    <div class="stat"><div class="k">Marcador más probable</div><div class="v">${m.r.marcadores[0].i}-${m.r.marcadores[0].j}</div><div class="xs dim">${pct(m.r.marcadores[0].p)} de las veces</div></div>
+    <div class="stat"><div class="k">Ambos anotan</div><div class="v">${pct(m.r.btts)}</div><div class="xs dim">más de 2.5: ${pct(m.r.ou[2.5])}</div></div>
+   </div>`}
+  </div>
+  ${!m?'':`
+  <div class="panel"><h2>${ic('trend')} Las 5 apuestas · $1,000</h2>
+   <div class="tw"><table><thead><tr><th>Tipo</th><th>Apuesta</th><th class="r">Prob.</th><th class="r">Momio justo</th><th class="r">Mínimo</th><th class="r">Tu casa</th><th class="r">Monto</th><th class="r">Cobras</th><th class="r">Valor esp.</th></tr></thead><tbody>
+   ${m.apuestas.map(b=>`<tr><td><span class="tag t${Math.min(b.i,2)}">${b.kind}</span></td><td>${esc(b.t)}</td><td class="r num ${b.p>=.75?'ok':b.p>=.6?'acc':''}">${pct(b.p)}</td>
+    <td class="r num">${dec2us(b.est)}</td><td class="r num acc">${dec2us(b.fair)}</td>
+    <td class="r"><label class="sr" for="o-${b.i}">Momio de tu casa para ${esc(b.t)}</label><input class="odds" id="o-${b.i}" value="${b.book!=null?(b.book>0?'+':'')+b.book:''}" placeholder="−150" data-i="${b.i}"></td>
+    <td class="r num">${money(b.stake)}</td><td class="r num">${money(b.ret)}</td><td class="r num ${b.book?(b.ev>0?'ok':'bad'):'dim'}">${b.ev>=0?'+':'−'}${money(Math.abs(b.ev))}</td></tr>`).join('')}
+   </tbody></table></div>
+   <p class="xs dim">"Mínimo" es el momio por debajo del cual esa apuesta pierde dinero a la larga. En Playdoit compara contra ese número antes de darle.</p>
+  </div>
+  <div class="panel"><h2>Cómo llegan</h2>
+   <div class="two">${[[p.visita,'visita'],[p.local,'local']].map(([eq,rol])=>{
+     const u=ultimos(eq),nom=eq.nom;
+     return`<div><h3>${esc(nom)} <span class="dim xs">(${rol})</span></h3>
+     ${u.length?u.map(x=>`<div class="xs" style="margin:4px 0"><span class="tag ${x.res==='G'?'t0':x.res==='E'?'':'t2'}" style="${x.res==='P'?'color:var(--bad-tx)':''}">${x.res}</span> <span class="num">${x.gf}-${x.gc}</span> ${x.local?'vs':'@'} ${esc(x.rival)} <span class="dim">· ${when(x.fecha).split(',')[0]}</span></div>`).join('')
+       :'<p class="xs dim">Sin partidos recientes en la ventana que se bajó.</p>'}
+     ${u.length?`<p class="xs dim">En estos ${u.length}: ${u.filter(x=>x.res==='G').length}G ${u.filter(x=>x.res==='E').length}E ${u.filter(x=>x.res==='P').length}P · ${u.reduce((s,x)=>s+x.gf,0)} goles a favor, ${u.reduce((s,x)=>s+x.gc,0)} en contra</p>`:''}</div>`}).join('')}</div>
+  </div>
+  <div class="panel"><h2>Marcadores más probables</h2>
+   <div class="tw"><table><thead><tr><th>Marcador</th><th class="r">Probabilidad</th><th class="r">Momio justo</th></tr></thead><tbody>
+   ${m.r.marcadores.map(x=>`<tr><td class="num">${esc(p.local.ab)} ${x.i} – ${x.j} ${esc(p.visita.ab)}</td><td class="r num">${(x.p*100).toFixed(1)}%</td><td class="r num">${dec2us(1/x.p)}</td></tr>`).join('')}
+   </tbody></table></div></div>
+  <div class="panel"><h2>Todos los mercados</h2>
+   <div class="tw"><table><thead><tr><th>Mercado</th><th class="r">Sí</th><th class="r">No</th></tr></thead><tbody>
+    ${[['Más de 0.5 goles',m.r.ou[0.5]],['Más de 1.5 goles',m.r.ou[1.5]],['Más de 2.5 goles',m.r.ou[2.5]],['Más de 3.5 goles',m.r.ou[3.5]],['Más de 4.5 goles',m.r.ou[4.5]],['Ambos anotan',m.r.btts],
+      [`${esc(p.local.ab)} o empate`,m.r.dcHX],[`${esc(p.visita.ab)} o empate`,m.r.dcXA],['Alguno gana (sin empate)',m.r.dcHA],
+      [`${esc(p.local.ab)} gana por 2 o más`,m.r.h_menos1],[`${esc(p.visita.ab)} gana por 2 o más`,m.r.a_menos1]]
+      .map(([k,v])=>`<tr><td>${k}</td><td class="r num">${pct(v)}</td><td class="r num dim">${pct(1-v)}</td></tr>`).join('')}
+   </tbody></table></div></div>
+  <div class="panel"><h2>Cómo salieron estos números</h2>
+   <div class="tw"><table><thead><tr><th>Paso</th><th class="r">Goles ${esc(p.local.ab)}</th><th class="r">Goles ${esc(p.visita.ab)}</th></tr></thead><tbody>
+    <tr><td>Mercado: 1X2 ${p.odds.mlH>0?'+':''}${p.odds.mlH} / ${p.odds.mlD>0?'+':''}${p.odds.mlD} / ${p.odds.mlA>0?'+':''}${p.odds.mlA}${p.odds.ou!=null?` y más/menos ${p.odds.ou}`:''} (sin comisión)</td><td class="r num">${fmt(m.base.lh,2)}</td><td class="r num">${fmt(m.base.la,2)}</td></tr>
+    ${m.razones.map(r=>`<tr><td>${esc(r.f)}<div class="xs dim">${esc(r.por)}</div></td><td class="r num">${r.h>=0?'+':''}${fmt(r.h,2)}</td><td class="r num">${r.a>=0?'+':''}${fmt(r.a,2)}</td></tr>`).join('')}
+    <tr><td><b>Resultado del modelo</b></td><td class="r num"><b>${fmt(m.lh,2)}</b></td><td class="r num"><b>${fmt(m.la,2)}</b></td></tr>
+   </tbody></table></div>
+   ${tl&&tv?`<div class="two" style="margin-top:12px">
+     <div class="stat"><div class="k">${esc(p.local.nom)} en la tabla</div><div class="v">${tl.pos?'#'+tl.pos:''} · ${tl.pts} pts</div><div class="xs dim">${tl.pj} juegos · ${tl.gf} goles a favor, ${tl.gc} en contra</div></div>
+     <div class="stat"><div class="k">${esc(p.visita.nom)} en la tabla</div><div class="v">${tv.pos?'#'+tv.pos:''} · ${tv.pts} pts</div><div class="xs dim">${tv.pj} juegos · ${tv.gf} goles a favor, ${tv.gc} en contra</div></div>
+   </div>`:'<p class="xs dim">No se pudo leer la tabla de posiciones de esta liga: el modelo se quedó solo con lo que dice el mercado.</p>'}
+   <div class="note info">El modelo busca los goles esperados de cada equipo que reproducen lo que ya dicen los momios (Poisson), y solo mueve esos números por cosas concretas: altura de la sede y goles de la temporada, con tope de ±0.25 goles. Lo que falta: lesiones, suspensiones, rotación por Copa, clima y quién descansó menos. Eso todavía lo tienes que ver tú.</div>
+  </div>`}`;
+  $('#volver').onclick=()=>{VIEW={pantalla:'lista'};location.hash='#/';render();scrollTo(0,0)};
+  $('#view').querySelectorAll('input.odds').forEach(inp=>{
+    inp.onchange=inp.onblur=()=>{const k=p.id+'-'+inp.dataset.i,v=inp.value.trim();
+      if(!v){delete S.book[k]}else{const n=parseUS(v);if(n==null){toast('Momio no válido: escríbelo como −150 o +130');return}if(S.book[k]===n)return;S.book[k]=n}
+      store.set('fb.book',S.book);const y=scrollY;render();scrollTo(0,y)};
+    inp.onkeydown=e=>{if(e.key==='Enter')inp.blur()};
+  });
+}
+/* ============ tema e inicio ============ */
+function tema(t){const r=document.documentElement;r.classList.add('sin-anim');r.dataset.theme=t;void r.offsetWidth;
+ requestAnimationFrame(()=>requestAnimationFrame(()=>r.classList.remove('sin-anim')));
+ const b=$('#theme');b.innerHTML=`<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${ICON[t==='dark'?'sun':'moon']}</svg>`;
+ b.setAttribute('aria-label',t==='dark'?'Cambiar a tema claro':'Cambiar a tema oscuro')}
+tema(S.tema);
+$('#theme').onclick=()=>{S.tema=S.tema==='dark'?'light':'dark';store.set('fb.tema',S.tema);tema(S.tema)};
+$('#load').onclick=()=>cargar(true);
+addEventListener('hashchange',()=>{const h=location.hash;const m=h.match(/^#\/p\/(\d+)/);VIEW=m?{pantalla:'partido',id:m[1]}:{pantalla:'lista'};render()});
+(function inicio(){const m=location.hash.match(/^#\/p\/(\d+)/);if(m)VIEW={pantalla:'partido',id:m[1]};
+ render();cargar(false)})();
+</script>
+</body>
+</html>
