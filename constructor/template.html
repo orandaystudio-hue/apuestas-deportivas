@@ -2,7 +2,7 @@
 <html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>NFL Semana 3 · 2026</title>
 <meta name="description" content="Análisis de los 16 juegos de la semana 3 de la NFL 2026: probabilidades, lesiones, clima, estadísticas y 5 apuestas por juego.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,7 +108,7 @@ select{min-height:44px;background:var(--surface);border:1px solid var(--line);bo
 .hero .side .big{font-family:var(--mono);font-size:34px;font-weight:600}
 .hero .vs{color:var(--tx-3);font-family:var(--mono)}
 .subnav{position:sticky;top:var(--top-h,61px);z-index:30;background:var(--bg);display:flex;gap:6px;flex-wrap:wrap;padding:8px 0;margin-bottom:6px;border-bottom:1px solid var(--line)}
-.subnav a{display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border-radius:8px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--tx-2);font-size:14px;font-weight:500}
+.subnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:8px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--tx-2);font-size:14px;font-weight:500}
 .subnav a:hover{color:var(--tx);border-color:var(--primary)}
 section[id]{scroll-margin-top:130px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -116,13 +116,6 @@ section[id]{scroll-margin-top:130px}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;position:relative}
 .tw[data-scroll]::after{content:"Se desliza →";position:sticky;right:0;bottom:0;float:right;font-size:12px;background:var(--surface-3);color:var(--tx-2);padding:2px 8px;border-radius:99px;margin:-26px 4px 4px 0}
 @media(max-width:700px){
-  /* la tabla de apuestas se vuelve tarjetas: en 375 px no cabe y escondía la mitad */
-  table.apuestas thead{display:none}
-  table.apuestas,table.apuestas tbody,table.apuestas tr,table.apuestas td{display:block;width:100%}
-  table.apuestas tr{border:1px solid var(--line);border-radius:8px;padding:8px;margin-bottom:8px}
-  table.apuestas td{border:0;padding:3px 0;text-align:left!important}
-  table.apuestas td[data-l]::before{content:attr(data-l) ": ";color:var(--tx-3);font-size:13px}
-  table.apuestas tfoot tr{background:var(--surface-2)}
 }
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
@@ -141,8 +134,8 @@ ul.clean{margin:0;padding-left:18px}ul.clean li{margin:3px 0}
 .note.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--surface))}
 .note.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--surface))}
 .range{display:grid;gap:4px;margin:12px 0}.range label{display:flex;justify-content:space-between;font-size:14px}
-input[type=range]{width:100%;accent-color:var(--primary);min-height:32px}
-input.odds{width:92px;min-height:40px;border:1px solid var(--line);background:var(--surface-2);border-radius:6px;padding:0 8px;font-family:var(--mono);text-align:right}
+input[type=range]{width:100%;accent-color:var(--primary);min-height:44px}
+input.odds{width:92px;min-height:44px;border:1px solid var(--line);background:var(--surface-2);border-radius:6px;padding:0 8px;font-family:var(--mono);text-align:right}
 input.odds[aria-invalid=true]{border-color:var(--bad)}
 input.stake{width:110px;min-height:44px;border:1px solid var(--line);background:var(--surface-2);border-radius:8px;padding:0 10px;font-family:var(--mono)}
 .tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:5px;background:var(--surface-3);white-space:nowrap}
@@ -156,10 +149,83 @@ input.stake{width:110px;min-height:44px;border:1px solid var(--line);background:
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--surface-3);border:1px solid var(--line);padding:12px 16px;border-radius:10px;box-shadow:var(--shadow);z-index:90;max-width:min(560px,calc(100% - 32px));font-size:14px}
 footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--tx-3);font-size:13px}
 .empty{padding:28px;text-align:center;color:var(--tx-2)}
+/* ===================== CELULAR ===================== */
+@media(max-width:700px){
+  /* encabezado de una sola fila: antes se comía un tercio de la pantalla */
+  /* sin desenfoque en celular: si el encabezado lo tiene, la barra de abajo se ancla a ÉL y no a la pantalla */
+  .top{backdrop-filter:none;background:var(--bg)}
+  .top .wrap{min-height:56px;gap:8px;padding:4px 16px;flex-wrap:nowrap}
+  .brand{font-size:16px;gap:8px}.brand b{width:30px;height:30px;font-size:12px}
+  #live span,.top a.btn[href="futbol.html"]{display:none}
+  #live{width:44px;padding:0}
+  .status .wrap{padding:6px 16px;font-size:12px;gap:10px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+  .status .wrap::-webkit-scrollbar{display:none}
+  /* navegación abajo, como cualquier app */
+  nav.main{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--surface);border-top:1px solid var(--line);
+    gap:0;padding-bottom:env(safe-area-inset-bottom,0);box-shadow:0 -2px 12px rgba(0,0,0,.18)}
+  nav.main a{flex:1;flex-direction:column;justify-content:center;gap:2px;min-height:58px;padding:6px 2px;border-radius:0;font-size:11px;font-weight:500}
+  nav.main a span{display:block!important;font-size:11px;line-height:1.1}
+  nav.main a[aria-current=page]{background:none;color:var(--primary-2);box-shadow:inset 0 -3px 0 var(--primary)}
+  main{padding-bottom:88px}
+  body{padding-bottom:env(safe-area-inset-bottom,0)}
+  h1{font-size:22px}h2{font-size:18px}
+  .wrap{padding:0 14px}
+  .panel{padding:14px 12px}
+  /* tablas: celdas más apretadas para que quepan sin deslizarse */
+  th,td{padding:7px 5px;font-size:13.5px}
+  thead th{font-size:12.5px}
+  .tag{font-size:12.5px}
+  input,select,textarea{font-size:16px}   /* menos de 16 y iOS hace zoom al tocar */
+  input.odds{width:88px;min-height:44px}
+  input.stake{min-height:46px}
+  select{min-height:46px}
+  .subnav{gap:5px;padding:6px 0}
+  .subnav a{min-height:44px;font-size:13.5px;padding:0 11px}
+  .seg button{min-height:44px}
+  /* los 4 indicadores en una fila que se desliza: antes empujaban los juegos fuera de la pantalla */
+  .kpis{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:10px -14px;padding:0 14px 4px;scrollbar-width:none}
+  .kpis::-webkit-scrollbar{display:none}
+  .kpi{flex:0 0 auto;min-width:138px;padding:8px 12px;scroll-snap-align:start}
+  .kpi .v{font-size:18px}.kpi .k{font-size:12.5px}.kpi .s{font-size:12.5px}
+  /* controles cómodos para el dedo */
+  input[type=range]{min-height:44px}
+  summary,details>summary{min-height:44px;display:flex;align-items:center;padding:4px 0}
+  #tk{font-size:16px!important}
+  .hero .side .big{font-size:30px}
+  /* las tablas que no caben se vuelven tarjetas */
+  table.cards thead{display:none}
+  table.cards,table.cards tbody,table.cards tr,table.cards td{display:block;width:100%}
+  table.cards tr{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:8px}
+  table.cards td{border:0;padding:3px 0;text-align:left!important}
+  table.cards td[data-l]::before{content:attr(data-l) ": ";color:var(--tx-3);font-size:12.5px}
+  table.cards tfoot tr{background:var(--surface-2)}
+  table.cards caption{padding-bottom:4px}
+}
+@media(max-width:360px){
+  .wrap{padding:0 12px}
+  #s-modelo th,#s-modelo td{padding:6px 3px;font-size:12.5px}
+  #s-modelo .xs{font-size:11.5px}
+  nav.main a span{font-size:10px}
+  .kpis{grid-template-columns:1fr 1fr}
+}
+/* celular acostado: poca altura, el encabezado no puede comerse la pantalla */
+@media(max-height:500px) and (orientation:landscape){
+  .top .wrap{min-height:48px;padding:2px 16px}
+  .brand{font-size:15px;min-height:44px}.brand small{display:none}
+  .brand b{width:28px;height:28px;font-size:11px}
+  /* los objetivos táctiles se quedan en 44: lo que se va es lo que no aporta */
+  #view > p.muted:first-of-type,.kpis{display:none}
+  .status .wrap{padding:4px 16px;font-size:12px}
+  main{padding:12px 0 40px}
+  h1{font-size:20px;margin-bottom:2px}
+  h2{font-size:17px}
+  .panel{padding:12px}
+  .kpis{margin:8px 0}
+  .subnav{padding:5px 0}
+}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 /* al cambiar de tema se apagan las transiciones: si no, Chrome deja congelado el color viejo */
 .sin-anim *,.sin-anim *::before,.sin-anim *::after{transition:none!important}
-@media(max-width:560px){nav.main a span{display:none}nav.main a{padding:0 12px}.brand small{display:none}}
 </style>
 </head>
 <body>
@@ -171,6 +237,7 @@ footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--tx-3);fo
       <a href="#/" data-nav="juegos" aria-label="Juegos" title="Juegos"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Juegos</span></a>
       <a href="#/combinadas" data-nav="combinadas" aria-label="Combinadas" title="Combinadas"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span>Combinadas</span></a>
       <a href="#/boleto" data-nav="boleto" aria-label="Mi boleto" title="Mi boleto"><svg class="i" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1 0 4 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-4 2 2 0 0 1 0-4z"/><path d="M9 9v6"/></svg><span>Mi boleto</span></a>
+      <a href="futbol.html" aria-label="Futbol" title="Liga MX, LaLiga, Champions"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10z"/></svg><span>Futbol</span></a>
       <a href="#/metodo" data-nav="metodo" aria-label="Método" title="Método"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg><span>Método</span></a>
     </nav>
     <a class="btn" href="futbol.html" title="Liga MX, LaLiga, Champions">Futbol</a>
@@ -305,9 +372,11 @@ function route(){setTimeout(()=>{medirTop();marcarScroll()},0);
 }
 function statusLine(){
   const m=DATA.meta||{},lv=S.liveAt;
-  $('#statusLine').innerHTML=`<span><i class="dot on"></i>Datos investigados y verificados: ${esc(m.researched||'—')}</span>
-  <span id="liveState"><i class="dot ${lv?'on':'warn'}"></i>${lv?'En vivo: '+new Date(lv).toLocaleString('es-MX',{timeZone:TZ,day:'numeric',month:'short',hour:'numeric',minute:'2-digit'}):'Sin actualizar en vivo'}</span>
-  <span>Horas en CDMX</span>`;
+  const angosto=matchMedia('(max-width:700px)').matches;
+  const cuando=esc(m.researched||'—'),corto=cuando.split('·')[0].trim();
+  $('#statusLine').innerHTML=`<span title="Datos investigados y verificados: ${cuando}"><i class="dot on"></i>${angosto?'Datos: '+corto:'Datos investigados y verificados: '+cuando}</span>
+  <span id="liveState"><i class="dot ${lv?'on':'warn'}"></i>${lv?'En vivo: '+new Date(lv).toLocaleString('es-MX',{timeZone:TZ,hour:'numeric',minute:'2-digit'}):'Sin actualizar'}${angosto?' · CDMX':''}</span>
+  ${angosto?'':'<span>Horas en CDMX</span>'}`;
 }
 function kickState(g){const lv=S.live[g.id];if(!lv||!lv.state||lv.state==='pre')return'';return lv.state==='post'?`<span class="chip ok">Final ${lv.score.away}-${lv.score.home}</span>`:`<span class="chip warn">En juego ${lv.score.away}-${lv.score.home} · ${esc(lv.detail||'')}</span>`}
 function wxOf(g){const w=S.wx[g.id];return w&&w.covered?Object.assign({live:true},w):g.weather||{}}
@@ -402,13 +471,13 @@ function teamBlock(t,side){
 }
 function injTable(t){const inj=t.injuries||[];if(!inj.length)return`<p class="xs dim">${esc(t.abbr)}: sin bajas relevantes reportadas.</p>`;
   const ord={alto:0,medio:1,bajo:2};
-  return`<div class="tw"><table><caption class="sm" style="text-align:left;padding:6px 0;font-weight:600">${esc(t.name)}</caption><thead><tr><th>Jugador</th><th>Pos.</th><th>Estatus</th><th>Impacto</th><th class="r">≈ pts</th></tr></thead><tbody>
+  return`<div class="tw"><table class="cards"><caption class="sm" style="text-align:left;padding:6px 0;font-weight:600">${esc(t.name)}</caption><thead><tr><th>Jugador</th><th>Pos.</th><th>Estatus</th><th>Impacto</th><th class="r">≈ pts</th></tr></thead><tbody>
   ${inj.slice().sort((a,b)=>ord[a.impact]-ord[b.impact]).map(x=>{const st=esc(x.status||''),corto=esc(cut(x.status,26)),resto=corto!==st?st:'';
-  return`<tr><td><b>${esc(x.name)}</b>${(x.note||resto)?`<div class="xs dim">${[resto,esc(x.note||'')].filter(Boolean).join(' · ')}</div>`:''}</td><td>${esc(x.pos)}</td><td>${corto}</td><td><span class="tag ${x.impact==='alto'?'':'t3'}" style="${x.impact==='alto'?'color:var(--bad-tx)':x.impact==='medio'?'color:var(--accent-tx)':''}">${esc(x.impact)}</span></td><td class="r num">${x.pts!=null?fmt(x.pts):'—'}</td></tr>`}).join('')}
+  return`<tr><td><b>${esc(x.name)}</b>${(x.note||resto)?`<div class="xs dim">${[resto,esc(x.note||'')].filter(Boolean).join(' · ')}</div>`:''}</td><td data-l="Posición">${esc(x.pos)}</td><td data-l="Estatus">${corto}</td><td data-l="Impacto"><span class="tag ${x.impact==='alto'?'':'t3'}" style="${x.impact==='alto'?'color:var(--bad-tx)':x.impact==='medio'?'color:var(--accent-tx)':''}">${esc(x.impact)}</span></td><td data-l="Vale aprox." class="r num">${x.pts!=null?fmt(x.pts):'—'}</td></tr>`}).join('')}
   </tbody></table></div>`}
 function liveInj(t){const x=S.inj&&S.inj[t.abbr];if(!x)return'';
   if(!x.items.length)return`<p class="xs dim">${esc(t.abbr)} · reporte ESPN en vivo: sin bajas.</p>`;
-  return`<details style="margin:8px 0"><summary class="sm" style="cursor:pointer;min-height:36px">${esc(t.abbr)} · reporte ESPN en vivo: <b>${x.items.length}</b> jugadores no activos</summary><div class="tw"><table><thead><tr><th>Jugador</th><th>Pos.</th><th>Estatus</th><th>Nota</th></tr></thead><tbody>${x.items.map(i=>`<tr><td>${esc(i.name)}</td><td>${esc(i.pos)}</td><td>${esc(i.status)}</td><td class="xs dim">${esc(i.comment)}</td></tr>`).join('')}</tbody></table></div>${x.listed>=25?'<p class="xs dim">ESPN enseña como máximo 25 por equipo: puede haber más.</p>':''}</details>`}
+  return`<details style="margin:8px 0"><summary class="sm" style="cursor:pointer;min-height:44px">${esc(t.abbr)} · reporte ESPN en vivo: <b>${x.items.length}</b> jugadores no activos</summary><div class="tw"><table><thead><tr><th>Jugador</th><th>Pos.</th><th>Estatus</th><th>Nota</th></tr></thead><tbody>${x.items.map(i=>`<tr><td>${esc(i.name)}</td><td>${esc(i.pos)}</td><td>${esc(i.status)}</td><td class="xs dim">${esc(i.comment)}</td></tr>`).join('')}</tbody></table></div>${x.listed>=25?'<p class="xs dim">ESPN enseña como máximo 25 por equipo: puede haber más.</p>':''}</details>`}
 function wxBlock(g){
   if(isIndoor(g))return`<p>${ic('dome')} Techado: el clima no cuenta.</p>`;
   const w=wxOf(g);
@@ -447,7 +516,7 @@ function viewGame(g){
 
   <section id="s-apuestas" class="panel" aria-labelledby="h-ap">
    <h2 id="h-ap">${ic('trend')} Las 5 apuestas · $1,000</h2>
-   <div class="tw"><table class="apuestas"><thead><tr><th>Tipo</th><th>Apuesta</th><th class="r">Prob.</th><th class="r" title="Por debajo de este momio, la apuesta pierde dinero a la larga">Momio mínimo</th><th class="r">Tu casa</th><th class="r">Monto</th><th class="r">Cobras</th><th class="r">Valor esp.</th></tr></thead><tbody>
+   <div class="tw"><table class="cards"><thead><tr><th>Tipo</th><th>Apuesta</th><th class="r">Prob.</th><th class="r" title="Por debajo de este momio, la apuesta pierde dinero a la larga">Momio mínimo</th><th class="r">Tu casa</th><th class="r">Monto</th><th class="r">Cobras</th><th class="r">Valor esp.</th></tr></thead><tbody>
    ${m.bets.map(b=>`<tr><td><span class="tag t${b.i}" title="${esc(KIND_HELP[b.i])}">${b.kindName}</span></td><td>${esc(b.txt)}${b.grade?` <span class="res ${b.grade}">${b.grade==='w'?'✓ ganó':b.grade==='l'?'✗ perdió':'empate'}</span>`:''}${b.note?`<div class="xs dim">${esc(b.note)}</div>`:''}</td>
      <td data-l="Probabilidad" class="r num ${b.p>=.75?'ok':b.p>=.6?'acc':''}">${pct(b.p)}</td>
      <td data-l="Momio mínimo" class="r num acc">${dec2us(b.min)}</td>
@@ -456,7 +525,7 @@ function viewGame(g){
      <td data-l="Valor esperado" class="r num ${b.ev==null?'dim':b.ev>0?'ok':'bad'}">${b.ev==null?'—':(b.ev>=0?'+':'−')+money(Math.abs(b.ev))}</td></tr>`).join('')}
    </tbody><tfoot><tr><th colspan="5">Total</th><td class="r num"><b>${money(1000)}</b></td><td class="r num">${(()=>{const c=m.bets.filter(b=>b.ret!=null);return c.length?money(c.reduce((s,b)=>s+b.ret,0)):'<span class="dim">—</span>'})()}</td><td class="r num">${(()=>{const c=m.bets.filter(b=>b.ev!=null);if(!c.length)return'<span class="dim">—</span>';const e=c.reduce((s,b)=>s+b.ev,0);return(e>=0?'+':'−')+money(Math.abs(e))+(c.length<5?` <span class="xs dim">(${c.length} de 5)</span>`:'')})()}</td></tr></tfoot></table></div>
    ${!anyBook?'<div class="note info"><b>Cómo se usa:</b> "Momio mínimo" es lo que esa apuesta tiene que pagarte para no perder dinero a la larga. Abre Playdoit, compara, y si te paga MENOS que ese número, sáltala. Escribe lo que veas en "Tu casa" y ahí sí sale cuánto cobras y si tiene valor. Ojo: los hándicaps de Playdoit son enteros (+3, +4, +6) y los de aquí terminan en .5, así que el precio no es comparable directo: en los enteros puede haber empate y devolución.</div>':posEV.length?`<div class="note ok">Con los momios de tu casa, ${posEV.length} de 5 ${posEV.length===1?'apuesta tiene':'apuestas tienen'} valor: ${posEV.map(b=>esc(b.kindName)).join(', ')}.</div>`:m.bets.every(b=>b.book)?'<div class="note">Con los momios de tu casa ninguna de las 5 tiene valor. La recomendación honesta: no apostar este juego o buscar mejor momio.</div>':''}
-   <details class="xs" style="margin:8px 0"><summary style="cursor:pointer;min-height:40px;color:var(--tx-2)">¿Qué significa cada tipo?</summary>
+   <details class="xs" style="margin:8px 0"><summary style="cursor:pointer;min-height:44px;color:var(--tx-2)">¿Qué significa cada tipo?</summary>
     <ul class="clean xs" style="margin-top:6px">${KINDS.map((k,i)=>`<li><b>${k}</b> (${money(STAKES[i])}): ${esc(KIND_HELP[i])}</li>`).join('')}</ul></details>
    ${(()=>{const lados=m.bets.filter(b=>b.kind==='side');const mismo=lados.length>=2&&lados.every(b=>b.team===lados[0].team);
      const dinero=lados.reduce((s,b)=>s+b.stake,0);
@@ -655,9 +724,9 @@ function viewTicket(){
   ${a.descuadre?`<div class="note bad">Ojo: leí <b>${a.rows.length}</b> patas, pero tu cupón paga <b>×${a.descuadre.cupon.toFixed(2)}</b> y esas ${a.rows.length} juntas dan <b>×${a.descuadre.leido.toFixed(2)}</b>. Me faltó leer alguna: revisa que cada selección quede junto a su "Momios:". Todo lo de abajo está calculado solo con lo que sí leí.</div>`:''}
   <div class="panel"><h2>Las ${a.rows.length} patas</h2>
    <p class="xs dim">Ordenadas de la peor pagada a la mejor: las de hasta arriba son las que más te cuestan.</p>
-   <div class="tw"><table><thead><tr><th>Selección</th><th class="r">Tu momio</th><th class="r">PD implica</th><th class="r">Modelo</th><th class="r">Diferencia</th><th class="r">Empate</th></tr></thead><tbody>
+   <div class="tw"><table class="cards"><thead><tr><th>Selección</th><th class="r">Tu momio</th><th class="r">PD implica</th><th class="r">Modelo</th><th class="r">Diferencia</th><th class="r">Empate</th></tr></thead><tbody>
    ${a.rows.slice().sort((x,y)=>(x.err?1:0)-(y.err?1:0)||((x.p-x.imp)-(y.p-y.imp))).map(r=>r.err?`<tr><td>${esc(r.away)} @ ${esc(r.home)} — ${esc(r.sel)}</td><td colspan="5" class="bad">${esc(r.err)}</td></tr>`:
-     `<tr><td>${esc(r.txt)}${r.early?' <span class="chip ok">pago anticipado</span>':''}</td><td class="r num">${r.odds>0?'+':'−'}${Math.abs(r.odds)}</td><td class="r num">${pct(r.imp)}</td><td class="r num">${pct(r.p)}</td><td class="r num ${r.p-r.imp>0?'ok':'bad'}">${((r.p-r.imp)*100).toFixed(1)} pts</td><td class="r num dim">${r.push>0.005?pct(r.push):'—'}</td></tr>`).join('')}
+     `<tr><td>${esc(r.txt)}${r.early?' <span class="chip ok">pago anticipado</span>':''}</td><td data-l="Tu momio" class="r num">${r.odds>0?'+':'−'}${Math.abs(r.odds)}</td><td data-l="Implica" class="r num">${pct(r.imp)}</td><td data-l="Modelo" class="r num">${pct(r.p)}</td><td data-l="Diferencia" class="r num ${r.p-r.imp>0?'ok':'bad'}">${((r.p-r.imp)*100).toFixed(1)} pts</td><td data-l="Empate" class="r num dim">${r.push>0.005?pct(r.push):'—'}</td></tr>`).join('')}
    </tbody></table></div>
    <p class="xs dim">Ojo con la columna "Empate": en la NFL los márgenes de 3 y de 7 puntos son bastante más comunes que lo que supone una curva normal, así que en hándicaps de 3 y 7 la probabilidad de empate real es MAYOR que la que ves aquí. Y el "pago anticipado" de Playdoit (te pagan si tu equipo se pone arriba por cierto margen) no está metido en estos números: juega a tu favor.</p>
    <p class="xs dim">"Diferencia" = lo que el modelo cree menos lo que implica tu momio. En negativo, la casa te cobra de más en esa pata (es su margen). "Empate" es la probabilidad de que el resultado caiga justo en la línea: en Playdoit esa pata se cae y se recalcula el boleto.</p></div>

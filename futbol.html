@@ -2,7 +2,7 @@
 <html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Futbol · Análisis y apuestas</title>
 <meta name="description" content="Análisis de Liga MX, LaLiga, Champions y más: probabilidades 1X2, goles, y 5 apuestas por partido.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,15 +74,63 @@ td.r,th.r{text-align:right}tbody tr:hover{background:var(--surface-2)}
 .tag.t0{background:color-mix(in srgb,var(--ok) 22%,var(--surface-2));color:var(--ok-tx)}
 .tag.t1{background:color-mix(in srgb,var(--primary) 22%,var(--surface-2));color:var(--primary-2)}
 .tag.t2{background:color-mix(in srgb,var(--accent) 20%,var(--surface-2));color:var(--accent-tx)}
+.tag.perdio{background:color-mix(in srgb,var(--bad) 20%,var(--surface-2));color:var(--bad-tx)}
 .note{border-left:3px solid var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));padding:10px 12px;border-radius:6px;font-size:14px;margin:10px 0}
 .note.info{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 10%,var(--surface))}
 .back{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--primary-2);text-decoration:none;font-weight:500;background:none;border:0;cursor:pointer;padding:0}
-input.odds{width:92px;min-height:40px;border:1px solid var(--line);background:var(--surface-2);border-radius:6px;padding:0 8px;font-family:var(--mono);text-align:right}
+input.odds{width:92px;min-height:44px;border:1px solid var(--line);background:var(--surface-2);border-radius:6px;padding:0 8px;font-family:var(--mono);text-align:right}
 .empty{padding:30px;text-align:center;color:var(--tx-2)}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--surface-3);border:1px solid var(--line);padding:12px 16px;border-radius:10px;box-shadow:var(--shadow);z-index:90;max-width:min(560px,calc(100% - 32px));font-size:14px}
 footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--tx-3);font-size:13px}
 .hm{display:grid;grid-template-columns:auto repeat(6,1fr);gap:2px;font-size:12px;font-family:var(--mono)}
 .hm div{padding:4px 2px;text-align:center;border-radius:3px}
+/* ===================== CELULAR ===================== */
+@media(max-width:700px){
+  .top{backdrop-filter:none;background:var(--bg)}
+  .top .wrap{min-height:56px;gap:8px;padding:4px 14px;flex-wrap:nowrap}
+  .brand{font-size:16px;gap:8px}.brand b{width:30px;height:30px;font-size:11px}
+  .brand small{display:none}
+  #load span{display:none}#load{width:44px;padding:0}
+  .top a.btn{font-size:13px;padding:0 10px;white-space:nowrap}
+  .status .wrap{padding:6px 14px;font-size:12px;gap:10px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+  .status .wrap::-webkit-scrollbar{display:none}
+  .wrap{padding:0 14px}
+  main{padding:16px 0 40px}
+  h1{font-size:22px}h2{font-size:18px}
+  .panel{padding:14px 12px}
+  /* las ligas en una sola fila que se desliza, en vez de tres renglones de chips */
+  .ligas{flex-wrap:nowrap;overflow-x:auto;margin:10px -14px;padding:2px 14px 6px;scrollbar-width:none;scroll-snap-type:x proximity}
+  .ligas::-webkit-scrollbar{display:none}
+  .ligas button{flex:0 0 auto;min-height:44px;scroll-snap-align:start}
+  th,td{padding:7px 5px;font-size:13.5px}
+  thead th{font-size:12.5px}
+  .tag{font-size:12.5px}
+  input,select,textarea{font-size:16px}
+  input.odds{width:92px;min-height:44px}
+  .leg{font-size:12.5px}
+  /* tablas anchas como tarjetas */
+  table.cards thead{display:none}
+  table.cards,table.cards tbody,table.cards tr,table.cards td{display:block;width:100%}
+  table.cards tr{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:8px}
+  table.cards td{border:0;padding:3px 0;text-align:left!important}
+  table.cards td[data-l]::before{content:attr(data-l) ": ";color:var(--tx-3);font-size:12.5px}
+}
+@media(max-width:360px){.wrap{padding:0 12px}.ligas{margin:10px -12px;padding:2px 12px 6px}}
+/* celular acostado: poca altura, el encabezado no puede comerse la pantalla */
+@media(max-height:500px) and (orientation:landscape){
+  .top .wrap{min-height:48px;padding:2px 16px}
+  .brand{font-size:15px;min-height:44px}.brand small{display:none}
+  .brand b{width:28px;height:28px;font-size:11px}
+  /* los objetivos táctiles se quedan en 44: lo que se va es lo que no aporta */
+  #view > p.muted:first-of-type,.kpis{display:none}
+  .status .wrap{padding:4px 16px;font-size:12px}
+  main{padding:12px 0 40px}
+  h1{font-size:20px;margin-bottom:2px}
+  h2{font-size:17px}
+  .panel{padding:12px}
+  .kpis{margin:8px 0}
+  .subnav{padding:5px 0}
+}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 .sin-anim *,.sin-anim *::before,.sin-anim *::after{transition:none!important}
 </style>
@@ -182,6 +230,7 @@ async function bajar(ligaId){
   for(let i=-DIAS_ATRAS;i<DIAS;i++){const d=new Date(hoy.getTime()+i*864e5);dias.push(ymd(d))}
   const partidos=[];
   const tandas=await Promise.all(dias.map(d=>api(`https://site.api.espn.com/apis/site/v2/sports/soccer/${ligaId}/scoreboard?dates=${d}`).catch(()=>null)));
+  const diasFallidos=tandas.filter(t=>!t).length;
   tandas.filter(Boolean).forEach(j=>(j.events||[]).forEach(e=>{
     const c=e.competitions&&e.competitions[0];if(!c)return;
     const H=c.competitors.find(x=>x.homeAway==='home'),A=c.competitors.find(x=>x.homeAway==='away');if(!H||!A)return;
@@ -225,7 +274,7 @@ async function bajar(ligaId){
     forma[id]=lista.slice(0,6);
   });
   partidos.sort((a,b)=>new Date(a.fecha)-new Date(b.fecha));
-  return{partidos,tabla,forma,casa,at:new Date().toISOString()};
+  return{partidos,tabla,forma,casa,diasFallidos,at:new Date().toISOString()};
 }
 async function cargar(force){
   const btn=$('#load'),ico=$('#ico');btn.disabled=true;ico.classList.add('spin');
@@ -233,7 +282,8 @@ async function cargar(force){
     const c=S.cache[S.liga];
     if(force||!c||(Date.now()-new Date(c.at).getTime())>25*60*1000){
       S.cache[S.liga]=await bajar(S.liga);store.set(SD_CACHE,S.cache);
-      toast(`${S.cache[S.liga].partidos.length} partidos de ${LIGAS.find(l=>l.id===S.liga).nom}.`);
+      const c2=S.cache[S.liga];
+      toast(`${c2.partidos.length} partidos de ${LIGAS.find(l=>l.id===S.liga).nom}.`+(c2.diasFallidos?` Ojo: ${c2.diasFallidos} día${c2.diasFallidos>1?'s':''} no respondió ESPN, puede faltar algún partido. <button class="btn" type="button" style="min-height:40px;margin-left:8px" onclick="cargar(true)">Reintentar</button>`:''),c2.diasFallidos?9000:4500);
     }
   }catch(e){toast('No se pudieron bajar los partidos ('+esc(e.message)+'). <button class="btn" type="button" style="min-height:34px;margin-left:8px" onclick="cargar(true)">Reintentar</button>',9000)}
   btn.disabled=false;ico.classList.remove('spin');render();
@@ -318,16 +368,16 @@ function apuestas(p,r,lh,la,linea){
   toma({t:`Marcador exacto ${mrk.i}-${mrk.j}`,p:mrk.p,k:'exacto'});
   while(out.length<5)toma(cerca(cands.filter(c=>!usados.has(c.t)),.5));
   return out.slice(0,5).map((b,i)=>{
-    const fair=1/b.p,est=Math.max(1.01,fair*0.94),bo=S.book[p.id+'-'+i];
-    const d=bo?us2dec(bo):est;
-    return{...b,i,kind:KINDS[i],stake:STAKES[i],fair,est,book:bo,d,ret:STAKES[i]*d,ev:b.p*STAKES[i]*d-STAKES[i]};
+    const fair=1/b.p,bo=S.book[p.id+'|'+b.k+'|'+b.t];
+    const d=bo?us2dec(bo):fair;
+    return{...b,i,bk:p.id+'|'+b.k+'|'+b.t,kind:KINDS[i],stake:STAKES[i],fair,book:bo,d,ret:STAKES[i]*d,ev:b.p*STAKES[i]*d-STAKES[i]};
   });
 }
 /* ============ vistas ============ */
 function when(iso){const d=new Date(iso);return isNaN(d)?'':d.toLocaleString('es-MX',{timeZone:TZ,weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit'}).replace(/\./g,'')}
 function statusLine(){
   const c=S.cache[S.liga];
-  $('#statusLine').innerHTML=`<span><i class="dot ${c?'on':'warn'}"></i>${c?'Partidos al '+when(c.at):'Sin datos todavía'}</span>
+  $('#statusLine').innerHTML=`<span><i class="dot ${c?(c.diasFallidos?'warn':'on'):'warn'}"></i>${c?'Partidos al '+when(c.at)+(c.diasFallidos?` · ${c.diasFallidos} día(s) sin respuesta`:''):'Sin datos todavía'}</span>
    <span>Fuente: ESPN${c&&c.partidos.some(p=>p.odds)?' · momios de DraftKings':''}</span><span>Horas en CDMX</span>`;
 }
 function render(){statusLine();VIEW.pantalla==='partido'?vistaPartido():vistaLista()}
@@ -382,11 +432,11 @@ function vistaPartido(){
   </div>
   ${!m?'':`
   <div class="panel"><h2>${ic('trend')} Las 5 apuestas · $1,000</h2>
-   <div class="tw"><table><thead><tr><th>Tipo</th><th>Apuesta</th><th class="r">Prob.</th><th class="r">Momio justo</th><th class="r">Mínimo</th><th class="r">Tu casa</th><th class="r">Monto</th><th class="r">Cobras</th><th class="r">Valor esp.</th></tr></thead><tbody>
-   ${m.apuestas.map(b=>`<tr><td><span class="tag t${Math.min(b.i,2)}">${b.kind}</span></td><td>${esc(b.t)}</td><td class="r num ${b.p>=.75?'ok':b.p>=.6?'acc':''}">${pct(b.p)}</td>
-    <td class="r num">${dec2us(b.est)}</td><td class="r num acc">${dec2us(b.fair)}</td>
-    <td class="r"><label class="sr" for="o-${b.i}">Momio de tu casa para ${esc(b.t)}</label><input class="odds" id="o-${b.i}" value="${b.book!=null?(b.book>0?'+':'')+b.book:''}" placeholder="−150" data-i="${b.i}"></td>
-    <td class="r num">${money(b.stake)}</td><td class="r num">${money(b.ret)}</td><td class="r num ${b.book?(b.ev>0?'ok':'bad'):'dim'}">${b.ev>=0?'+':'−'}${money(Math.abs(b.ev))}</td></tr>`).join('')}
+   <div class="tw"><table class="cards"><thead><tr><th>Tipo</th><th>Apuesta</th><th class="r">Prob.</th><th class="r">Momio mínimo</th><th class="r">Tu casa</th><th class="r">Monto</th><th class="r">Cobras</th><th class="r">Valor esp.</th></tr></thead><tbody>
+   ${m.apuestas.map(b=>`<tr><td><span class="tag t${Math.min(b.i,2)}">${b.kind}</span></td><td>${esc(b.t)}</td><td data-l="Probabilidad" class="r num ${b.p>=.75?'ok':b.p>=.6?'acc':''}">${pct(b.p)}</td>
+    <td data-l="Momio mínimo" class="r num acc">${dec2us(b.fair)}</td>
+    <td data-l="Tu casa" class="r"><label class="sr" for="o-${b.i}">Momio de tu casa para ${esc(b.t)}</label><input class="odds" id="o-${b.i}" value="${b.book!=null?(b.book>0?'+':'')+b.book:''}" placeholder="−150" data-bk="${esc(b.bk)}"></td>
+    <td data-l="Monto" class="r num">${money(b.stake)}</td><td data-l="Cobras" class="r num">${b.book?money(b.ret):'<span class="dim">—</span>'}</td><td data-l="Valor esperado" class="r num ${b.book?(b.ev>0?'ok':'bad'):'dim'}">${b.book?(b.ev>=0?'+':'−')+money(Math.abs(b.ev)):'—'}</td></tr>`).join('')}
    </tbody></table></div>
    <p class="xs dim">"Mínimo" es el momio por debajo del cual esa apuesta pierde dinero a la larga. En Playdoit compara contra ese número antes de darle.</p>
   </div>
@@ -394,13 +444,13 @@ function vistaPartido(){
    <div class="two">${[[p.visita,'visita'],[p.local,'local']].map(([eq,rol])=>{
      const u=ultimos(eq),nom=eq.nom;
      return`<div><h3>${esc(nom)} <span class="dim xs">(${rol})</span></h3>
-     ${u.length?u.map(x=>`<div class="xs" style="margin:4px 0"><span class="tag ${x.res==='G'?'t0':x.res==='E'?'':'t2'}" style="${x.res==='P'?'color:var(--bad-tx)':''}">${x.res}</span> <span class="num">${x.gf}-${x.gc}</span> ${x.local?'vs':'@'} ${esc(x.rival)} <span class="dim">· ${when(x.fecha).split(',')[0]}</span></div>`).join('')
+     ${u.length?u.map(x=>`<div class="xs" style="margin:4px 0"><span class="tag ${x.res==='G'?'t0':x.res==='E'?'':'perdio'}">${x.res}</span> <span class="num">${x.gf}-${x.gc}</span> ${x.local?'vs':'@'} ${esc(x.rival)} <span class="dim">· ${when(x.fecha).split(',')[0]}</span></div>`).join('')
        :'<p class="xs dim">Sin partidos recientes en la ventana que se bajó.</p>'}
      ${u.length?`<p class="xs dim">En estos ${u.length}: ${u.filter(x=>x.res==='G').length}G ${u.filter(x=>x.res==='E').length}E ${u.filter(x=>x.res==='P').length}P · ${u.reduce((s,x)=>s+x.gf,0)} goles a favor, ${u.reduce((s,x)=>s+x.gc,0)} en contra</p>`:''}</div>`}).join('')}</div>
   </div>
   <div class="panel"><h2>Marcadores más probables</h2>
-   <div class="tw"><table><thead><tr><th>Marcador</th><th class="r">Probabilidad</th><th class="r">Momio justo</th></tr></thead><tbody>
-   ${m.r.marcadores.map(x=>`<tr><td class="num">${esc(p.local.ab)} ${x.i} – ${x.j} ${esc(p.visita.ab)}</td><td class="r num">${(x.p*100).toFixed(1)}%</td><td class="r num">${dec2us(1/x.p)}</td></tr>`).join('')}
+   <div class="tw"><table class="cards"><thead><tr><th>Marcador</th><th class="r">Probabilidad</th><th class="r">Momio mínimo</th></tr></thead><tbody>
+   ${m.r.marcadores.map(x=>`<tr><td class="num">${esc(p.local.ab)} ${x.i} – ${x.j} ${esc(p.visita.ab)}</td><td data-l="Probabilidad" class="r num">${(x.p*100).toFixed(1)}%</td><td data-l="Momio mínimo" class="r num">${dec2us(1/x.p)}</td></tr>`).join('')}
    </tbody></table></div></div>
   <div class="panel"><h2>Todos los mercados</h2>
    <div class="tw"><table><thead><tr><th>Mercado</th><th class="r">Sí</th><th class="r">No</th></tr></thead><tbody>
@@ -423,7 +473,7 @@ function vistaPartido(){
   </div>`}`;
   $('#volver').onclick=()=>{VIEW={pantalla:'lista'};location.hash='#/';render();scrollTo(0,0)};
   $('#view').querySelectorAll('input.odds').forEach(inp=>{
-    inp.onchange=inp.onblur=()=>{const k=p.id+'-'+inp.dataset.i,v=inp.value.trim();
+    inp.onchange=inp.onblur=()=>{const k=inp.dataset.bk,v=inp.value.trim();
       if(!v){delete S.book[k]}else{const n=parseUS(v);if(n==null){toast('Momio no válido: escríbelo como −150 o +130');return}if(S.book[k]===n)return;S.book[k]=n}
       store.set('fb.book',S.book);const y=scrollY;render();scrollTo(0,y)};
     inp.onkeydown=e=>{if(e.key==='Enter')inp.blur()};
