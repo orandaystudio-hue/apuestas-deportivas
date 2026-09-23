@@ -70,3 +70,40 @@ Todos los de gravedad **alta** y la mayoría de los medianos. Los más important
 - La columna "≈ pts" de las lesiones no se suma en ningún lado: es una referencia para mover los ajustes a mano, no una cuenta automática.
 - Varias ideas de apuestas de jugador no traen número porque la casa todavía no publica esa línea. Salen marcadas.
 - En Playdoit, la apuesta "Fuerte" y la "Sólida" casi nunca pasan su propio mínimo. Eso no se escondió: se dice en cada juego.
+
+## Segunda revisión: el diseño en celular
+
+Cinco revisores más (tres probando con el dedo en un navegador real, dos leyendo el código) revisaron cómo se ve y se usa en el teléfono. 58 hallazgos confirmados. Los peores:
+
+| # | Gravedad | Hallazgo |
+|---|---|---|
+| 1 | alto | El botón «atrás» del celular tira el scroll: vuelves al principio de los 16 juegos |
+| 2 | alto | El submenú de secciones deja el título tapado: la barra pegajosa mide 162.6 px y el margen es de 130 |
+| 3 | alto | Los dos controles de ajuste saltan debajo del dedo al soltarlos (87–169 px) |
+| 4 | alto | En tema claro todas las tarjetas de juego se pintan azul de liga, no color texto |
+| 5 | alto | Al tocar el submenú, el título de la sección queda DEBAJO del submenú fijo |
+| 6 | alto | El aviso emergente sale a media pantalla de ancho y tapa la barra de abajo |
+| 7 | alto | Tocar «Actualizar partidos» sin señal BORRA la cartelera guardada y después miente: «Liga MX no tiene partidos» |
+| 8 | alto | Cada regreso a la lista congela el celular 1.4–2.9 s sin ningún aviso |
+| 9 | alto | El botón atrás se rompe al cambiar de liga: dos toques seguidos muestran la misma pantalla y la URL miente |
+| 10 | alto | En el 94% de la página de un partido no se ve en cuál estás ni hay forma de salir |
+| 11 | alto | El aviso emergente se monta sobre la barra y se come el toque de 3 de las 5 pestañas |
+| 12 | alto | Al tocar una sección del submenú, el título queda escondido detrás del propio submenú |
+| 13 | alto | El aviso flotante tapa la barra de abajo y se roba los toques — y sale solo cada vez que abres |
+| 14 | alto | El submenú del juego ocupa dos renglones pegados arriba: 27 % de la pantalla es puro marco, y al saltar tapa el título al que te llevó |
+| 15 | alto | En la tabla "Modelo" la primera columna mide 149 px y ahí se meten párrafos de 634 caracteres: 33 renglones de dos palabras |
+| 16 | alto | La fila "Total" de las 5 apuestas queda rota en celular: se encoge a 70 px y sus dos cifras pierden la etiqueta |
+| 17 | alto | En celular, lo que se abre no se ve que se abre, y las únicas explicaciones que hay viven en tooltips que el dedo no puede tocar |
+
+Lo que se arregló, medido:
+
+- **El encabezado pasó de 262 px a 88 px** (de 32 % a 11 % de la pantalla) y la navegación se fue a una barra fija abajo, con 5 pestañas.
+- **El botón atrás ya no tira tu lugar**: la lista vuelve exactamente donde ibas.
+- **El aviso flotante** ya no tapa la barra ni se roba los toques.
+- **Los controles de ajuste ya no saltan** bajo el dedo al soltarlos: el repintado se ancla al elemento, no al scroll.
+- **Las tablas anchas son tarjetas** con su etiqueta por dato; ninguna esconde columnas.
+- **Futbol ya no borra la cartelera** si falla la señal, y volver a la lista pasó de tardar hasta 3 s a **1 ms** (el modelo se guarda en memoria).
+- La búsqueda de goles esperados se acotó alrededor del total del mercado: **10 veces más rápida, resultado idéntico** en los 9 partidos comprobados.
+- Campos de 16 px (iOS ya no hace zoom), objetivos de 44 px, área segura del notch, y con el teclado abierto la barra se quita.
+
+Medición final, con `herramientas/auditoria-movil.js`: **cero** desbordes, tablas ocultas, objetivos chicos, letra chica, campos que hacen zoom y fallas de contraste — a 320, 375, 844 acostado y en escritorio, en tema claro y oscuro, en las dos páginas.

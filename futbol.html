@@ -62,8 +62,8 @@ h1{font-size:26px;line-height:1.2;margin:0 0 4px}h2{font-size:20px;margin:0 0 12
 .pick{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:14px;display:flex;justify-content:space-between;gap:8px}
 .pick b{color:var(--ok-tx)}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
-.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:820px){.three,.two{grid-template-columns:1fr}}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media(max-width:900px){.three,.two{grid-template-columns:minmax(0,1fr)}}
 .stat{background:var(--surface-2);border-radius:8px;padding:10px 12px}
 .stat .k{font-size:13px;color:var(--tx-3)}.stat .v{font-family:var(--mono);font-size:18px;font-weight:600}
 .tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}
@@ -84,18 +84,27 @@ input.odds{width:92px;min-height:44px;border:1px solid var(--line);background:va
 footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--tx-3);font-size:13px}
 .hm{display:grid;grid-template-columns:auto repeat(6,1fr);gap:2px;font-size:12px;font-family:var(--mono)}
 .hm div{padding:4px 2px;text-align:center;border-radius:3px}
+.barra{display:none}
 /* ===================== CELULAR ===================== */
-@media(max-width:700px){
+@media(max-width:700px),(max-height:500px) and (orientation:landscape){
   .top{backdrop-filter:none;background:var(--bg)}
   .top .wrap{min-height:56px;gap:8px;padding:4px 14px;flex-wrap:nowrap}
   .brand{font-size:16px;gap:8px}.brand b{width:30px;height:30px;font-size:11px}
   .brand small{display:none}
-  #load span{display:none}#load{width:44px;padding:0}
+  #load span{display:none}#load{width:44px;min-width:44px;padding:0}
+  .btn.icon{min-width:44px}
   .top a.btn{font-size:13px;padding:0 10px;white-space:nowrap}
   .status .wrap{padding:6px 14px;font-size:12px;gap:10px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
   .status .wrap::-webkit-scrollbar{display:none}
   .wrap{padding:0 14px}
-  main{padding:16px 0 40px}
+  main{padding:16px 0 88px}
+  /* barra inferior, igual que en la NFL: siempre se sabe dónde estás y cómo salir */
+  .barra{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0);box-shadow:0 -2px 12px rgba(0,0,0,.18)}
+  .barra a,.barra button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:58px;
+    border:0;background:none;color:var(--tx-2);text-decoration:none;font:500 11px/1.1 var(--sans);cursor:pointer}
+  .barra a[aria-current=page]{color:var(--primary-2);box-shadow:inset 0 -3px 0 var(--primary)}
+  .toast{left:12px;right:12px;transform:none;max-width:none;bottom:calc(72px + env(safe-area-inset-bottom,0px));z-index:60}
+  footer{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
   h1{font-size:22px}h2{font-size:18px}
   .panel{padding:14px 12px}
   /* las ligas en una sola fila que se desliza, en vez de tres renglones de chips */
@@ -121,8 +130,9 @@ footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--tx-3);fo
   .top .wrap{min-height:48px;padding:2px 16px}
   .brand{font-size:15px;min-height:44px}.brand small{display:none}
   .brand b{width:28px;height:28px;font-size:11px}
-  /* los objetivos táctiles se quedan en 44: lo que se va es lo que no aporta */
-  #view > p.muted:first-of-type,.kpis{display:none}
+  /* los objetivos táctiles se quedan en 44: lo único que se va son los indicadores,
+     que son decorativos. El párrafo de instrucciones se queda: explica cómo se usa. */
+  .kpis{display:none}
   .status .wrap{padding:4px 16px;font-size:12px}
   main{padding:12px 0 40px}
   h1{font-size:20px;margin-bottom:2px}
@@ -139,10 +149,16 @@ footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--tx-3);fo
 <a class="skip" href="#main">Saltar al contenido</a>
 <header class="top"><div class="wrap">
   <a class="brand" href="#/"><b>FUT</b><span>Futbol<small>Liga MX · Europa</small></span></a>
-  <a class="btn" href="index.html" title="Ir al análisis de la NFL">NFL semana 3</a>
-  <button class="btn primary" id="load" type="button"><svg class="i" id="ico" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg><span>Actualizar partidos</span></button>
+  <a class="btn" href="index.html" title="Ir al análisis de la NFL">NFL</a>
+  <button class="btn primary" id="load" type="button" aria-label="Actualizar partidos" title="Actualizar partidos"><svg class="i" id="ico" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg><span>Actualizar partidos</span></button>
   <button class="btn icon" id="theme" type="button" aria-label="Cambiar tema"></button>
-</div></header>
+</div>
+<nav class="barra" aria-label="Principal">
+  <a href="index.html" aria-label="NFL"><svg class="i" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="6"/><path d="M8 12h8M10 10v4M14 10v4"/></svg><span>NFL</span></a>
+  <a href="#/" id="tabPartidos" aria-label="Partidos" aria-current="page"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10z"/></svg><span>Partidos</span></a>
+  <button type="button" id="tabArriba" aria-label="Volver arriba"><svg class="i" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg><span>Arriba</span></button>
+</nav>
+</header>
 <div class="status"><div class="wrap" id="statusLine"></div></div>
 <main id="main" tabindex="-1"><div class="wrap" id="view"><div class="empty">Cargando partidos…</div></div></main>
 <footer><div class="wrap">Datos de ESPN (momios de DraftKings) y modelo propio. Análisis, no garantía: apuesta solo lo que puedas perder.</div></footer>
@@ -212,7 +228,12 @@ function ajustar(pH,pD,pA,pOver,linea=2.5){
   const prueba=(lh,la,rho)=>{const r=mercados(lh,la,rho);const o=r.ou[linea]!=null?r.ou[linea]:r.ou[2.5];
     const e=Math.pow(r.H-pH,2)+Math.pow(r.A-pA,2)+Math.pow(r.D-pD,2)+(pOver!=null?Math.pow(o-pOver,2):0);
     if(!mejor||e<mejor.e)mejor={lh,la,rho,e,r}};
-  for(let lh=0.3;lh<=3.6;lh+=0.1)for(let la=0.3;la<=3.6;la+=0.1)prueba(+lh.toFixed(2),+la.toFixed(2),0);
+  // se acota la búsqueda alrededor del total que implica el mercado: mismo resultado, 10 veces más rápido
+  const totSeed=linea+(pOver!=null?(pOver-0.5)*3:0);
+  for(let lh=0.3;lh<=3.6;lh+=0.1)for(let la=0.3;la<=3.6;la+=0.1){
+    if(Math.abs(lh+la-totSeed)>1.6)continue;
+    prueba(+lh.toFixed(2),+la.toFixed(2),0);}
+  if(!mejor)for(let lh=0.3;lh<=3.6;lh+=0.15)for(let la=0.3;la<=3.6;la+=0.15)prueba(+lh.toFixed(2),+la.toFixed(2),0);
   const{lh:l0,la:a0}=mejor;
   for(let a=l0-0.12;a<=l0+0.12;a+=0.03)for(let b=a0-0.12;b<=a0+0.12;b+=0.03)for(let rho=-0.2;rho<=0.2001;rho+=0.05)prueba(+a.toFixed(3),+b.toFixed(3),+rho.toFixed(3));
   const{lh,la,rho}=mejor;
@@ -220,7 +241,7 @@ function ajustar(pH,pD,pA,pOver,linea=2.5){
   return mejor;
 }
 /* ============ estado ============ */
-const S={liga:store.get('fb.liga','mex.1'),cache:store.get(SD_CACHE,{}),book:store.get('fb.book',{}),tema:store.get('fb.tema','dark')};
+const S={liga:store.get('fb.liga','mex.1'),cache:store.get(SD_CACHE,{}),book:store.get('fb.book',{}),tema:store.get('tema',store.get('w3.theme',store.get('fb.tema','dark')))};
 let VIEW={pantalla:'lista',id:null};
 /* ============ datos ============ */
 const api=async u=>{const r=await fetch(u);if(!r.ok)throw new Error('HTTP '+r.status);return r.json()};
@@ -281,9 +302,16 @@ async function cargar(force){
   try{
     const c=S.cache[S.liga];
     if(force||!c||(Date.now()-new Date(c.at).getTime())>25*60*1000){
-      S.cache[S.liga]=await bajar(S.liga);store.set(SD_CACHE,S.cache);
+      const nuevo=await bajar(S.liga);
+      // si no llegó nada y ya teníamos cartelera, se conserva: mejor vieja que ninguna
+      if(!nuevo.partidos.length&&c&&c.partidos.length){
+        toast(`No se pudo actualizar ${LIGAS.find(l=>l.id===S.liga).nom}: se quedan los partidos del ${when(c.at)}. <button class="btn" type="button" style="min-height:40px;margin-left:8px" onclick="cargar(true)">Reintentar</button>`,9000);
+        btn.disabled=false;ico.classList.remove('spin');render();return;
+      }
+      S.cache[S.liga]=nuevo;store.set(SD_CACHE,S.cache);
       const c2=S.cache[S.liga];
-      toast(`${c2.partidos.length} partidos de ${LIGAS.find(l=>l.id===S.liga).nom}.`+(c2.diasFallidos?` Ojo: ${c2.diasFallidos} día${c2.diasFallidos>1?'s':''} no respondió ESPN, puede faltar algún partido. <button class="btn" type="button" style="min-height:40px;margin-left:8px" onclick="cargar(true)">Reintentar</button>`:''),c2.diasFallidos?9000:4500);
+      const porJugar=c2.partidos.filter(x=>x.estado!=='post').length;
+      toast(porJugar?`${porJugar} partido${porJugar===1?'':'s'} por jugarse en ${LIGAS.find(l=>l.id===S.liga).nom}.`:`${LIGAS.find(l=>l.id===S.liga).nom}: no hay partidos en los próximos ${DIAS} días.`+(c2.diasFallidos?` Ojo: ${c2.diasFallidos} día${c2.diasFallidos>1?'s':''} no respondió ESPN, puede faltar algún partido. <button class="btn" type="button" style="min-height:40px;margin-left:8px" onclick="cargar(true)">Reintentar</button>`:''),c2.diasFallidos?9000:4500);
     }
   }catch(e){toast('No se pudieron bajar los partidos ('+esc(e.message)+'). <button class="btn" type="button" style="min-height:34px;margin-left:8px" onclick="cargar(true)">Reintentar</button>',9000)}
   btn.disabled=false;ico.classList.remove('spin');render();
@@ -308,8 +336,14 @@ function ultimos(equipo,n=5){
   const c=S.cache[S.liga];if(!c)return[];
   return ((c.forma||{})[equipo.id]||[]).slice(0,n);
 }
+const _modelos=new Map();   // el ajuste de Poisson es caro: se calcula una vez por partido
 function modelo(p){
   if(!p.odds||p.odds.mlH==null||p.odds.mlA==null||p.odds.mlD==null)return null;
+  const llave=p.id+'|'+p.odds.mlH+'|'+p.odds.mlD+'|'+p.odds.mlA+'|'+p.odds.ou+'|'+JSON.stringify(S.book[p.id]||'');
+  if(_modelos.has(llave))return _modelos.get(llave);
+  const r=modeloCalcular(p);_modelos.set(llave,r);return r;
+}
+function modeloCalcular(p){
   const o=p.odds,s=imp(o.mlH)+imp(o.mlD)+imp(o.mlA);
   const pH=imp(o.mlH)/s,pD=imp(o.mlD)/s,pA=imp(o.mlA)/s;
   let pOver=null;
@@ -380,7 +414,8 @@ function statusLine(){
   $('#statusLine').innerHTML=`<span><i class="dot ${c?(c.diasFallidos?'warn':'on'):'warn'}"></i>${c?'Partidos al '+when(c.at)+(c.diasFallidos?` · ${c.diasFallidos} día(s) sin respuesta`:''):'Sin datos todavía'}</span>
    <span>Fuente: ESPN${c&&c.partidos.some(p=>p.odds)?' · momios de DraftKings':''}</span><span>Horas en CDMX</span>`;
 }
-function render(){statusLine();VIEW.pantalla==='partido'?vistaPartido():vistaLista()}
+function render(){statusLine();VIEW.pantalla==='partido'?vistaPartido():vistaLista();
+  const t=$('#tabPartidos');if(t)t.setAttribute('aria-current',VIEW.pantalla==='lista'?'page':'false')}
 function vistaLista(){
   const c=S.cache[S.liga],liga=LIGAS.find(l=>l.id===S.liga);
   const prox=c?c.partidos.filter(p=>p.estado!=='post'):[];
@@ -389,10 +424,17 @@ function vistaLista(){
   <div class="ligas" role="group" aria-label="Elegir liga">${LIGAS.map(l=>`<button type="button" aria-pressed="${l.id===S.liga}" data-l="${l.id}">${esc(l.nom)}</button>`).join('')}</div>
   ${!c?'<div class="empty">Toca "Actualizar partidos" para bajar la cartelera.</div>':
    !prox.length?`<div class="panel"><h2>${esc(liga.nom)} no tiene partidos en los próximos ${DIAS} días</h2>
-     <p class="muted">${c.partidos.length?'Los últimos partidos ya se jugaron. ':''}Las ligas de Europa paran por fecha FIFA a finales de septiembre y regresan alrededor del 9-10 de octubre. Liga MX sí juega.</p></div>`:
+     <p class="muted">${(()=>{const jug=c.partidos.filter(x=>x.estado==='post');
+       if(jug.length){const u=jug.map(x=>new Date(x.fecha)).sort((a,b)=>b-a)[0];
+         return `Los últimos que encontré ya se jugaron (el más reciente, ${u.toLocaleDateString('es-MX',{timeZone:TZ,day:'numeric',month:'long'})}). Las ligas de Europa paran en las fechas FIFA y vuelven después; esta pantalla los muestra solos en cuanto ESPN los publique.`}
+       return 'ESPN no devolvió ningún partido de esta liga en esa ventana. Puede ser un parón, o que la liga esté fuera de temporada.'})()}</p>
+     <div class="bar"><button class="btn primary" type="button" onclick="cargar(true)">Volver a buscar</button>
+      ${LIGAS.filter(l=>l.id!==S.liga).slice(0,2).map(l=>`<button class="btn" type="button" onclick="S.liga='${l.id}';store.set('fb.liga',S.liga);cargar()">Ver ${esc(l.nom)}</button>`).join('')}</div></div>`:
    `<p class="muted">${prox.length} partidos, ${conM.length} con momios. Toca uno para ver el análisis completo y las 5 apuestas de $1,000.</p>
     <div class="grid">${prox.map(tarjeta).join('')}</div>`}`;
-  $('#view').querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{S.liga=b.dataset.l;store.set('fb.liga',S.liga);cargar()});
+  $('#view').querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{S.liga=b.dataset.l;store.set('fb.liga',S.liga);
+    if(!S.cache[S.liga])$('#view').innerHTML='<div class="empty">Bajando los partidos de '+esc(b.textContent)+'…</div>';
+    cargar()});
   $('#view').querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{VIEW={pantalla:'partido',id:b.dataset.p};location.hash='#/p/'+b.dataset.p;render();scrollTo(0,0)});
 }
 function tarjeta(p){
@@ -485,8 +527,10 @@ function tema(t){const r=document.documentElement;r.classList.add('sin-anim');r.
  const b=$('#theme');b.innerHTML=`<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${ICON[t==='dark'?'sun':'moon']}</svg>`;
  b.setAttribute('aria-label',t==='dark'?'Cambiar a tema claro':'Cambiar a tema oscuro')}
 tema(S.tema);
-$('#theme').onclick=()=>{S.tema=S.tema==='dark'?'light':'dark';store.set('fb.tema',S.tema);tema(S.tema)};
+$('#theme').onclick=()=>{S.tema=S.tema==='dark'?'light':'dark';store.set('tema',S.tema);store.set('w3.theme',S.tema);tema(S.tema)};
 $('#load').onclick=()=>cargar(true);
+$('#tabArriba').onclick=()=>scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+$('#tabPartidos').onclick=e=>{if(VIEW.pantalla==='lista'){e.preventDefault();scrollTo({top:0,behavior:'smooth'})}};
 addEventListener('hashchange',()=>{const h=location.hash;const m=h.match(/^#\/p\/(\d+)/);VIEW=m?{pantalla:'partido',id:m[1]}:{pantalla:'lista'};render()});
 (function inicio(){const m=location.hash.match(/^#\/p\/(\d+)/);if(m)VIEW={pantalla:'partido',id:m[1]};
  render();cargar(false)})();
