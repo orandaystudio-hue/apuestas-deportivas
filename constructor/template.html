@@ -459,7 +459,9 @@ function card(g,m){
    <div class="team"><span class="ab a">${esc(A.abbr)}</span><span class="nm">${esc(A.name)}<small>${esc(A.record)} · visita</small></span><span class="pc">${pct(1-m.pHome)}</span></div>
    <div class="team"><span class="ab h">${esc(H.abbr)}</span><span class="nm">${esc(H.name)}<small>${esc(H.record)} · ${g.venue&&g.venue.neutral?'sede neutral':'local'}</small></span><span class="pc">${pct(m.pHome)}</span></div>
    <div class="prob" aria-hidden="true"><i class="pa" style="width:${(1-m.pHome)*100}%"></i><i class="ph" style="width:${m.pHome*100}%"></i></div>
-   <div class="xs muted mono" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Línea ${esc(H.abbr)} ${L.spread_home>0?'+':''}${fmt(L.spread_home)} · O/U ${fmt(L.total)} · Esperado ${fmt(m.ptsA,0)}-${fmt(m.ptsH,0)}</div>
+   <div class="xs muted mono" style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+     <span>Línea ${esc(H.abbr)} ${L.spread_home>0?'+':''}${fmt(L.spread_home)} · O/U ${fmt(L.total)}</span>
+     <span>Esperado ${fmt(m.ptsA,0)}-${fmt(m.ptsH,0)}</span></div>
    <div class="chips">${kickState(g)}${condChips(g)}</div>
    <div class="pick"><span class="muted">Fuerte</span><span><b>${esc(b.txt)}</b> · ${pct(b.p)}${b.grade?` <span class="res ${b.grade}">${b.grade==='w'?'✓ ganó':b.grade==='l'?'✗ perdió':'empate'}</span>`:''}</span></div>
   </a>`;
