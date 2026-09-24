@@ -19,6 +19,12 @@ async function liveESPN(){
       const ml=o.moneyline||{};
       const mh=mlNum(ml.home&&(ml.home.close||ml.home.current||{}).odds),ma=mlNum(ml.away&&(ml.away.close||ml.away.current||{}).odds);
       if(mh!=null&&ma!=null){L.ml_home=mh;L.ml_away=ma}
+      // precio del spread y del total: sin esto el "valor" se calcula suponiendo -110
+      const ps=o.pointSpread||{},tt=o.total||{};
+      const jug=x=>mlNum(x&&(x.close||x.current||{}).odds);
+      const jh=jug(ps.home),ja=jug(ps.away),jo=jug(tt.over),ju=jug(tt.under);
+      if(jh!=null)L.juice_home=jh; if(ja!=null)L.juice_away=ja;
+      if(jo!=null)L.juice_over=jo; if(ju!=null)L.juice_under=ju;
       L.provider=o.provider&&o.provider.name;L.details=o.details;
       if(Object.keys(L).length)rec.lines=L;
     }

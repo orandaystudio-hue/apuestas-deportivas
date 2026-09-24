@@ -280,12 +280,15 @@ const SDM=13.5, SDT=10.5, VIG=0.95, STAKES=[400,250,150,100,100];
 const KINDS=['Fuerte','Sólida','Media','Spread','Total'];
 const KIND_HELP=['~82 %: hándicap alterno del favorito del modelo','Ganador directo, o hándicap alterno si el momio no paga','Total con 5 puntos de colchón','El spread del mercado, del lado que el modelo ve mejor','El total normal: casi un volado'];
 const TZ='America/Mexico_City';
+const PD_KEY='w3.playdoit';
+const enPD=()=>{try{const v=localStorage.getItem(PD_KEY);return v==null?true:JSON.parse(v)}catch(e){return true}};
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const S={
   adj:store.get('w3.adj',{}),        // {id:{m,t}}
   book:store.get('w3.book',{}),      // {"id-i": americanOdds}
   live:store.get('w3.live',{}),      // {id:{lines,score,state,detail,at}}
   wx:store.get('w3.wx',{}),          // {id:{...}}
+  pd:enPD(),                         // líneas al estilo Playdoit (hándicaps enteros)
   inj:store.get('w3.inj',{}),        // {abbr:{items,listed}} reporte de ESPN en vivo
   injAt:store.get('w3.injAt',null),
   liveAt:store.get('w3.liveAt',null),
@@ -336,7 +339,10 @@ const ICON={
 const ic=(n,cls='')=>`<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICON[n]||''}</svg>`;
 
 /* ================== modelo ================== */
-function linesOf(g){const L=Object.assign({},g.lines),lv=S.live[g.id];if(lv&&lv.lines){for(const k of ['spread_home','total','ml_away','ml_home'])if(lv.lines[k]!=null&&!isNaN(lv.lines[k]))L[k]=lv.lines[k];L._live=true}return L}
+function linesOf(g){const L=Object.assign({},g.lines),lv=S.live[g.id];
+  if(lv&&lv.lines){for(const k of ['spread_home','total','ml_away','ml_home','juice_home','juice_away','juice_over','juice_under'])
+    if(lv.lines[k]!=null&&!isNaN(lv.lines[k]))L[k]=lv.lines[k];L._live=true}
+  return L}
 function sideTxt(team,x){return x===0?`${team} gana (moneyline)`:`${team} ${x>0?'−'+fmt(x):'+'+fmt(-x)}`}
 function model(g){
   const L=linesOf(g),u=S.adj[g.id]||{m:0,t:0};
@@ -348,7 +354,13 @@ function model(g){
   const favHome=mu>=0,fav=favHome?g.teams[1]:g.teams[0],dog=favHome?g.teams[0]:g.teams[1],fm=Math.abs(mu);
   const pSide=(isFav,x)=>1-Phi((x-(isFav?fm:-fm))/SDM); // P(margen del equipo > x)
   const bets=[];
-  const alt=(target)=>{const x=half(fm+SDM*invPhi(1-target));return{kind:'side',team:fav.abbr,teamName:fav.name,home:favHome,x,p:pSide(true,x),txt:sideTxt(fav.abbr,x)+' (hándicap alterno)'}};
+  // en Playdoit los hándicaps son ENTEROS: si el margen cae justo en la línea, empata y devuelve
+  const pEmpate=(x)=>Number.isInteger(x)?Math.max(0,Phi((x+.5-fm)/SDM)-Phi((x-.5-fm)/SDM)):0;
+  const alt=(target)=>{const crudo=fm+SDM*invPhi(1-target);
+    const x=S.pd?Math.round(crudo):half(crudo);
+    const push=pEmpate(x);
+    return{kind:'side',team:fav.abbr,teamName:fav.name,home:favHome,x,push,p:pSide(true,x),
+      txt:sideTxt(fav.abbr,x)+' (hándicap alterno)'}};
   bets.push(alt(.82));
   const pFav=pSide(true,0);
   if(pFav>=.55&&pFav<=.78)bets.push({kind:'side',team:fav.abbr,home:favHome,x:0,p:pFav,txt:sideTxt(fav.abbr,0)});
@@ -359,8 +371,10 @@ function model(g){
   else if(open!=null&&Math.abs(L.total-open)>=.5){overLean=L.total>open;totWhy=`Casi un volado: el modelo no ve ventaja. Para desempatar se toma el lado hacia donde se movió la línea (abrió en ${fmt(open)}, hoy ${fmt(L.total)}).`}
   else{overLean=false;totWhy='Sin ventaja clara para ningún lado: es un volado.'}
   let tl=overLean?L.total-5:L.total+5;
-  if(Number.isInteger(tl))tl+=overLean?-0.5:0.5;   // nunca dejar línea entera: habría empate
-  bets.push({kind:'total',dir:overLean?'over':'under',line:tl,p:overLean?1-Phi((tl-tot)/SDT):Phi((tl-tot)/SDT),txt:`${overLean?'Más':'Menos'} de ${fmt(tl)} puntos (total alterno)`,note:totWhy});
+  if(S.pd){tl=Math.round(tl)}                       // Playdoit los ofrece enteros
+  else if(Number.isInteger(tl))tl+=overLean?-0.5:0.5;
+  const pushTot=l=>Number.isInteger(l)?Math.max(0,Phi((l+.5-tot)/SDT)-Phi((l-.5-tot)/SDT)):0;
+  bets.push({kind:'total',dir:overLean?'over':'under',line:tl,push:pushTot(tl),p:overLean?1-Phi((tl-tot)/SDT):Phi((tl-tot)/SDT),txt:`${overLean?'Más':'Menos'} de ${fmt(tl)} puntos (total alterno)`,note:totWhy});
   // spread del mercado
   const line=Math.abs(L.spread_home),mktFavHome=L.spread_home<=0,mfIsFav=mktFavHome===favHome;
   const mf=mktFavHome?g.teams[1]:g.teams[0],md=mktFavHome?g.teams[0]:g.teams[1];
@@ -369,13 +383,17 @@ function model(g){
   else if(pCov>=.5)bets.push({kind:'side',team:mf.abbr,home:mktFavHome,x:line,p:pCov,txt:`${mf.abbr} −${fmt(line)} (spread)`});
   else bets.push({kind:'side',team:md.abbr,home:!mktFavHome,x:-line,p:1-pCov,txt:`${md.abbr} +${fmt(line)} (spread)`});
   const pO=1-Phi((L.total-tot)/SDT);
-  bets.push({kind:'total',dir:overLean?'over':'under',line:L.total,p:overLean?pO:1-pO,txt:`${overLean?'Más':'Menos'} de ${fmt(L.total)} puntos`,note:totWhy});
+  bets.push({kind:'total',dir:overLean?'over':'under',line:L.total,push:pushTot(L.total),p:overLean?pO:1-pO,txt:`${overLean?'Más':'Menos'} de ${fmt(L.total)} puntos`,note:totWhy});
   if(bets[3].p<.524)bets[3].note='Ventaja mínima: a −110 necesita 52.4 % para salir a mano. Solo vale con mejor momio.';
   bets.forEach((b,i)=>{b.i=i;b.kindName=KINDS[i];b.stake=STAKES[i];
-    b.min=1/b.p;                                   // momio de equilibrio: abajo de esto se pierde a la larga
+    // con empate, la casa devuelve: el mínimo baja porque solo pierdes cuando pierdes de verdad
+    b.push=b.push||0;
+    b.min=(1-b.push)/b.p;
     b.bk=[g.id,i,b.kind,b.kind==='total'?b.dir:b.team,b.kind==='total'?b.line:b.x].join('|'); // la clave es la SELECCIÓN
     const bo=S.book[b.bk];b.book=bo;b.d=bo?us2dec(bo):null;
-    b.ret=b.d?b.stake*b.d:null;b.ev=b.d?b.p*b.ret-b.stake:null;b.grade=grade(g,b)});
+    b.ret=b.d?b.stake*b.d:null;
+    b.ev=b.d?b.p*b.ret+b.push*b.stake-b.stake:null;   // el empate devuelve lo apostado
+    b.grade=grade(g,b)});
   return{L,mu,tot,pHome,fav,dog,favHome,bets,base,mkt,mlM,am,at,u,
     ptsH:(tot+mu)/2,ptsA:(tot-mu)/2};
 }
@@ -383,6 +401,52 @@ function grade(g,b){const lv=S.live[g.id];if(!lv||!lv.score||lv.state!=='post')r
   if(b.kind==='total'){const t=away+home;if(t===b.line)return'p';return(b.dir==='over'?t>b.line:t<b.line)?'w':'l'}
   const m=b.home?home-away:away-home;if(m===b.x)return'p';return m>b.x?'w':'l'}
 
+
+/* ============ apuestas por valor ============
+   OJO con la trampa: el modelo saca su probabilidad de estos mismos momios.
+   Comparar contra ellos sin más solo mide cómo repartió la casa su comisión
+   (el perrito SIEMPRE sale "con valor"). Aquí se separan dos cosas:
+     ventaja = lo que el modelo se aparta del mercado ya sin comisión
+     rinde   = lo que queda después de pagar la comisión, al precio real
+   Una apuesta solo "paga bien" si las dos son positivas.                      */
+const TOPE_DERECHA=-160;   // Diego: como derecha, nada más caro que esto
+function porValor(g,m){
+  const L=m.L,[A,H]=g.teams,out=[];
+  const agrega=(txt,p,us,pSin,mercado,nota)=>{if(us==null||pSin==null)return;
+    const d=us2dec(us);
+    out.push({txt,p,us,d,mercado,nota,pSin,ventaja:p-pSin,rinde:p*d-1,minimo:1/p})};
+  // ganador directo: sin comisión se reparte entre los dos lados
+  if(L.ml_away!=null&&L.ml_home!=null){
+    const sa=imp(L.ml_away),sh=imp(L.ml_home),tot=sa+sh;
+    agrega(`${A.abbr} gana`,1-m.pHome,L.ml_away,sa/tot,'moneyline');
+    agrega(`${H.abbr} gana`,m.pHome,L.ml_home,sh/tot,'moneyline');
+  }
+  const linea=Math.abs(L.spread_home),favH=L.spread_home<=0;
+  if(linea>0){
+    const jh=L.juice_home!=null?L.juice_home:-110, ja=L.juice_away!=null?L.juice_away:-110;
+    const supuesto=L.juice_home==null?'precio supuesto −110':null;
+    const sh=imp(jh),sa=imp(ja),tot=sh+sa;
+    const mf=favH?H:A, md=favH?A:H;
+    const muMf=favH?m.mu:-m.mu;
+    const pCov=1-Phi((linea-muMf)/SDM);
+    agrega(`${mf.abbr} −${fmt(linea)}`,pCov,favH?jh:ja,(favH?sh:sa)/tot,'spread',supuesto);
+    agrega(`${md.abbr} +${fmt(linea)}`,1-pCov,favH?ja:jh,(favH?sa:sh)/tot,'spread',supuesto);
+  }
+  if(L.total!=null){
+    const jo=L.juice_over!=null?L.juice_over:-110, ju=L.juice_under!=null?L.juice_under:-110;
+    const supuesto=L.juice_over==null?'precio supuesto −110':null;
+    const so=imp(jo),su=imp(ju),tot=so+su;
+    const pO=1-Phi((L.total-m.tot)/SDT);
+    agrega(`Más de ${fmt(L.total)}`,pO,jo,so/tot,'total',supuesto);
+    agrega(`Menos de ${fmt(L.total)}`,1-pO,ju,su/tot,'total',supuesto);
+  }
+  out.sort((a,b)=>b.rinde-a.rinde);
+  // menos de 2 puntos de ventaja es ruido del propio modelo, no información
+  const buenas=out.filter(x=>x.ventaja>=0.02&&x.rinde>0&&x.us>=TOPE_DERECHA);
+  const favorita=buenas[0]||null;
+  return{todas:out,conValor:buenas,favorita,
+    mejorSinValor:out.filter(x=>x.us>=TOPE_DERECHA)[0]||null};
+}
 /* ================== vistas ================== */
 const V=$('#view');
 function route(){setTimeout(()=>{medirTop();marcarScroll()},0);
@@ -443,6 +507,20 @@ function viewList(){
    <div class="kpi"><div class="k">Juego más parejo</div><div class="v">${pct(Math.max(closest.m.pHome,1-closest.m.pHome))}</div><div class="s">${esc(closest.g.teams[0].abbr)} @ ${esc(closest.g.teams[1].abbr)}</div></div>
    <div class="kpi"><div class="k">Más puntos esperados</div><div class="v">${fmt(topTot.m.tot)}</div><div class="s">${esc(topTot.g.teams[0].abbr)} @ ${esc(topTot.g.teams[1].abbr)}</div></div>
   </div>
+  ${(()=>{const todas=[];
+    Ms.forEach(({g,m})=>porValor(g,m).conValor.forEach(x=>todas.push({g,x})));
+    todas.sort((a,b)=>b.x.rinde-a.x.rinde);
+    if(!todas.length)return `<div class="panel"><h2>${ic('trend')} Las que pagan de más</h2>
+      <p class="muted sm" style="margin:0">Esta semana no hay ninguna apuesta derecha donde el modelo tenga ventaja <b>y</b> el precio alcance a pagar la comisión. Es lo normal: el mercado suele estar bien puesto. En cuanto se mueva una línea o salga una lesión, aparece aquí.</p></div>`;
+    return `<div class="panel"><h2>${ic('trend')} Las que pagan de más</h2>
+     <p class="muted sm">Apuestas <b>derechas</b>, precio de ESPN/DraftKings, nada más caro que −160. Se listan solo las que cumplen las dos cosas: el modelo se aparta del mercado <b>al menos 2 puntos</b> a tu favor <b>y</b> el precio alcanza a pagar la comisión. Menos de 2 puntos es ruido del modelo, no información.</p>
+     <div class="tw"><table class="cards"><thead><tr><th>Juego</th><th>Apuesta</th><th class="r">Modelo</th><th class="r">Mercado</th><th class="r">Precio</th><th class="r">Te rinde</th></tr></thead><tbody>
+     ${todas.slice(0,6).map(({g,x})=>`<tr><td data-l="Juego"><a href="#/juego/${g.id}">${esc(g.teams[0].abbr)} @ ${esc(g.teams[1].abbr)}</a></td>
+       <td data-l="Apuesta">${esc(x.txt)}${x.nota?`<div class="xs dim">${esc(x.nota)}</div>`:''}</td>
+       <td data-l="Modelo" class="r num">${pct(x.p)}</td><td data-l="Mercado sin comisión" class="r num dim">${pct(x.pSin)}</td>
+       <td data-l="Precio" class="r num">${dec2us(x.d)}</td>
+       <td data-l="Te rinde" class="r num ok">+${(x.rinde*100).toFixed(1)}%</td></tr>`).join('')}
+     </tbody></table></div></div>`})()}
   <div class="bar">
    <div class="seg" role="group" aria-label="Filtrar por día">${days.map(d=>`<button type="button" aria-pressed="${S.filter===d}" data-f="${d}">${d==='all'?'Todos':d}</button>`).join('')}</div>
    <label class="sel">Ordenar <select id="sort"><option value="time">Por hora</option><option value="conf">Por confianza</option><option value="total">Por puntos esperados</option></select></label>
@@ -543,14 +621,30 @@ function viewGame(g){
 
   <section id="s-apuestas" class="panel" aria-labelledby="h-ap">
    <h2 id="h-ap">${ic('trend')} Las 5 apuestas · $1,000</h2>
-   <div class="tw"><table class="cards"><thead><tr><th>Tipo</th><th>Apuesta</th><th class="r">Prob.</th><th class="r" title="Por debajo de este momio, la apuesta pierde dinero a la larga">Momio mínimo</th><th class="r">Tu casa</th><th class="r">Monto</th><th class="r">Cobras</th><th class="r">Valor esp.</th></tr></thead><tbody>
+   ${(()=>{const v=porValor(g,m);const f=v.favorita,alt=v.mejorSinValor;
+     if(!f&&!alt)return'';
+     if(!f)return `<div class="note info" style="margin-top:0"><b>Como derecha, hoy paso este juego.</b>
+       <div class="xs" style="margin-top:4px">Ninguna apuesta de precio conocido tiene ventaja Y alcanza a pagar la comisión. La menos mala sería ${esc(alt.txt)} a ${dec2us(alt.d)}, pero el modelo la ve igual o peor que el mercado.</div>
+       <div class="xs dim" style="margin-top:6px">Tope: nada más caro que −160. Precios de ESPN/DraftKings.</div></div>`;
+     const otras=v.conValor.filter(x=>x!==f);
+     return `<div class="note ok" style="margin-top:0">
+       <div style="font-size:15px"><b>Mi favorita como derecha:</b> ${esc(f.txt)} a ${dec2us(f.d)}</div>
+       <div class="xs" style="margin-top:4px">El modelo le da <b>${pct(f.p)}</b> y el mercado <b>${pct(f.pSin)}</b> (ya sin comisión): <b class="ok">${(f.ventaja*100).toFixed(1)} puntos de ventaja</b>. A ese precio te rinde <b class="ok">+${(f.rinde*100).toFixed(1)}%</b>${f.ventaja<0.03?' <span class="dim">(ventaja chica: tómala como preferencia, no como certeza)</span>':''}. ${f.nota?'· '+esc(f.nota):''}</div>
+       ${otras.length?`<div class="xs" style="margin-top:6px">También: ${otras.map(x=>`${esc(x.txt)} a ${dec2us(x.d)} (+${(x.rinde*100).toFixed(1)}%)`).join(' · ')}</div>`:''}
+       <div class="xs dim" style="margin-top:6px">Tope −160, como pediste. Precios de ESPN/DraftKings: en Playdoit compara antes de darle, y recuerda que sus hándicaps son enteros.</div>
+     </div>`})()}
+   <label class="sm" style="display:flex;align-items:center;gap:8px;min-height:44px;cursor:pointer">
+     <input type="checkbox" id="modoPD" ${S.pd?'checked':''} style="width:20px;height:20px;accent-color:var(--primary)">
+     <span>Líneas como las da <b>Playdoit</b> (hándicaps enteros: +3, +4, +6)</span></label>
+   <div class="tw"><table class="cards"><thead><tr><th>Tipo</th><th>Apuesta</th><th class="r">Prob.</th><th class="r">Empata</th><th class="r" title="Por debajo de este momio, la apuesta pierde dinero a la larga">Momio mínimo</th><th class="r">Tu casa</th><th class="r">Monto</th><th class="r">Cobras</th><th class="r">Valor esp.</th></tr></thead><tbody>
    ${m.bets.map(b=>`<tr><td><span class="tag t${b.i}" title="${esc(KIND_HELP[b.i])}">${b.kindName}</span></td><td>${esc(b.txt)}${b.grade?` <span class="res ${b.grade}">${b.grade==='w'?'✓ ganó':b.grade==='l'?'✗ perdió':'empate'}</span>`:''}${b.note?`<div class="xs dim">${esc(b.note)}</div>`:''}</td>
      <td data-l="Probabilidad" class="r num ${b.p>=.75?'ok':b.p>=.6?'acc':''}">${pct(b.p)}</td>
+     <td data-l="Empata y devuelve" class="r num dim">${b.push>0.005?pct(b.push):'—'}</td>
      <td data-l="Momio mínimo" class="r num acc">${dec2us(b.min)}</td>
      <td data-l="Tu casa" class="r"><label class="sr" for="bo-${b.i}">Momio de tu casa para ${esc(b.txt)}</label><input class="odds" id="bo-${b.i}" inputmode="text" placeholder="ej. −150" value="${b.book!=null?(b.book>0?'+':'')+b.book:''}" data-bk="${esc(b.bk)}"></td>
      <td data-l="Monto" class="r num">${money(b.stake)}</td><td data-l="Cobras" class="r num">${b.ret!=null?money(b.ret):'<span class="dim">—</span>'}</td>
      <td data-l="Valor esperado" class="r num ${b.ev==null?'dim':b.ev>0?'ok':'bad'}">${b.ev==null?'—':(b.ev>=0?'+':'−')+money(Math.abs(b.ev))}</td></tr>`).join('')}
-   </tbody><tfoot><tr><th colspan="5">Total de las 5</th><td data-l="Apostado" class="r num"><b>${money(1000)}</b></td><td data-l="Cobrarías" class="r num">${(()=>{const c=m.bets.filter(b=>b.ret!=null);return c.length?money(c.reduce((s,b)=>s+b.ret,0)):'<span class="dim">—</span>'})()}</td><td data-l="Valor esperado" class="r num">${(()=>{const c=m.bets.filter(b=>b.ev!=null);if(!c.length)return'<span class="dim">—</span>';const e=c.reduce((s,b)=>s+b.ev,0);return(e>=0?'+':'−')+money(Math.abs(e))+(c.length<5?` <span class="xs dim">(${c.length} de 5)</span>`:'')})()}</td></tr></tfoot></table></div>
+   </tbody><tfoot><tr><th colspan="6">Total de las 5</th><td data-l="Apostado" class="r num"><b>${money(1000)}</b></td><td data-l="Cobrarías" class="r num">${(()=>{const c=m.bets.filter(b=>b.ret!=null);return c.length?money(c.reduce((s,b)=>s+b.ret,0)):'<span class="dim">—</span>'})()}</td><td data-l="Valor esperado" class="r num">${(()=>{const c=m.bets.filter(b=>b.ev!=null);if(!c.length)return'<span class="dim">—</span>';const e=c.reduce((s,b)=>s+b.ev,0);return(e>=0?'+':'−')+money(Math.abs(e))+(c.length<5?` <span class="xs dim">(${c.length} de 5)</span>`:'')})()}</td></tr></tfoot></table></div>
    ${!anyBook?'<div class="note info"><b>Cómo se usa:</b> "Momio mínimo" es lo que esa apuesta tiene que pagarte para no perder dinero a la larga. Abre Playdoit, compara, y si te paga MENOS que ese número, sáltala. Escribe lo que veas en "Tu casa" y ahí sí sale cuánto cobras y si tiene valor. Ojo: los hándicaps de Playdoit son enteros (+3, +4, +6) y los de aquí terminan en .5, así que el precio no es comparable directo: en los enteros puede haber empate y devolución.</div>':posEV.length?`<div class="note ok">Con los momios de tu casa, ${posEV.length} de 5 ${posEV.length===1?'apuesta tiene':'apuestas tienen'} valor: ${posEV.map(b=>esc(b.kindName)).join(', ')}.</div>`:m.bets.every(b=>b.book)?'<div class="note">Con los momios de tu casa ninguna de las 5 tiene valor. La recomendación honesta: no apostar este juego o buscar mejor momio.</div>':''}
    <details class="xs" style="margin:8px 0"><summary style="cursor:pointer;min-height:44px;color:var(--tx-2)">¿Qué significa cada tipo?</summary>
     <ul class="clean xs" style="margin-top:6px">${KINDS.map((k,i)=>`<li><b>${k}</b> (${money(STAKES[i])}): ${esc(KIND_HELP[i])}</li>`).join('')}</ul></details>
@@ -614,6 +708,7 @@ function viewGame(g){
   rm.oninput=()=>$('#lm').textContent=sgn(+rm.value)+' pts';rt.oninput=()=>$('#lt').textContent=sgn(+rt.value)+' pts';
   const commit=(quien)=>{S.adj[g.id]={m:+rm.value,t:+rt.value};store.set('w3.adj',S.adj);rerender(quien)};
   rm.onchange=()=>{commit(rm)};rt.onchange=()=>{commit(rt)};
+  $('#modoPD').onchange=e=>{S.pd=e.target.checked;store.set(PD_KEY,S.pd);rerender()};
   $('#resetAdj').onclick=()=>{delete S.adj[g.id];store.set('w3.adj',S.adj);rerender()};
   $('#injBtn').onclick=async()=>{const b=$('#injBtn');b.disabled=true;b.innerHTML=ic('info','spin')+' Bajando…';
     try{await liveInjuries();S.injAt=new Date().toISOString();store.set('w3.injAt',S.injAt);rerender();toast('Reporte de lesiones de ESPN al momento.')}
